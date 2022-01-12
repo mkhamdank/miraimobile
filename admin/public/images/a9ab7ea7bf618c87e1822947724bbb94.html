@@ -1,0 +1,73 @@
+
+<!--------------------------------------------
+Created By Sadam
+instagram.com/sadammpn , Indonesia
+--------------------------------------------->
+<html>
+<script language="JavaScript"> 
+var numraindrops="150";
+var speed="5";
+var rainsize="2";
+var wind="left";
+var genxgallery="";
+
+function tb5_makeArray(n){ this.length = n; return this.length;
+}
+tb5_messages = new tb5_makeArray(3);
+tb5_messages[0] = "love u";
+tb5_messages[1] = "silvana";
+tb5_messages[2] = "";
+tb5_rptType = 'infinite';
+tb5_rptNbr = 10;
+tb5_speed = 50;
+tb5_delay = 2000;
+var tb5_counter=1;
+var tb5_currMsg=0;
+var tb5_stsmsg="";
+function tb5_shuffle(arr){
+var k;
+for (i=0; i<arr.length; i++){ k = Math.round(Math.random() * (arr.length - i - 1)) + i; temp = arr[i];arr[i]=arr[k];arr[k]=temp;
+}
+return arr;
+}
+tb5_arr = new tb5_makeArray(tb5_messages[tb5_currMsg].length);
+tb5_sts = new tb5_makeArray(tb5_messages[tb5_currMsg].length);
+for (var i=0; i<tb5_messages[tb5_currMsg].length; i++){ tb5_arr[i] = i; tb5_sts[i] = "_";
+}
+tb5_arr = tb5_shuffle(tb5_arr);
+function tb5_init(n){
+var k;
+if (n == tb5_arr.length){ if (tb5_currMsg == tb5_messages.length-1){ if ((tb5_rptType == 'finite') && (tb5_counter==tb5_rptNbr)){ clearTimeout(tb5_timerID); return; } tb5_counter++; tb5_currMsg=0; } else{ tb5_currMsg++; } n=0; tb5_arr = new tb5_makeArray(tb5_messages[tb5_currMsg].length); tb5_sts = new tb5_makeArray(tb5_messages[tb5_currMsg].length); for (var i=0; i<tb5_messages[tb5_currMsg].length; i++){ tb5_arr[i] = i; tb5_sts[i] = "_"; } tb5_arr = tb5_shuffle(tb5_arr); tb5_sp=tb5_delay;
+}
+else{ tb5_sp=tb5_speed; k = tb5_arr[n]; tb5_sts[k] = tb5_messages[tb5_currMsg].charAt(k); tb5_stsmsg = ""; for (var i=0; i<tb5_sts.length; i++) tb5_stsmsg += tb5_sts[i]; document.title = tb5_stsmsg; n++; } tb5_timerID = setTimeout("tb5_init("+n+")", tb5_sp);
+}
+function tb5_randomizetitle(){ tb5_init(0);
+}
+tb5_randomizetitle();
+
+</script> 
+<!-- --------Cursor--------- -->
+<style type='text/css'>body, a, a:link{cursor:url(4.bp.blogspot.com/-hAF7tPUnmEE/TwGR3lRH0EI/AAAAAAAAAs8/6pki22hc3NE/s1600/ass.png), default;} a:hover {cursor:url(../3.bp.blogspot.com/-bRikgqeZx0Q/TwGR4MUEC7I/AAAAAAAAAtA/isJmS0r35Qw/s1600/pointer.png),wait;}</style>
+
+
+<center>
+<td align=center> 
+<center>
+<td align=center> 
+<center><a href="https://api.whatsapp.com/send?phone=089666362371&text=I Love u Little Sadam </3" target="_blank"><img src="https://i.pinimg.com/originals/21/b3/b3/21b3b32972c06af4984ae6f5e01b3e2c.jpg" style="opacity:0.4;filter:alpha(opacity=40)" onmouseover="this.style.opacity=1;this.filters.alpha.opacity=100" onmouseout="this.style.opacity=0.4;this.filters.alpha.opacity=40" height="330" weight="300"<br></a> </center>
+
+
+<div id=q>Good night silvana<br><font color=dodgerblue size=5>I Love U So much Silvana armila </3<br><br>
+
+
+<font <font size="4" color="red">~/ <font <font size="4" color="gray">All Of My love just for you <font size="4" color="red">\~<P>
+<br>
+
+<audio src="C:\Users\Sadam Putra Nalendra\Downloads\You Are My Sunshine (Jasmine Thompson).mp3" controls>
+<p>If you are reading this, i just want you to know that i love u so much cipaaa.</p>
+</audio>>
+
+
+
+<style>body{overflow:hidden;background-color:black}#q{font:50px impact;color:white;position:absolute;left:0;right:0;top:43%} 
+</html>
