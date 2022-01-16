@@ -24,6 +24,8 @@ use App\EsportRegister;
 use App\VaksinSurvey;
 use App\VaksinRegister;
 use App\VaksinRegisterNew;
+use App\PkbPeriode;
+use App\PkbQuestion;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
 
@@ -38,11 +40,15 @@ class MasterController extends Controller
 			WHERE remark = 'stoctaking_survey'
 			AND deleted_at IS NULL");
 
+		$periode = PkbPeriode::where('status','Active')->first();
+		$pkb_question = PkbQuestion::where('periode',$periode->periode)->get();
+
 		return view('home_mirai', array(
 			'question' => $question,
 			'st_question' => $st_question,
 			'tgl' => date('Y-m-d H:i:s'),
-			'periode' => '2021-2022'
+			'periode' => $periode->periode,
+			'pkb_question' => $pkb_question
 		));
 	}
 
@@ -1348,6 +1354,8 @@ class MasterController extends Controller
 			$periode = $request->get('periode');
 			$employee_id = $request->get('employee_id');
 			$persetujuan = $request->get('persetujuan');
+			$question = $request->get('question');
+			$answer = $request->get('answer');
 
 			$pkbcheck = Pkb::where('periode',$periode)->where('employee_id',$employee_id)->first();
 
@@ -1362,6 +1370,8 @@ class MasterController extends Controller
 					'periode' => $periode,
 					'employee_id' => $employee_id,
 					'agreement' => $persetujuan,
+					'question' => join('_',$question),
+					'answer' => join('_',$answer),
 					'created_by' => 1,
 				]);
 				$pkb->save();

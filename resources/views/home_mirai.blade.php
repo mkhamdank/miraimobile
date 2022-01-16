@@ -528,60 +528,124 @@ header("Pragma: no-cache");
 							<input type="hidden" name="longitude" id="longitude">
 						</form>
 
-						<div id="form_pkb" style="display: none;padding: 0px 25px 58px 25px;">
+						<div id="form_pkb" style="display: none;padding: 0px 10px 58px 10px;">
 							<input type="hidden" name="periode" id="periode" value="{{$periode}}">
 							<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
 								PERJANJIAN KERJA BERSAMA<br>(PKB)<br>
 								PERIODE {{$periode}}
 							</span>
-							<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-size: 18px;text-decoration: underline;">
-								SURAT PERNYATAAN
-							</span>
+							<div id="pkb">
+					          <table class="table table-bordered">
+					            <tr id="show-att">
+					              <td colspan="9" style="padding: 0px; color: white; background-color: rgb(50, 50, 50); font-size:16px;width: 75%;" colspan="2" id="attach_pdf">
+					              </td>
+					            </tr>
+					          </table>
+					          <div id="div_pertanyaan">
+						        <span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
+									PERTANYAAN
+								</span>
+								<span>
+									Silahkan Baca terlebih dahulu Buku PKB yang telah Anda dapatkan dari bagian HR.<br>
+									Jika sudah dirasa mengerti, Anda harus menjawab beberapa pertanyaan di bawah ini.<br>
+								</span>
+								<br><?php $pkb_question_total = count($pkb_question) ?>
+								<?php if (count($pkb_question) > 0): ?>
+									<?php $no = 0; ?>
+									@foreach($pkb_question as $pkb_question)
+									<label class="label-input1002" style="color: purple;margin-top: 0px;font-size: 14px"><span id="pkb_question_<?= $no ?>">{{$no+1}}. {{ $pkb_question->question }}</span></label>
 
-							<input type="hidden" value="{{csrf_token()}}" name="_token" />
-							<div id="div_detail" style="display: none;">
-								<table>
-									<tr>
-										<td colspan="3">Saya yang bertandatangan di bawah ini :</td>
-									</tr>
-									<tr>
-										<td style="width: 3%">Nama</td>
-										<td style="width: 1%">:</td>
-										<td style="width: 20%"><span id="nama"></span></td>
-									</tr>
-									<tr>
-										<td>NIK</td>
-										<td>:</td>
-										<td><span id="nik"></span></td>
-									</tr>
-									<tr>
-										<td>Grade /<br>Jabatan</td>
-										<td>:</td>
-										<td><span id="grade"></span> / <span id="jabatan"></span></td>
-									</tr>
-									<tr>
-										<td>Bagian</td>
-										<td>:</td>
-										<td><span id="department_pkb"></span></td>
-									</tr>
-								</table>
-								<br>	
-								Menyatakan dengan sebenarnya bahwa saya telah menerima buku, membaca <br>
-								dan mengerti isi Perjanjian Kerja Bersama ini. <br>
-								Demikian pernyataan ini saya buat dengan sebenar-benarnya dan tanpa ada paksaan <br>
-								dari pihak manapun. <br>
-								<br>
-								<br>
-								Pasuruan, {{date('d F Y')}}
-								<br>
-								<br>
-								<label class="container_checkmark" style="color: green">Menyetujui
-									<input type="checkbox" name="persetujuan" value="Menyetujui" checked="true">
-									<span class="checkmark_checkmark"></span>
-								</label>
-								<br>
+									<?php $pkb_answer = explode('_', $pkb_question->answer) ?>
 
-								<span id="nama_bawah" style="text-decoration: underline;"></span>
+									<?php for ($i=0; $i < count($pkb_answer); $i++) { ?>
+									<div class="validate-input" style="position: relative; width: 100%">
+										<label class="radio_box" style="margin-top: 5px;font-size: 12px">{{$pkb_answer[$i]}}
+											<input type="radio" id="pkb_answer_{{$no}}" name="pkb_answer_{{$no}}" value="{{$pkb_answer[$i]}}">
+											<span class="checkmark_box"></span>
+										</label>
+									</div>
+									<?php } ?>
+									<input type="hidden" name="pkb_right_answer_{{$no}}" id="pkb_right_answer_{{$no}}" value="{{$pkb_question->right_answer}}">
+									<?php $no++ ?>
+									<br>
+									@endforeach
+								<?php endif ?>
+
+								<button class="contact100-form-btn" type="button" onclick="submitPkbQuestion()" style="display: inline-block;float: right;">
+	              					<span>
+	              						Submit
+	              						<i class="fa fa-arrow-right"></i>
+	              					</span>
+	              				</button>
+					          </div>
+							</div>
+							<div id="surat_pernyataan">
+									<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-size: 18px;text-decoration: underline;">
+									SURAT PERNYATAAN
+								</span>
+
+								<input type="hidden" value="{{csrf_token()}}" name="_token" />
+								<div id="div_detail" style="display: none;">
+									<table>
+										<tr>
+											<td colspan="3">Saya yang bertandatangan di bawah ini :</td>
+										</tr>
+										<tr>
+											<td style="width: 3%">Nama</td>
+											<td style="width: 1%">:</td>
+											<td style="width: 20%"><span id="nama"></span></td>
+										</tr>
+										<tr>
+											<td>NIK</td>
+											<td>:</td>
+											<td><span id="nik"></span></td>
+										</tr>
+										<tr>
+											<td>Grade /<br>Jabatan</td>
+											<td>:</td>
+											<td><span id="grade"></span> / <span id="jabatan"></span></td>
+										</tr>
+										<tr>
+											<td>Bagian</td>
+											<td>:</td>
+											<td><span id="department_pkb"></span></td>
+										</tr>
+									</table>
+									<br>	
+									Menyatakan dengan sebenarnya bahwa saya telah menerima buku, membaca <br>
+									dan mengerti isi Perjanjian Kerja Bersama ini. <br>
+									Demikian pernyataan ini saya buat dengan sebenar-benarnya dan tanpa ada paksaan <br>
+									dari pihak manapun. <br>
+									<br>
+									<br>
+									Pasuruan, {{date('d F Y')}}
+									<br>
+									<br>
+									<label class="container_checkmark" style="color: green">Menyetujui
+										<input type="checkbox" name="persetujuan" value="Menyetujui" checked="true">
+										<span class="checkmark_checkmark"></span>
+									</label>
+									<br>
+
+									<span id="nama_bawah" style="text-decoration: underline;"></span>
+								</div>
+
+								<!-- demam, batuk, kejadian, tenggorokan sakit, sesak nafas, indera perasa & penciuman terganggu,  -->
+
+								<div class="container-contact100-form-btn" style="margin-top: 20px">
+									<button class="contact100-form-btn" type="button" onclick="savePkb()" style="display: inline-block;">
+										<span>
+											Submit
+											<i class="fa fa-arrow-right"></i>
+										</span>
+									</button>
+									<button class="contact1002-form-btn" type="button" onclick="cancel('form_pkb')" style="display: inline-block;">
+										<span>
+											<i class="fa fa-arrow-left"></i>
+											Back To Home
+										</span>
+									</button>
+								</div>
 							</div>
 
 							<div id="div_detail_belum" style="margin-top: 20px">
@@ -597,23 +661,6 @@ header("Pragma: no-cache");
 									Terimakasih, Anda telah menyetujui <br><span style="font-weight: bold;">Surat Pernyataan</span><br> pada<br>
 									<span id="tanggal_pkb" style="font-weight: bold;"></span>
 								</span></center>
-							</div>
-
-							<!-- demam, batuk, kejadian, tenggorokan sakit, sesak nafas, indera perasa & penciuman terganggu,  -->
-
-							<div class="container-contact100-form-btn" style="margin-top: 20px">
-								<button class="contact100-form-btn" type="button" onclick="savePkb()" style="display: inline-block;">
-									<span>
-										Submit
-										<i class="fa fa-arrow-right"></i>
-									</span>
-								</button>
-								<button class="contact1002-form-btn" type="button" onclick="cancel('form_pkb')" style="display: inline-block;">
-									<span>
-										<i class="fa fa-arrow-left"></i>
-										Back To Home
-									</span>
-								</button>
 							</div>
 						</div>
 
@@ -1117,6 +1164,13 @@ header("Pragma: no-cache");
 				});
 
 				$(".select2").select2();
+				var path = '{{asset("/files/pkb/pkb_".$periode.".pdf")}}';
+      			$('#attach_pdf').append("<embed src='"+ path +"' type='application/pdf' width='100%' height='800px'>");
+      			console.log(parseInt('{{$pkb_question_total}}'));
+      			for(var i = 0; i < parseInt('{{$pkb_question_total}}');i++){
+      				var name= 'pkb_answer_'+i;
+      				$('#'+name).prop('checked', false);
+      			}
 
 			});
 
@@ -1208,6 +1262,7 @@ header("Pragma: no-cache");
 					$("#keterangan_umum").hide();
 					$("#stocktaking_survey_form").hide();
 					$("#form_pkb").show();
+					$("#surat_pernyataan").hide();
 				}
 
 				if(index === 7){
@@ -1279,15 +1334,17 @@ header("Pragma: no-cache");
 								if (result.cek_pkb != null) {
 									$("#div_detail_belum").hide();
 									$("#div_detail_sudah").show();
-									$("#div_detail").hide();
+									$("#surat_pernyataan").hide();
 									$('#tanggal_pkb').html(result.cek_pkb.created_at);
 									$("#div_detail").hide();
+									$("#div_pertanyaan").hide();
 								}else{
 									$("#div_detail_belum").hide();
 									$("#div_detail_sudah").hide();
-									$("#div_detail").show();
+									$("#surat_pernyataan").show();
 									$('#tanggal_pkb').html('');
 									$("#div_detail").show();
+									$("#div_pertanyaan").show();
 								}
 							}
 							$("#employee_id").text(result.data[0].employee_id);
@@ -1818,16 +1875,30 @@ function showPosition(position) {
 				persetujuan[i] = $(this).val();
 			});
 
+			var question = [];
+			var answers = [];
+
 			if (persetujuan.length == 0) {
 				$("#loading").hide();
 				openErrorGritter('Error!', 'Persetujuan Harus Diisi..');
 				return false;
 			}
 
+			for(var i = 0; i < parseInt('{{$pkb_question_total}}');i++){
+  				var answer = '';
+				$("input[name='pkb_answer_"+i+"']:checked").each(function (i) {
+			            answer = $(this).val();
+		        });
+		        answers.push(answer);
+		        question.push($('#pkb_question_'+i).html());
+  			}
+
 			var data = {
 				employee_id : $('#username').val(),
 				persetujuan : persetujuan[0],
-				periode:'{{$periode}}'
+				periode:'{{$periode}}',
+				question:question,
+				answer:answers
 			}
 
 			$.post('{{ url("input/pkb") }}', data, function(result, status, xhr){
@@ -1837,6 +1908,7 @@ function showPosition(position) {
 					$("#div_detail_sudah").show();
 					$("#tanggal_pkb").html(result.datetime);
 					$("#div_detail").hide();
+					$("#surat_pernyataan").hide();
 					$("#div_detail_belum").hide();
 				}
 				else {
@@ -1844,6 +1916,22 @@ function showPosition(position) {
 					openErrorGritter('Error!', result.datas);
 				}
 			})
+		}
+
+		function submitPkbQuestion() {
+			for(var i = 0; i < parseInt('{{$pkb_question_total}}');i++){
+  				var answer = '';
+				$("input[name='pkb_answer_"+i+"']:checked").each(function (i) {
+			            answer = $(this).val();
+		        });
+		        if (answer != $("#pkb_right_answer_"+i).val()) {
+		        	openErrorGritter('Error!','Jawaban nomor '+(i+1)+' salah. Silahkan cek kembali.');
+		        	return false;
+		        }
+  			}
+  			$('#div_pertanyaan').hide();
+  			$("#surat_pernyataan").show();
+  			openSuccessGritter('Success!','Anda berhasil menyelesaikan pertanyaan PKB Periode '+'{{$periode}}'+'<br>Silahkan Sign SURAT PERNYATAAN berikut.');
 		}
 
 		function fillTablePengumuman() {
