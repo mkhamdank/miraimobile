@@ -574,7 +574,7 @@ header("Pragma: no-cache");
 										<br>
 										<br>
 										<center><span style="font-weight: bold;">Pembahasan</span></center>
-										{{ $pkb_question->discussion }}</span></label>
+										<?php echo $pkb_question->discussion ?></span></label>
 										<br>
 									</div>
 									<button class="contact100-form-btn" type="button" id="btn_pkb_submit_<?= $no ?>" onclick="submitPkbQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
@@ -667,12 +667,12 @@ header("Pragma: no-cache");
 											<i class="fa fa-arrow-right"></i>
 										</span>
 									</button>
-									<button class="contact1002-form-btn" type="button" onclick="cancel('form_pkb')" style="display: inline-block;">
+									<!-- <button class="contact1002-form-btn" type="button" onclick="cancel('form_pkb')" style="display: inline-block;">
 										<span>
 											<i class="fa fa-arrow-left"></i>
 											Back To Home
 										</span>
-									</button>
+									</button> -->
 								</div>
 							</div>
 
