@@ -842,7 +842,7 @@ header("Pragma: no-cache");
 								<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_belum_survey">
 									<div style="width: 100%;">
 										<div class="col-xs-12 col-md-12">
-											<center style="font-size:16px">Dear <span class="name_survey"></span><br>Survey Dapat Diisi Pada <span style="color: red">Minggu, 16 Januari 2022 Pukul 12:00 - 18:00 </span> <br></center>
+											<center style="font-size:16px">Dear <span class="name_survey"></span><br>Survey Dapat Diisi Pada <span style="color: red">Minggu, 23 Januari 2022 Pukul 12:00 - 18:00 </span> <br></center>
 										</div>
 									</div>
 
@@ -1253,7 +1253,7 @@ header("Pragma: no-cache");
 				}
 
 				if (index === 5) {
-					if (tgl >= "2022-01-16 12:00:00" && tgl <= "2022-01-16 18:00:00") {
+					if (tgl >= "2022-01-23 12:00:00" && tgl <= "2022-01-23 18:00:00") {
 						$('#form_kehadiran').hide();
 						$('#form_menu').hide();
 						$("#form_login").hide();
