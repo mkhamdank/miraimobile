@@ -545,33 +545,61 @@ header("Pragma: no-cache");
 						        <span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
 									PERTANYAAN
 								</span>
-								<span>
+								<!-- <span>
 									Silahkan Baca terlebih dahulu Buku PKB yang telah Anda dapatkan dari bagian HR.<br>
 									Jika sudah dirasa mengerti, Anda harus menjawab beberapa pertanyaan di bawah ini.<br>
-								</span>
+								</span> -->
 								<br><?php $pkb_question_total = count($pkb_question) ?>
 								<?php if (count($pkb_question) > 0): ?>
 									<?php $no = 0; ?>
 									@foreach($pkb_question as $pkb_question)
-									<label class="label-input1002" style="color: purple;margin-top: 0px;font-size: 14px"><span id="pkb_question_<?= $no ?>">{{$no+1}}. {{ $pkb_question->question }}</span></label>
+									<div id="div_pkb_question_<?= $no ?>" style="display: none;">
+										<label class="label-input1002" style="color: purple;margin-top: 0px;font-size: 14px"><span id="pkb_question_<?= $no ?>">{{$no+1}}. {{ $pkb_question->question }}</span></label>
 
-									<?php $pkb_answer = explode('_', $pkb_question->answer) ?>
+										<?php $pkb_answer = explode('_', $pkb_question->answer) ?>
 
-									<?php for ($i=0; $i < count($pkb_answer); $i++) { ?>
-									<div class="validate-input" style="position: relative; width: 100%">
-										<label class="radio_box" style="margin-top: 5px;font-size: 12px">{{$pkb_answer[$i]}}
-											<input type="radio" id="pkb_answer_{{$no}}" name="pkb_answer_{{$no}}" value="{{$pkb_answer[$i]}}">
-											<span class="checkmark_box"></span>
-										</label>
+										<?php for ($i=0; $i < count($pkb_answer); $i++) { ?>
+										<div class="validate-input" style="position: relative; width: 100%">
+											<label class="radio_box" style="margin-top: 5px;font-size: 12px">{{$pkb_answer[$i]}}
+												<input type="radio" id="pkb_answer_{{$no}}" name="pkb_answer_{{$no}}" value="{{$pkb_answer[$i]}}">
+												<span class="checkmark_box"></span>
+											</label>
+										</div>
+										<?php } ?>
+										<input type="hidden" name="pkb_right_answer_{{$no}}" id="pkb_right_answer_{{$no}}" value="{{$pkb_question->right_answer}}">
+										<br>
 									</div>
-									<?php } ?>
-									<input type="hidden" name="pkb_right_answer_{{$no}}" id="pkb_right_answer_{{$no}}" value="{{$pkb_question->right_answer}}">
-									<?php $no++ ?>
-									<br>
+									<div id="div_pkb_discussion_<?= $no ?>" style="display: none;">
+										<center><span id="pkb_announcement_<?= $no ?>"></span></center>
+										<br>
+										<br>
+										<center><span style="font-weight: bold;">Pembahasan</span></center>
+										{{ $pkb_question->discussion }}</span></label>
+										<br>
+									</div>
+									<button class="contact100-form-btn" type="button" id="btn_pkb_submit_<?= $no ?>" onclick="submitPkbQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
+		              					<span>
+		              						Submit
+		              						<i class="fa fa-arrow-right"></i>
+		              					</span>
+		              				</button>
+		              				<button class="contact1002-form-btn" type="button" id="btn_pkb_back_<?= $no ?>" onclick="backPkbQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
+		              					<span>
+		              						Back
+		              						<i class="fa fa-arrow-right"></i>
+		              					</span>
+		              				</button>
+		              				<button class="contact100-form-btn" type="button" id="btn_pkb_next_<?= $no ?>" onclick="nextPkbQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
+		              					<span>
+		              						Next
+		              						<i class="fa fa-arrow-right"></i>
+		              					</span>
+		              				</button>
+		              				<?php $no++ ?>
 									@endforeach
 								<?php endif ?>
 
-								<button class="contact100-form-btn" type="button" onclick="submitPkbQuestion()" style="display: inline-block;float: right;">
+								<button class="contact100-form-btn" type="button" id="btn_pkb_submit_all" onclick="submitPkbQuestionAll()" style="display: inline-block;float: right;display: none;">
 	              					<span>
 	              						Submit
 	              						<i class="fa fa-arrow-right"></i>
@@ -1164,7 +1192,7 @@ header("Pragma: no-cache");
 				});
 
 				$(".select2").select2();
-				var path = '{{asset("/files/pkb/pkb_".$periode.".pdf")}}';
+				var path = 'http://10.109.52.4/mirai/public/files/pkb/pkb_'+'{{$periode}}'+'.pdf';
       			$('#attach_pdf').append("<embed src='"+ path +"' type='application/pdf' width='100%' height='800px'>");
       			console.log(parseInt('{{$pkb_question_total}}'));
       			for(var i = 0; i < parseInt('{{$pkb_question_total}}');i++){
@@ -1263,6 +1291,8 @@ header("Pragma: no-cache");
 					$("#stocktaking_survey_form").hide();
 					$("#form_pkb").show();
 					$("#surat_pernyataan").hide();
+					$('#div_pkb_question_0').show();
+					$('#btn_pkb_submit_0').show();
 				}
 
 				if(index === 7){
@@ -1918,20 +1948,69 @@ function showPosition(position) {
 			})
 		}
 
-		function submitPkbQuestion() {
-			for(var i = 0; i < parseInt('{{$pkb_question_total}}');i++){
+		function submitPkbQuestion(no) {
+			// for(var i = 0; i < parseInt('{{$pkb_question_total}}');i++){
   				var answer = '';
-				$("input[name='pkb_answer_"+i+"']:checked").each(function (i) {
-			            answer = $(this).val();
-		        });
-		        if (answer != $("#pkb_right_answer_"+i).val()) {
-		        	openErrorGritter('Error!','Jawaban nomor '+(i+1)+' salah. Silahkan cek kembali.');
-		        	return false;
-		        }
-  			}
-  			$('#div_pertanyaan').hide();
-  			$("#surat_pernyataan").show();
-  			openSuccessGritter('Success!','Anda berhasil menyelesaikan pertanyaan PKB Periode '+'{{$periode}}'+'<br>Silahkan Sign SURAT PERNYATAAN berikut.');
+			// 	$("input[name='pkb_answer_"+i+"']:checked").each(function (i) {
+			//             answer = $(this).val();
+		 //        });
+		 //        if (answer != $("#pkb_right_answer_"+i).val()) {
+		 //        	openErrorGritter('Error!','Jawaban nomor '+(i+1)+' salah. Silahkan cek kembali.');
+		 //        	return false;
+		 //        }
+  	// 		}
+  	// 		$('#div_pertanyaan').hide();
+  	// 		$("#surat_pernyataan").show();
+  	// 		openSuccessGritter('Success!','Anda berhasil menyelesaikan pertanyaan PKB Periode '+'{{$periode}}'+'<br>Silahkan Sign SURAT PERNYATAAN berikut.');
+  			$("input[name='pkb_answer_"+no+"']:checked").each(function (i) {
+		        answer = $(this).val();
+	        });
+	        if (answer != $("#pkb_right_answer_"+no).val()) {
+	        	$('#pkb_announcement_'+no).html('Jawaban Anda Salah!<br>Silahkan baca pembahasan berikut.');
+	        	$('#pkb_announcement_'+no).css("color", "red");
+	        	$('#pkb_announcement_'+no).css("fontWeight", "bold");
+	        	$('#btn_pkb_back_'+no).show();
+	        	$('#div_pkb_discussion_'+no).show();
+	        	$('#btn_pkb_submit_'+no).hide();
+	        	$('#div_pkb_question_'+no).hide();
+	        }else{
+	        	$('#pkb_announcement_'+no).html('Jawaban Anda Benar!');
+	        	$('#pkb_announcement_'+no).css("color", "green");
+	        	$('#pkb_announcement_'+no).css("fontWeight", "bold");
+	        	$('#div_pkb_discussion_'+no).show();
+	        	$('#btn_pkb_next_'+no).show();
+	        	$('#btn_pkb_submit_'+no).hide();
+	        	$('#div_pkb_question_'+no).hide();
+	        }
+		}
+
+		function backPkbQuestion(no) {
+			$('#pkb_announcement_'+no).html('');
+        	$('#pkb_announcement_'+no).css("color", "white");
+        	$('#btn_pkb_back_'+no).hide();
+        	$('#div_pkb_discussion_'+no).hide();
+        	$('#btn_pkb_submit_'+no).show();
+        	$('#div_pkb_question_'+no).show();
+		}
+
+		function nextPkbQuestion(no) {
+			$('#pkb_announcement_'+no).html('');
+        	$('#pkb_announcement_'+no).css("color", "white");
+        	$('#btn_pkb_back_'+no).hide();
+        	$('#btn_pkb_next_'+no).hide();
+        	$('#div_pkb_discussion_'+no).hide();
+        	$('#btn_pkb_submit_'+no).hide();
+        	$('#div_pkb_question_'+no).hide();
+
+        	$('#btn_pkb_submit_'+(parseInt(no)+1)).show();
+        	$('#div_pkb_question_'+(parseInt(no)+1)).show();
+
+        	if ((parseInt(no)+1) == '{{$pkb_question_total}}') {
+        		$('#div_pertanyaan').hide();
+        		$('#btn_pkb_submit_all').show();
+        		$('#surat_pernyataan').show();
+        		openSuccessGritter('Success!','Anda berhasil menyelesaikan pertanyaan PKB Periode '+'{{$periode}}'+'<br>Silahkan Sign SURAT PERNYATAAN berikut.');
+        	}
 		}
 
 		function fillTablePengumuman() {
