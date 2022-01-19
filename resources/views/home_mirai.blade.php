@@ -535,12 +535,6 @@ header("Pragma: no-cache");
 								PERIODE {{$periode}}
 							</span>
 							<div id="pkb">
-					          <table class="table table-bordered">
-					            <tr id="show-att">
-					              <td colspan="9" style="padding: 0px; color: white; background-color: rgb(50, 50, 50); font-size:16px;width: 75%;" colspan="2" id="attach_pdf">
-					              </td>
-					            </tr>
-					          </table>
 					          <div id="div_pertanyaan">
 						        <span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
 									PERTANYAAN
@@ -570,10 +564,9 @@ header("Pragma: no-cache");
 										<br>
 									</div>
 									<div id="div_pkb_discussion_<?= $no ?>" style="display: none;">
-										<center><span id="pkb_announcement_<?= $no ?>"></span></center>
+										<center><span id="pkb_announcement_<?= $no ?>" style="font-weight: bold;font-size: 20px"></span></center>
 										<br>
-										<br>
-										<center><span style="font-weight: bold;">Pembahasan</span></center>
+										<center><span style="font-weight: bold;font-size: 20px">Pembahasan</span></center>
 										<?php echo $pkb_question->discussion ?></span></label>
 										<br>
 									</div>
@@ -684,7 +677,7 @@ header("Pragma: no-cache");
 							</div>
 
 							<div id="div_detail_sudah" style="margin-top: 20px">
-								<center><span style="font-size: 18px;text-align: center;">
+								<center><span style="font-size: 18px;text-align: center;color: green">
 									<?php date_default_timezone_set('Asia/Jakarta'); ?>
 									Terimakasih, Anda telah menyetujui <br><span style="font-weight: bold;">Surat Pernyataan</span><br> pada<br>
 									<span id="tanggal_pkb" style="font-weight: bold;"></span>
@@ -1192,9 +1185,9 @@ header("Pragma: no-cache");
 				});
 
 				$(".select2").select2();
-				var path = 'http://10.109.52.4/mirai/public/files/pkb/pkb_'+'{{$periode}}'+'.pdf';
-      			$('#attach_pdf').append("<embed src='"+ path +"' type='application/pdf' width='100%' height='800px'>");
-      			console.log(parseInt('{{$pkb_question_total}}'));
+				// var path = 'http://10.109.52.4/mirai/public/files/pkb/pkb_'+'{{$periode}}'+'.pdf';
+    //   			$('#attach_pdf').append("<embed src='"+ path +"' type='application/pdf' width='100%' height='800px'>");
+    //   			console.log(parseInt('{{$pkb_question_total}}'));
       			for(var i = 0; i < parseInt('{{$pkb_question_total}}');i++){
       				var name= 'pkb_answer_'+i;
       				$('#'+name).prop('checked', false);
