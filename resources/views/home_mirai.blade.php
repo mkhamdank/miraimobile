@@ -535,131 +535,131 @@ header("Pragma: no-cache");
 								PERIODE {{$periode}}
 							</span>
 							<div id="pkb">
-					          <div id="div_pertanyaan">
-						        <span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
-									PERTANYAAN
-								</span>
+								<div id="div_pertanyaan">
+									<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
+										PERTANYAAN
+									</span>
 								<!-- <span>
 									Silahkan Baca terlebih dahulu Buku PKB yang telah Anda dapatkan dari bagian HR.<br>
 									Jika sudah dirasa mengerti, Anda harus menjawab beberapa pertanyaan di bawah ini.<br>
 								</span> -->
 								<br><?php $pkb_question_total = count($pkb_question) ?>
 								<?php if (count($pkb_question) > 0): ?>
-									<?php $no = 0; ?>
-									@foreach($pkb_question as $pkb_question)
-									<div id="div_pkb_question_<?= $no ?>" style="display: none;">
-										<label class="label-input1002" style="color: purple;margin-top: 0px;font-size: 14px"><span id="pkb_question_<?= $no ?>">{{$no+1}}. {{ $pkb_question->question }}</span></label>
+								<?php $no = 0; ?>
+								@foreach($pkb_question as $pkb_question)
+								<div id="div_pkb_question_<?= $no ?>" style="display: none;">
+									<label class="label-input1002" style="color: purple;margin-top: 0px;font-size: 14px"><span id="pkb_question_<?= $no ?>">{{$no+1}}. {{ $pkb_question->question }}</span></label>
 
-										<?php $pkb_answer = explode('_', $pkb_question->answer) ?>
+									<?php $pkb_answer = explode('_', $pkb_question->answer) ?>
 
-										<?php for ($i=0; $i < count($pkb_answer); $i++) { ?>
-										<div class="validate-input" style="position: relative; width: 100%">
-											<label class="radio_box" style="margin-top: 5px;font-size: 12px">{{$pkb_answer[$i]}}
-												<input type="radio" id="pkb_answer_{{$no}}" name="pkb_answer_{{$no}}" value="{{$pkb_answer[$i]}}">
-												<span class="checkmark_box"></span>
-											</label>
-										</div>
-										<?php } ?>
-										<input type="hidden" name="pkb_right_answer_{{$no}}" id="pkb_right_answer_{{$no}}" value="{{$pkb_question->right_answer}}">
-										<br>
+									<?php for ($i=0; $i < count($pkb_answer); $i++) { ?>
+									<div class="validate-input" style="position: relative; width: 100%">
+										<label class="radio_box" style="margin-top: 5px;font-size: 12px">{{$pkb_answer[$i]}}
+											<input type="radio" id="pkb_answer_{{$no}}" name="pkb_answer_{{$no}}" value="{{$pkb_answer[$i]}}">
+											<span class="checkmark_box"></span>
+										</label>
 									</div>
-									<div id="div_pkb_discussion_<?= $no ?>" style="display: none;">
-										<center><span id="pkb_announcement_<?= $no ?>" style="font-weight: bold;font-size: 20px"></span></center>
-										<br>
-										<center><span style="font-weight: bold;font-size: 20px">Pembahasan</span></center>
-										<?php echo $pkb_question->discussion ?></span></label>
-										<br>
-									</div>
-									<button class="contact100-form-btn" type="button" id="btn_pkb_submit_<?= $no ?>" onclick="submitPkbQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
-		              					<span>
-		              						Submit
-		              						<i class="fa fa-arrow-right"></i>
-		              					</span>
-		              				</button>
-		              				<button class="contact1002-form-btn" type="button" id="btn_pkb_back_<?= $no ?>" onclick="backPkbQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
-		              					<span>
-		              						Back
-		              						<i class="fa fa-arrow-right"></i>
-		              					</span>
-		              				</button>
-		              				<button class="contact100-form-btn" type="button" id="btn_pkb_next_<?= $no ?>" onclick="nextPkbQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
-		              					<span>
-		              						Next
-		              						<i class="fa fa-arrow-right"></i>
-		              					</span>
-		              				</button>
-		              				<?php $no++ ?>
-									@endforeach
+									<?php } ?>
+									<input type="hidden" name="pkb_right_answer_{{$no}}" id="pkb_right_answer_{{$no}}" value="{{$pkb_question->right_answer}}">
+									<br>
+								</div>
+								<div id="div_pkb_discussion_<?= $no ?>" style="display: none;">
+									<center><span id="pkb_announcement_<?= $no ?>" style="font-weight: bold;font-size: 20px"></span></center>
+									<br>
+									<center><span style="font-weight: bold;font-size: 20px">Pembahasan</span></center>
+									<?php echo $pkb_question->discussion ?></span></label>
+									<br>
+								</div>
+								<button class="contact100-form-btn" type="button" id="btn_pkb_submit_<?= $no ?>" onclick="submitPkbQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
+									<span>
+										Submit
+										<i class="fa fa-arrow-right"></i>
+									</span>
+								</button>
+								<button class="contact1002-form-btn" type="button" id="btn_pkb_back_<?= $no ?>" onclick="backPkbQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
+									<span>
+										Back
+										<i class="fa fa-arrow-right"></i>
+									</span>
+								</button>
+								<button class="contact100-form-btn" type="button" id="btn_pkb_next_<?= $no ?>" onclick="nextPkbQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
+									<span>
+										Next
+										<i class="fa fa-arrow-right"></i>
+									</span>
+								</button>
+								<?php $no++ ?>
+								@endforeach
 								<?php endif ?>
 
 								<button class="contact100-form-btn" type="button" id="btn_pkb_submit_all" onclick="submitPkbQuestionAll()" style="display: inline-block;float: right;display: none;">
-	              					<span>
-	              						Submit
-	              						<i class="fa fa-arrow-right"></i>
-	              					</span>
-	              				</button>
-					          </div>
+									<span>
+										Submit
+										<i class="fa fa-arrow-right"></i>
+									</span>
+								</button>
 							</div>
-							<div id="surat_pernyataan">
-									<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-size: 18px;text-decoration: underline;">
-									SURAT PERNYATAAN
-								</span>
+						</div>
+						<div id="surat_pernyataan">
+							<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-size: 18px;text-decoration: underline;">
+								SURAT PERNYATAAN
+							</span>
 
-								<input type="hidden" value="{{csrf_token()}}" name="_token" />
-								<div id="div_detail" style="display: none;">
-									<table>
-										<tr>
-											<td colspan="3">Saya yang bertandatangan di bawah ini :</td>
-										</tr>
-										<tr>
-											<td style="width: 3%">Nama</td>
-											<td style="width: 1%">:</td>
-											<td style="width: 20%"><span id="nama"></span></td>
-										</tr>
-										<tr>
-											<td>NIK</td>
-											<td>:</td>
-											<td><span id="nik"></span></td>
-										</tr>
-										<tr>
-											<td>Grade /<br>Jabatan</td>
-											<td>:</td>
-											<td><span id="grade"></span> / <span id="jabatan"></span></td>
-										</tr>
-										<tr>
-											<td>Bagian</td>
-											<td>:</td>
-											<td><span id="department_pkb"></span></td>
-										</tr>
-									</table>
-									<br>	
-									Menyatakan dengan sebenarnya bahwa saya telah menerima buku, membaca <br>
-									dan mengerti isi Perjanjian Kerja Bersama ini. <br>
-									Demikian pernyataan ini saya buat dengan sebenar-benarnya dan tanpa ada paksaan <br>
-									dari pihak manapun. <br>
-									<br>
-									<br>
-									Pasuruan, {{date('d F Y')}}
-									<br>
-									<br>
-									<label class="container_checkmark" style="color: green">Menyetujui
-										<input type="checkbox" name="persetujuan" value="Menyetujui" checked="true">
-										<span class="checkmark_checkmark"></span>
-									</label>
-									<br>
+							<input type="hidden" value="{{csrf_token()}}" name="_token" />
+							<div id="div_detail" style="display: none;">
+								<table>
+									<tr>
+										<td colspan="3">Saya yang bertandatangan di bawah ini :</td>
+									</tr>
+									<tr>
+										<td style="width: 3%">Nama</td>
+										<td style="width: 1%">:</td>
+										<td style="width: 20%"><span id="nama"></span></td>
+									</tr>
+									<tr>
+										<td>NIK</td>
+										<td>:</td>
+										<td><span id="nik"></span></td>
+									</tr>
+									<tr>
+										<td>Grade /<br>Jabatan</td>
+										<td>:</td>
+										<td><span id="grade"></span> / <span id="jabatan"></span></td>
+									</tr>
+									<tr>
+										<td>Bagian</td>
+										<td>:</td>
+										<td><span id="department_pkb"></span></td>
+									</tr>
+								</table>
+								<br>	
+								Menyatakan dengan sebenarnya bahwa saya telah menerima buku, membaca <br>
+								dan mengerti isi Perjanjian Kerja Bersama ini. <br>
+								Demikian pernyataan ini saya buat dengan sebenar-benarnya dan tanpa ada paksaan <br>
+								dari pihak manapun. <br>
+								<br>
+								<br>
+								Pasuruan, {{date('d F Y')}}
+								<br>
+								<br>
+								<label class="container_checkmark" style="color: green">Menyetujui
+									<input type="checkbox" name="persetujuan" value="Menyetujui" checked="true">
+									<span class="checkmark_checkmark"></span>
+								</label>
+								<br>
 
-									<span id="nama_bawah" style="text-decoration: underline;"></span>
-								</div>
+								<span id="nama_bawah" style="text-decoration: underline;"></span>
+							</div>
 
-								<!-- demam, batuk, kejadian, tenggorokan sakit, sesak nafas, indera perasa & penciuman terganggu,  -->
+							<!-- demam, batuk, kejadian, tenggorokan sakit, sesak nafas, indera perasa & penciuman terganggu,  -->
 
-								<div class="container-contact100-form-btn" style="margin-top: 20px">
-									<button class="contact100-form-btn" type="button" onclick="savePkb()" style="display: inline-block;">
-										<span>
-											Submit
-											<i class="fa fa-arrow-right"></i>
-										</span>
-									</button>
+							<div class="container-contact100-form-btn" style="margin-top: 20px">
+								<button class="contact100-form-btn" type="button" onclick="savePkb()" style="display: inline-block;">
+									<span>
+										Submit
+										<i class="fa fa-arrow-right"></i>
+									</span>
+								</button>
 									<!-- <button class="contact1002-form-btn" type="button" onclick="cancel('form_pkb')" style="display: inline-block;">
 										<span>
 											<i class="fa fa-arrow-left"></i>
@@ -835,7 +835,7 @@ header("Pragma: no-cache");
 								<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_belum_survey">
 									<div style="width: 100%;">
 										<div class="col-xs-12 col-md-12">
-											<center style="font-size:16px">Dear <span class="name_survey"></span><br>Survey Dapat Diisi Pada <span style="color: red">Minggu, 23 Januari 2022 Pukul 12:00 - 18:00 </span> <br></center>
+											<center style="font-size:16px">Dear <span class="name_survey"></span><br>Survey Dapat Diisi Pada <span style="color: red">Minggu, 30 Januari 2022 Pukul 12:00 - 18:00 </span> <br></center>
 										</div>
 									</div>
 
@@ -1027,6 +1027,9 @@ header("Pragma: no-cache");
 											@foreach($st_question as $qs)
 											<tr class="stocktaking_tab_{{ $no+1 }}" id="stocktaking_tab_{{ $no+1 }}">
 												<td>
+													<center>
+														<img style="max-width: 80%;" id="image_question_{{ $no+1 }}" src="{{ url( 'stocktaking/' . $qs->image ) }}" alt="{{ $qs->image }}">
+													</center>
 													<label class="label-input1002" style="color: purple;margin-top: 0px;text-align: center;font-size: 14px"><span id="survey_question_{{ $no }}">{{ $qs->question }}</span>
 													</label>
 
@@ -1188,12 +1191,12 @@ header("Pragma: no-cache");
 				// var path = 'http://10.109.52.4/mirai/public/files/pkb/pkb_'+'{{$periode}}'+'.pdf';
     //   			$('#attach_pdf').append("<embed src='"+ path +"' type='application/pdf' width='100%' height='800px'>");
     //   			console.log(parseInt('{{$pkb_question_total}}'));
-      			for(var i = 0; i < parseInt('{{$pkb_question_total}}');i++){
-      				var name= 'pkb_answer_'+i;
-      				$('#'+name).prop('checked', false);
-      			}
+    for(var i = 0; i < parseInt('{{$pkb_question_total}}');i++){
+    	var name= 'pkb_answer_'+i;
+    	$('#'+name).prop('checked', false);
+    }
 
-			});
+});
 
 			function tab(index) {
 
@@ -1246,7 +1249,7 @@ header("Pragma: no-cache");
 				}
 
 				if (index === 5) {
-					if (tgl >= "2022-01-23 12:00:00" && tgl <= "2022-01-23 18:00:00") {
+					if (tgl >= "2022-01-30 12:00:00" && tgl <= "2022-01-30 18:00:00") {
 						$('#form_kehadiran').hide();
 						$('#form_menu').hide();
 						$("#form_login").hide();
@@ -1908,13 +1911,13 @@ function showPosition(position) {
 			}
 
 			for(var i = 0; i < parseInt('{{$pkb_question_total}}');i++){
-  				var answer = '';
+				var answer = '';
 				$("input[name='pkb_answer_"+i+"']:checked").each(function (i) {
-			            answer = $(this).val();
-		        });
-		        answers.push(answer);
-		        question.push($('#pkb_question_'+i).html());
-  			}
+					answer = $(this).val();
+				});
+				answers.push(answer);
+				question.push($('#pkb_question_'+i).html());
+			}
 
 			var data = {
 				employee_id : $('#username').val(),
@@ -1943,7 +1946,7 @@ function showPosition(position) {
 
 		function submitPkbQuestion(no) {
 			// for(var i = 0; i < parseInt('{{$pkb_question_total}}');i++){
-  				var answer = '';
+				var answer = '';
 			// 	$("input[name='pkb_answer_"+i+"']:checked").each(function (i) {
 			//             answer = $(this).val();
 		 //        });
@@ -1955,288 +1958,288 @@ function showPosition(position) {
   	// 		$('#div_pertanyaan').hide();
   	// 		$("#surat_pernyataan").show();
   	// 		openSuccessGritter('Success!','Anda berhasil menyelesaikan pertanyaan PKB Periode '+'{{$periode}}'+'<br>Silahkan Sign SURAT PERNYATAAN berikut.');
-  			$("input[name='pkb_answer_"+no+"']:checked").each(function (i) {
-		        answer = $(this).val();
-	        });
-	        if (answer != $("#pkb_right_answer_"+no).val()) {
-	        	$('#pkb_announcement_'+no).html('Jawaban Anda Salah!<br>Silahkan baca pembahasan berikut.');
-	        	$('#pkb_announcement_'+no).css("color", "red");
-	        	$('#pkb_announcement_'+no).css("fontWeight", "bold");
-	        	$('#btn_pkb_back_'+no).show();
-	        	$('#div_pkb_discussion_'+no).show();
-	        	$('#btn_pkb_submit_'+no).hide();
-	        	$('#div_pkb_question_'+no).hide();
-	        }else{
-	        	$('#pkb_announcement_'+no).html('Jawaban Anda Benar!');
-	        	$('#pkb_announcement_'+no).css("color", "green");
-	        	$('#pkb_announcement_'+no).css("fontWeight", "bold");
-	        	$('#div_pkb_discussion_'+no).show();
-	        	$('#btn_pkb_next_'+no).show();
-	        	$('#btn_pkb_submit_'+no).hide();
-	        	$('#div_pkb_question_'+no).hide();
-	        }
-		}
+  	$("input[name='pkb_answer_"+no+"']:checked").each(function (i) {
+  		answer = $(this).val();
+  	});
+  	if (answer != $("#pkb_right_answer_"+no).val()) {
+  		$('#pkb_announcement_'+no).html('Jawaban Anda Salah!<br>Silahkan baca pembahasan berikut.');
+  		$('#pkb_announcement_'+no).css("color", "red");
+  		$('#pkb_announcement_'+no).css("fontWeight", "bold");
+  		$('#btn_pkb_back_'+no).show();
+  		$('#div_pkb_discussion_'+no).show();
+  		$('#btn_pkb_submit_'+no).hide();
+  		$('#div_pkb_question_'+no).hide();
+  	}else{
+  		$('#pkb_announcement_'+no).html('Jawaban Anda Benar!');
+  		$('#pkb_announcement_'+no).css("color", "green");
+  		$('#pkb_announcement_'+no).css("fontWeight", "bold");
+  		$('#div_pkb_discussion_'+no).show();
+  		$('#btn_pkb_next_'+no).show();
+  		$('#btn_pkb_submit_'+no).hide();
+  		$('#div_pkb_question_'+no).hide();
+  	}
+  }
 
-		function backPkbQuestion(no) {
-			$('#pkb_announcement_'+no).html('');
-        	$('#pkb_announcement_'+no).css("color", "white");
-        	$('#btn_pkb_back_'+no).hide();
-        	$('#div_pkb_discussion_'+no).hide();
-        	$('#btn_pkb_submit_'+no).show();
-        	$('#div_pkb_question_'+no).show();
-		}
+  function backPkbQuestion(no) {
+  	$('#pkb_announcement_'+no).html('');
+  	$('#pkb_announcement_'+no).css("color", "white");
+  	$('#btn_pkb_back_'+no).hide();
+  	$('#div_pkb_discussion_'+no).hide();
+  	$('#btn_pkb_submit_'+no).show();
+  	$('#div_pkb_question_'+no).show();
+  }
 
-		function nextPkbQuestion(no) {
-			$('#pkb_announcement_'+no).html('');
-        	$('#pkb_announcement_'+no).css("color", "white");
-        	$('#btn_pkb_back_'+no).hide();
-        	$('#btn_pkb_next_'+no).hide();
-        	$('#div_pkb_discussion_'+no).hide();
-        	$('#btn_pkb_submit_'+no).hide();
-        	$('#div_pkb_question_'+no).hide();
+  function nextPkbQuestion(no) {
+  	$('#pkb_announcement_'+no).html('');
+  	$('#pkb_announcement_'+no).css("color", "white");
+  	$('#btn_pkb_back_'+no).hide();
+  	$('#btn_pkb_next_'+no).hide();
+  	$('#div_pkb_discussion_'+no).hide();
+  	$('#btn_pkb_submit_'+no).hide();
+  	$('#div_pkb_question_'+no).hide();
 
-        	$('#btn_pkb_submit_'+(parseInt(no)+1)).show();
-        	$('#div_pkb_question_'+(parseInt(no)+1)).show();
+  	$('#btn_pkb_submit_'+(parseInt(no)+1)).show();
+  	$('#div_pkb_question_'+(parseInt(no)+1)).show();
 
-        	if ((parseInt(no)+1) == '{{$pkb_question_total}}') {
-        		$('#div_pertanyaan').hide();
-        		$('#btn_pkb_submit_all').show();
-        		$('#surat_pernyataan').show();
-        		openSuccessGritter('Success!','Anda berhasil menyelesaikan pertanyaan PKB Periode '+'{{$periode}}'+'<br>Silahkan Sign SURAT PERNYATAAN berikut.');
-        	}
-		}
+  	if ((parseInt(no)+1) == '{{$pkb_question_total}}') {
+  		$('#div_pertanyaan').hide();
+  		$('#btn_pkb_submit_all').show();
+  		$('#surat_pernyataan').show();
+  		openSuccessGritter('Success!','Anda berhasil menyelesaikan pertanyaan PKB Periode '+'{{$periode}}'+'<br>Silahkan Sign SURAT PERNYATAAN berikut.');
+  	}
+  }
 
-		function fillTablePengumuman() {
+  function fillTablePengumuman() {
 
-			$.get('{{ url("index/getPengumuman") }}', function(result, status, xhr){
-				if(result.status){
-					$('#tableResultPengumuman').DataTable().clear();
-					$('#tableResultPengumuman').DataTable().destroy();
-					$('#tableBodyResultPengumuman').html("");
-					var tableData = "";
+  	$.get('{{ url("index/getPengumuman") }}', function(result, status, xhr){
+  		if(result.status){
+  			$('#tableResultPengumuman').DataTable().clear();
+  			$('#tableResultPengumuman').DataTable().destroy();
+  			$('#tableBodyResultPengumuman').html("");
+  			var tableData = "";
 
-					$.each(result.datas, function(key, value) {
-						var d = new Date(value.tanggal);
-						var day = d.getDate();
-						var months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-						var month = months[d.getMonth()];
-						var year = d.getFullYear();				
+  			$.each(result.datas, function(key, value) {
+  				var d = new Date(value.tanggal);
+  				var day = d.getDate();
+  				var months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+  				var month = months[d.getMonth()];
+  				var year = d.getFullYear();				
 
-						tableData += '<tr>';
-						tableData += '<td>'+ day +' '+month+' '+year +'</td>';
-						tableData += '<td><img src="../admin/public/images/' + value.images + '" width="100%" onclick="showAnnouncement(\''+value.images+'\')"></td>';
-						tableData += '</tr>';
-					});
+  				tableData += '<tr>';
+  				tableData += '<td>'+ day +' '+month+' '+year +'</td>';
+  				tableData += '<td><img src="../admin/public/images/' + value.images + '" width="100%" onclick="showAnnouncement(\''+value.images+'\')"></td>';
+  				tableData += '</tr>';
+  			});
 
-					$('#tableBodyResultPengumuman').append(tableData);
+  			$('#tableBodyResultPengumuman').append(tableData);
 
-					var table = $('#tableResultPengumuman').DataTable({
-						'dom': 'Bfrtip',
-						'responsive':true,
-						'lengthMenu': [
-						[ 5, 10, 25, -1 ],
-						[ '5 rows', '10 rows', '25 rows', 'Show all' ]
-						],
-						'buttons': {
-							buttons:[
-							{
-								extend: 'pageLength',
-								className: 'btn btn-default',
-							},
-							]
-						},
-						'paging': true,
-						'lengthChange': true,
-						'pageLength': 5,
-						'searching': true,
-						'ordering': true,
-						'order': [],
-						'info': true,
-						'autoWidth': true,
-						"sPaginationType": "full_numbers",
-						"bJQueryUI": true,
-						"bAutoWidth": false,
-						"processing": true
-					});
-				}
-				else{
-					alert('Attempt to retrieve data failed');
-				}
+  			var table = $('#tableResultPengumuman').DataTable({
+  				'dom': 'Bfrtip',
+  				'responsive':true,
+  				'lengthMenu': [
+  				[ 5, 10, 25, -1 ],
+  				[ '5 rows', '10 rows', '25 rows', 'Show all' ]
+  				],
+  				'buttons': {
+  					buttons:[
+  					{
+  						extend: 'pageLength',
+  						className: 'btn btn-default',
+  					},
+  					]
+  				},
+  				'paging': true,
+  				'lengthChange': true,
+  				'pageLength': 5,
+  				'searching': true,
+  				'ordering': true,
+  				'order': [],
+  				'info': true,
+  				'autoWidth': true,
+  				"sPaginationType": "full_numbers",
+  				"bJQueryUI": true,
+  				"bAutoWidth": false,
+  				"processing": true
+  			});
+  		}
+  		else{
+  			alert('Attempt to retrieve data failed');
+  		}
 
-			});
+  	});
 
-		}
+  }
 
-		function fillTableKehadiran() {
-			$("#loading2").show();
+  function fillTableKehadiran() {
+  	$("#loading2").show();
 
-			var data = {
-				employee_id:$('#username').val()
-			}
+  	var data = {
+  		employee_id:$('#username').val()
+  	}
 
-			$.get('{{ url("index/getKehadiran") }}',data, function(result, status, xhr){
-				if(result.status){
-					$("#loading2").hide();
-					$('#tableResultKehadiran').DataTable().clear();
-					$('#tableResultKehadiran').DataTable().destroy();
-					$('#tableBodyResultKehadiran').html("");
-					var tableData = "";
+  	$.get('{{ url("index/getKehadiran") }}',data, function(result, status, xhr){
+  		if(result.status){
+  			$("#loading2").hide();
+  			$('#tableResultKehadiran').DataTable().clear();
+  			$('#tableResultKehadiran').DataTable().destroy();
+  			$('#tableBodyResultKehadiran').html("");
+  			var tableData = "";
 
-					$.each(result.datas, function(key, value) {
-						var d = new Date(value.answer_date);
-						var day = d.getDate();
-						var months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-						var month = months[d.getMonth()];
-						var year = d.getFullYear();
+  			$.each(result.datas, function(key, value) {
+  				var d = new Date(value.answer_date);
+  				var day = d.getDate();
+  				var months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+  				var month = months[d.getMonth()];
+  				var year = d.getFullYear();
 
-						tableData += '<tr>';
-						tableData += '<td>'+ day +' '+month+' '+year +'</td>';
-						tableData += "<td>"+value.employee_id+"</td>";
-						tableData += "<td>"+value.name+"</td>";
-						if (value.time_in == null) {
-							tableData += "<td></td>";
-							tableData += '<td></td>';
-						}else{
-							tableData += "<td>"+value.time_in+"</td>";
-							tableData += '<td><button class="btn btn-warning btn-sm" onclick="mapsSelector(\''+value.lat_in+'\',\''+value.lng_in+'\')">Location</button></td>';
-						}
-						if (value.time_out == null) {
-							tableData += "<td></td>";
-							tableData += '<td></td>';
-						}else{
-							tableData += "<td>"+value.time_out+"</td>";
-							tableData += '<td><button class="btn btn-warning btn-sm" onclick="mapsSelector(\''+value.lat_out+'\',\''+value.lng_out+'\')">Location</button></td>';
-						}
-						tableData += "<td>"+value.remark+"</td>";
-						tableData += '</tr>';
-					});
+  				tableData += '<tr>';
+  				tableData += '<td>'+ day +' '+month+' '+year +'</td>';
+  				tableData += "<td>"+value.employee_id+"</td>";
+  				tableData += "<td>"+value.name+"</td>";
+  				if (value.time_in == null) {
+  					tableData += "<td></td>";
+  					tableData += '<td></td>';
+  				}else{
+  					tableData += "<td>"+value.time_in+"</td>";
+  					tableData += '<td><button class="btn btn-warning btn-sm" onclick="mapsSelector(\''+value.lat_in+'\',\''+value.lng_in+'\')">Location</button></td>';
+  				}
+  				if (value.time_out == null) {
+  					tableData += "<td></td>";
+  					tableData += '<td></td>';
+  				}else{
+  					tableData += "<td>"+value.time_out+"</td>";
+  					tableData += '<td><button class="btn btn-warning btn-sm" onclick="mapsSelector(\''+value.lat_out+'\',\''+value.lng_out+'\')">Location</button></td>';
+  				}
+  				tableData += "<td>"+value.remark+"</td>";
+  				tableData += '</tr>';
+  			});
 
-					$('#tableBodyResultKehadiran').append(tableData);
+  			$('#tableBodyResultKehadiran').append(tableData);
 
-					var table = $('#tableResultKehadiran').DataTable({
-						'dom': 'Bfrtip',
-						'responsive':true,
-						'lengthMenu': [
-						[ 5, 10, 25, -1 ],
-						[ '5 rows', '10 rows', '25 rows', 'Show all' ]
-						],
-						'buttons': {
-							buttons:[
-							{
-								extend: 'pageLength',
-								className: 'btn btn-default',
-							},
-							]
-						},
-						'paging': true,
-						'lengthChange': true,
-						'pageLength': 15,
-						'searching': true,
-						'ordering': true,
-						'order': [],
-						'info': true,
-						'autoWidth': true,
-						"sPaginationType": "full_numbers",
-						"bJQueryUI": true,
-						"bAutoWidth": false,
-						"processing": true
-					});
-				}
-				else{
-					$("#loading2").hide();
-					alert('Attempt to retrieve data failed');
-				}
+  			var table = $('#tableResultKehadiran').DataTable({
+  				'dom': 'Bfrtip',
+  				'responsive':true,
+  				'lengthMenu': [
+  				[ 5, 10, 25, -1 ],
+  				[ '5 rows', '10 rows', '25 rows', 'Show all' ]
+  				],
+  				'buttons': {
+  					buttons:[
+  					{
+  						extend: 'pageLength',
+  						className: 'btn btn-default',
+  					},
+  					]
+  				},
+  				'paging': true,
+  				'lengthChange': true,
+  				'pageLength': 15,
+  				'searching': true,
+  				'ordering': true,
+  				'order': [],
+  				'info': true,
+  				'autoWidth': true,
+  				"sPaginationType": "full_numbers",
+  				"bJQueryUI": true,
+  				"bAutoWidth": false,
+  				"processing": true
+  			});
+  		}
+  		else{
+  			$("#loading2").hide();
+  			alert('Attempt to retrieve data failed');
+  		}
 
-			});
+  	});
 
-		}
+  }
 
-		function mapsSelector(lat,lng) {
-			$('#modal-maps').modal('show');
-			$('#iframe').html('');
-			$('#iframe').append('<iframe width="100%" height="640" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=' + lat + ',' + lng + '&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>');
+  function mapsSelector(lat,lng) {
+  	$('#modal-maps').modal('show');
+  	$('#iframe').html('');
+  	$('#iframe').append('<iframe width="100%" height="640" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=' + lat + ',' + lng + '&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>');
 
-		}
+  }
 
-		function showAnnouncement(images) {
-			$('#modal-pengumuman').modal('show');
-			$('#announcement').html('');
-			$('#announcement').append("<img src='../admin/public/images/" + images + "' width='100%'>");
+  function showAnnouncement(images) {
+  	$('#modal-pengumuman').modal('show');
+  	$('#announcement').html('');
+  	$('#announcement').append("<img src='../admin/public/images/" + images + "' width='100%'>");
 
-		}
-		function cancel(jenis_form) {
-			var form = '#'+jenis_form;
-			$(form).hide();
-			$('#form_menu').show();
-			$("#keterangan_umum").show();
-		}
-
-
-		function hideAll() {
-			for (var i=2; i<= $('#jml_pertanyaan_survey').val();i++) {
-				$('#tab_'+i).hide();
-			}
-		}
-
-		function hideStocktakingSurvey() {
-			for (var i=2; i<= $('#stocktaking_survey_count').val();i++) {
-				$('#stocktaking_tab_'+i).hide();
-			}
-		}
+  }
+  function cancel(jenis_form) {
+  	var form = '#'+jenis_form;
+  	$(form).hide();
+  	$('#form_menu').show();
+  	$("#keterangan_umum").show();
+  }
 
 
-		function backSurvey(elem){
-			var back_id = elem.split("_");
-			var back_next = parseInt(back_id[1])-1;
-			$('#tab_'+back_id[1]).hide();
-			$('#tab_'+back_next).show();
-		}
+  function hideAll() {
+  	for (var i=2; i<= $('#jml_pertanyaan_survey').val();i++) {
+  		$('#tab_'+i).hide();
+  	}
+  }
 
-		function nextSurvey(elem){
-			var next_id = elem.split("_");
-			var next_back = parseInt(next_id[1])+1;
-			var next_array = parseInt(next_id[1])-1;
-
-			var answer_survey = 'jawabansurvey'+next_array;
-
-			if ($('input[id="'+answer_survey+'"]:checked').val() == null) {
-				$("#loading").hide();
-				openErrorGritter('Error!', 'Survey Harus Diisi');
-				return false;
-			}
-
-			$('#tab_'+next_id[1]).hide();
-			$('#tab_'+next_back).show();
+  function hideStocktakingSurvey() {
+  	for (var i=2; i<= $('#stocktaking_survey_count').val();i++) {
+  		$('#stocktaking_tab_'+i).hide();
+  	}
+  }
 
 
-		}
+  function backSurvey(elem){
+  	var back_id = elem.split("_");
+  	var back_next = parseInt(back_id[1])-1;
+  	$('#tab_'+back_id[1]).hide();
+  	$('#tab_'+back_next).show();
+  }
 
-		function backSurveyStocktaking(elem){
-			var back_id = elem.split("_");
-			var back_next = parseInt(back_id[1])-1;
-			$('#stocktaking_tab_'+back_id[1]).hide();
-			$('#stocktaking_tab_'+back_next).show();
-		}
+  function nextSurvey(elem){
+  	var next_id = elem.split("_");
+  	var next_back = parseInt(next_id[1])+1;
+  	var next_array = parseInt(next_id[1])-1;
 
-		function nextSurveyStocktaking(elem){
-			var next_id = elem.split("_");
-			var next_back = parseInt(next_id[1])+1;
-			var next_array = parseInt(next_id[1])-1;
+  	var answer_survey = 'jawabansurvey'+next_array;
 
-			var answer_survey = 'survey_answer_'+next_array;
+  	if ($('input[id="'+answer_survey+'"]:checked').val() == null) {
+  		$("#loading").hide();
+  		openErrorGritter('Error!', 'Survey Harus Diisi');
+  		return false;
+  	}
 
-			if ($('input[id="'+answer_survey+'"]:checked').val() == null) {
-				$("#loading").hide();
-				openErrorGritter('Error!', 'Survey Harus Diisi');
-				return false;
-			}
-
-			$('#stocktaking_tab_'+next_id[1]).hide();
-			$('#stocktaking_tab_'+next_back).show();
+  	$('#tab_'+next_id[1]).hide();
+  	$('#tab_'+next_back).show();
 
 
-		}
+  }
 
-	</script>
+  function backSurveyStocktaking(elem){
+  	var back_id = elem.split("_");
+  	var back_next = parseInt(back_id[1])-1;
+  	$('#stocktaking_tab_'+back_id[1]).hide();
+  	$('#stocktaking_tab_'+back_next).show();
+  }
 
-	</html>
+  function nextSurveyStocktaking(elem){
+  	var next_id = elem.split("_");
+  	var next_back = parseInt(next_id[1])+1;
+  	var next_array = parseInt(next_id[1])-1;
+
+  	var answer_survey = 'survey_answer_'+next_array;
+
+  	if ($('input[id="'+answer_survey+'"]:checked').val() == null) {
+  		$("#loading").hide();
+  		openErrorGritter('Error!', 'Survey Harus Diisi');
+  		return false;
+  	}
+
+  	$('#stocktaking_tab_'+next_id[1]).hide();
+  	$('#stocktaking_tab_'+next_back).show();
+
+
+  }
+
+</script>
+
+</html>

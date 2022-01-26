@@ -36,7 +36,7 @@ class MasterController extends Controller
 		$question = db::select("select distinct pertanyaan from health_surveys where remark = 'covid' and deleted_at is null");
 
 		$st_question = db::connection('ympimis_2')
-		->select("SELECT DISTINCT question FROM stocktaking_survey_questions
+		->select("SELECT DISTINCT question, image FROM stocktaking_survey_questions
 			WHERE remark = 'stoctaking_survey'
 			AND deleted_at IS NULL");
 
