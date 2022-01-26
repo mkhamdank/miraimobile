@@ -44,16 +44,20 @@ class StocktakingController extends Controller {
 				}
 			}
 
-			if($score <= 50){
-				$remark = "LOW";
+			if($score <= 25){
+				$remark = "TIDAK MENGERTI";
 			}
 
-			if($score > 50 && $score <= 70){
-				$remark = "MODERATE";
+			if($score > 25 && $score <= 50){
+				$remark = "KURANG";
 			}
 
-			if($score > 70){
-				$remark = "HIGH";
+			if($score > 50 && $score <= 75){
+				$remark = "CUKUP";
+			}
+
+			if($score > 75){
+				$remark = "MENGERTI";
 			}
 
 			$insert = db::connection('ympimis_2')
