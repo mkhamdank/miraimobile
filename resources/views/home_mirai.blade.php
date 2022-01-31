@@ -388,157 +388,157 @@ header("Pragma: no-cache");
 								<div class="row" style="width: 100%; padding-top: 5px;" id="btn-survey-stocktaking">
 									<button class="btn btn-primary" onclick="tab(7)" style="text-align: center; width: 100%;">Survey Stocktaking</button>
 								</div>
-							<!-- <div class="row" style="width: 100%; padding-top: 5px;">
-								<button class="btn btn-primary" onclick="tab(6)" style="text-align: center; width: 100%;">Surat Pernyataan PKB</button>
-							</div> -->
-						</div>
-
-
-						<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_anda">
-							{{ csrf_field() }}
-							<label class="label-input1002">
-								<label style="color: purple"> NIK : <span id="employee_id"></span></label>
-								<label style="color: purple"> Nama : <span id="name"></span></label><br>
-								<input type="hidden" id="department">
-								<p style="color: black;font-size: 100%;font-weight: bold"> Bagaimana Kondisi ANDA Hari Ini? </p>
-							</label>
-
-							<label class="label-input1002"><span id="pertanyaan0">Demam</span> ? <span style="color:red">*</span></label>
-
-							<div class="validate-input" style="position: relative; width: 100%">
-								<label class="radio" style="margin-top: 5px;margin-left: 5px">Iya
-									<input type="radio" id="jawaban0" name="jawaban0" value="Iya" required="">
-									<span class="checkmark"></span>
-								</label>
-								&nbsp;&nbsp;
-								<label class="radio" style="margin-top: 5px">Tidak
-									<input type="radio" id="jawaban0" name="jawaban0" value="Tidak">
-									<span class="checkmark"></span>
-								</label>
+								<div class="row" style="width: 100%; padding-top: 5px;">
+									<button class="btn btn-primary" onclick="tab(6)" style="text-align: center; width: 100%;">Surat Pernyataan PKB</button>
+								</div>
 							</div>
 
-							<label class="label-input1002"><span id="pertanyaan_suhu">Suhu Tubuh</span> ? <span style="color:red">*</span></label>
 
-							<div class="wrap-input100" style="width: 80%" >
-								<input class="input100" type="number" name="suhu" id="suhu" placeholder="Suhu (Contoh: 37.5)" required="">
-								<span class="label-inputspecial" style="left: 200px;bottom: 10px">&deg; C</span>
-							</div>
-
-							<label class="label-input1002"><span id="pertanyaan1">Batuk</span> ? <span style="color:red">*</span></label>
-
-							<div class="validate-input" style="position: relative; width: 100%">
-								<label class="radio" style="margin-top: 5px;margin-left: 5px">Iya
-									<input type="radio" id="jawaban1" name="jawaban1" value="Iya" required="">
-									<span class="checkmark"></span>
+							<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_anda">
+								{{ csrf_field() }}
+								<label class="label-input1002">
+									<label style="color: purple"> NIK : <span id="employee_id"></span></label>
+									<label style="color: purple"> Nama : <span id="name"></span></label><br>
+									<input type="hidden" id="department">
+									<p style="color: black;font-size: 100%;font-weight: bold"> Bagaimana Kondisi ANDA Hari Ini? </p>
 								</label>
-								&nbsp;&nbsp;
-								<label class="radio" style="margin-top: 5px">Tidak
-									<input type="radio" id="jawaban1" name="jawaban1" value="Tidak">
-									<span class="checkmark"></span>
-								</label>
-							</div>
-							<label class="label-input1002"><span id="pertanyaan2">Pusing</span> ? <span style="color:red">*</span></label>
 
-							<div class="validate-input" style="position: relative; width: 100%">
-								<label class="radio" style="margin-top: 5px;margin-left: 5px">Iya
-									<input type="radio" id="jawaban2" name="jawaban2" value="Iya" required="">
-									<span class="checkmark"></span>
-								</label>
-								&nbsp;&nbsp;
-								<label class="radio" style="margin-top: 5px">Tidak
-									<input type="radio" id="jawaban2" name="jawaban2" value="Tidak">
-									<span class="checkmark"></span>
-								</label>
-							</div>
-							<label class="label-input1002"><span id="pertanyaan3">Tenggorokan Sakit</span> ? <span style="color:red">*</span></label>
+								<label class="label-input1002"><span id="pertanyaan0">Demam</span> ? <span style="color:red">*</span></label>
 
-							<div class="validate-input" style="position: relative; width: 100%">
-								<label class="radio" style="margin-top: 5px;margin-left: 5px">Iya
-									<input type="radio" id="jawaban3" name="jawaban3" value="Iya"  required="">
-									<span class="checkmark"></span>
-								</label>
-								&nbsp;&nbsp;
-								<label class="radio" style="margin-top: 5px">Tidak
-									<input type="radio" id="jawaban3" name="jawaban3" value="Tidak">
-									<span class="checkmark"></span>
-								</label>
-							</div>
+								<div class="validate-input" style="position: relative; width: 100%">
+									<label class="radio" style="margin-top: 5px;margin-left: 5px">Iya
+										<input type="radio" id="jawaban0" name="jawaban0" value="Iya" required="">
+										<span class="checkmark"></span>
+									</label>
+									&nbsp;&nbsp;
+									<label class="radio" style="margin-top: 5px">Tidak
+										<input type="radio" id="jawaban0" name="jawaban0" value="Tidak">
+										<span class="checkmark"></span>
+									</label>
+								</div>
 
-							<label class="label-input1002"><span id="pertanyaan4">Sesak Nafas</span> ? <span style="color:red">*</span></label>
+								<label class="label-input1002"><span id="pertanyaan_suhu">Suhu Tubuh</span> ? <span style="color:red">*</span></label>
 
-							<div class="validate-input" style="position: relative; width: 100%">
-								<label class="radio" style="margin-top: 5px;margin-left: 5px">Iya
-									<input type="radio" id="jawaban4" name="jawaban4" value="Iya" required="">
-									<span class="checkmark"></span>
-								</label>
-								&nbsp;&nbsp;
-								<label class="radio" style="margin-top: 5px">Tidak
-									<input type="radio" id="jawaban4" name="jawaban4" value="Tidak">
-									<span class="checkmark"></span>
-								</label>
-							</div>
+								<div class="wrap-input100" style="width: 80%" >
+									<input class="input100" type="number" name="suhu" id="suhu" placeholder="Suhu (Contoh: 37.5)" required="">
+									<span class="label-inputspecial" style="left: 200px;bottom: 10px">&deg; C</span>
+								</div>
 
-							<label class="label-input1002"><span id="pertanyaan5">Indera Perasa & Penciuman Terganggu</span> ? <span style="color:red">*</span></label>
+								<label class="label-input1002"><span id="pertanyaan1">Batuk</span> ? <span style="color:red">*</span></label>
 
-							<div class="validate-input" style="position: relative; width: 100%">
-								<label class="radio" style="margin-top: 5px;margin-left: 5px">Iya
-									<input type="radio" id="jawaban5" name="jawaban5" value="Iya" required="">
-									<span class="checkmark"></span>
-								</label>
-								&nbsp;&nbsp;
-								<label class="radio" style="margin-top: 5px">Tidak
-									<input type="radio" id="jawaban5" name="jawaban5" value="Tidak">
-									<span class="checkmark"></span>
-								</label>
-							</div>
+								<div class="validate-input" style="position: relative; width: 100%">
+									<label class="radio" style="margin-top: 5px;margin-left: 5px">Iya
+										<input type="radio" id="jawaban1" name="jawaban1" value="Iya" required="">
+										<span class="checkmark"></span>
+									</label>
+									&nbsp;&nbsp;
+									<label class="radio" style="margin-top: 5px">Tidak
+										<input type="radio" id="jawaban1" name="jawaban1" value="Tidak">
+										<span class="checkmark"></span>
+									</label>
+								</div>
+								<label class="label-input1002"><span id="pertanyaan2">Pusing</span> ? <span style="color:red">*</span></label>
 
-							<label class="label-input1002"><span id="pertanyaan6">Pernah Berinteraksi dengan Suspect / Positif COVID-19</span> ? <span style="color:red">*</span></label>
+								<div class="validate-input" style="position: relative; width: 100%">
+									<label class="radio" style="margin-top: 5px;margin-left: 5px">Iya
+										<input type="radio" id="jawaban2" name="jawaban2" value="Iya" required="">
+										<span class="checkmark"></span>
+									</label>
+									&nbsp;&nbsp;
+									<label class="radio" style="margin-top: 5px">Tidak
+										<input type="radio" id="jawaban2" name="jawaban2" value="Tidak">
+										<span class="checkmark"></span>
+									</label>
+								</div>
+								<label class="label-input1002"><span id="pertanyaan3">Tenggorokan Sakit</span> ? <span style="color:red">*</span></label>
 
-							<div class="validate-input" style="position: relative; width: 100%">
-								<label class="radio" style="margin-top: 5px;margin-left: 5px">Iya
-									<input type="radio" id="jawaban6" name="jawaban6" value="Iya" required="">
-									<span class="checkmark"></span>
-								</label>
-								&nbsp;&nbsp;
-								<label class="radio" style="margin-top: 5px">Tidak
-									<input type="radio" id="jawaban6" name="jawaban6" value="Tidak">
-									<span class="checkmark"></span>
-								</label>
-							</div>
+								<div class="validate-input" style="position: relative; width: 100%">
+									<label class="radio" style="margin-top: 5px;margin-left: 5px">Iya
+										<input type="radio" id="jawaban3" name="jawaban3" value="Iya"  required="">
+										<span class="checkmark"></span>
+									</label>
+									&nbsp;&nbsp;
+									<label class="radio" style="margin-top: 5px">Tidak
+										<input type="radio" id="jawaban3" name="jawaban3" value="Tidak">
+										<span class="checkmark"></span>
+									</label>
+								</div>
 
-							{{-- <label class="label-input1002" style="color: red;font-size: 16px">*Semoga Kita Selalu Diberikan Kesehatan<span style="color:red"></span></label> --}}
+								<label class="label-input1002"><span id="pertanyaan4">Sesak Nafas</span> ? <span style="color:red">*</span></label>
 
-							<input type="hidden" id="jml_pertanyaan" value="7">
+								<div class="validate-input" style="position: relative; width: 100%">
+									<label class="radio" style="margin-top: 5px;margin-left: 5px">Iya
+										<input type="radio" id="jawaban4" name="jawaban4" value="Iya" required="">
+										<span class="checkmark"></span>
+									</label>
+									&nbsp;&nbsp;
+									<label class="radio" style="margin-top: 5px">Tidak
+										<input type="radio" id="jawaban4" name="jawaban4" value="Tidak">
+										<span class="checkmark"></span>
+									</label>
+								</div>
 
-							<div class="container-contact100-form-btn" style="margin-top: 30px;">
-								<button class="contact100-form-btn" type="button" onclick="submitForm()" style="display: inline-block;">
-									<span>
-										Submit
-										<i class="fa fa-arrow-right"></i>
-									</span>
-								</button>
-								<button class="contact1002-form-btn" type="button" onclick="cancel('form_anda')" style="display: inline-block;">
-									<span>
-										<i class="fa fa-arrow-left"></i>
-										Back To Home
-									</span>
-								</button>
-							</div>
-							<input type="hidden" name="latitude" id="latitude">
-							<input type="hidden" name="longitude" id="longitude">
-						</form>
+								<label class="label-input1002"><span id="pertanyaan5">Indera Perasa & Penciuman Terganggu</span> ? <span style="color:red">*</span></label>
 
-						<div id="form_pkb" style="display: none;padding: 0px 10px 58px 10px;">
-							<input type="hidden" name="periode" id="periode" value="{{$periode}}">
-							<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
-								PERJANJIAN KERJA BERSAMA<br>(PKB)<br>
-								PERIODE {{$periode}}
-							</span>
-							<div id="pkb">
-								<div id="div_pertanyaan">
-									<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
-										PERTANYAAN
-									</span>
+								<div class="validate-input" style="position: relative; width: 100%">
+									<label class="radio" style="margin-top: 5px;margin-left: 5px">Iya
+										<input type="radio" id="jawaban5" name="jawaban5" value="Iya" required="">
+										<span class="checkmark"></span>
+									</label>
+									&nbsp;&nbsp;
+									<label class="radio" style="margin-top: 5px">Tidak
+										<input type="radio" id="jawaban5" name="jawaban5" value="Tidak">
+										<span class="checkmark"></span>
+									</label>
+								</div>
+
+								<label class="label-input1002"><span id="pertanyaan6">Pernah Berinteraksi dengan Suspect / Positif COVID-19</span> ? <span style="color:red">*</span></label>
+
+								<div class="validate-input" style="position: relative; width: 100%">
+									<label class="radio" style="margin-top: 5px;margin-left: 5px">Iya
+										<input type="radio" id="jawaban6" name="jawaban6" value="Iya" required="">
+										<span class="checkmark"></span>
+									</label>
+									&nbsp;&nbsp;
+									<label class="radio" style="margin-top: 5px">Tidak
+										<input type="radio" id="jawaban6" name="jawaban6" value="Tidak">
+										<span class="checkmark"></span>
+									</label>
+								</div>
+
+								{{-- <label class="label-input1002" style="color: red;font-size: 16px">*Semoga Kita Selalu Diberikan Kesehatan<span style="color:red"></span></label> --}}
+
+								<input type="hidden" id="jml_pertanyaan" value="7">
+
+								<div class="container-contact100-form-btn" style="margin-top: 30px;">
+									<button class="contact100-form-btn" type="button" onclick="submitForm()" style="display: inline-block;">
+										<span>
+											Submit
+											<i class="fa fa-arrow-right"></i>
+										</span>
+									</button>
+									<button class="contact1002-form-btn" type="button" onclick="cancel('form_anda')" style="display: inline-block;">
+										<span>
+											<i class="fa fa-arrow-left"></i>
+											Back To Home
+										</span>
+									</button>
+								</div>
+								<input type="hidden" name="latitude" id="latitude">
+								<input type="hidden" name="longitude" id="longitude">
+							</form>
+
+							<div id="form_pkb" style="display: none;padding: 0px 10px 58px 10px;">
+								<input type="hidden" name="periode" id="periode" value="{{$periode}}">
+								<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
+									PERJANJIAN KERJA BERSAMA<br>(PKB)<br>
+									PERIODE {{$periode}}
+								</span>
+								<div id="pkb">
+									<div id="div_pertanyaan">
+										<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
+											PERTANYAAN
+										</span>
 								<!-- <span>
 									Silahkan Baca terlebih dahulu Buku PKB yang telah Anda dapatkan dari bagian HR.<br>
 									Jika sudah dirasa mengerti, Anda harus menjawab beberapa pertanyaan di bawah ini.<br>
@@ -1447,9 +1447,24 @@ header("Pragma: no-cache");
 								$('#btn-survey-stocktaking').hide();
 							}
 
-							if(result.cek_stocktaking_emp.employee_id == 'PI2009022'){
+
+							//Pak Budhi
+							if(result.cek_stocktaking_emp.employee_id == 'PI0109004'){
 								$('#btn-survey-stocktaking').show();
 							}
+
+							// MIS
+							if(result.cek_stocktaking_emp.department == 'Management Information System Department'){
+								$('#btn-survey-stocktaking').show();
+							}
+
+							// PC
+							if(result.cek_stocktaking_emp.department == 'Production Control Department'){
+								$('#btn-survey-stocktaking').show();
+							}
+
+
+
 
 
 
