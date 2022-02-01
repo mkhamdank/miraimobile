@@ -388,9 +388,9 @@ header("Pragma: no-cache");
 								<div class="row" style="width: 100%; padding-top: 5px;" id="btn-survey-stocktaking">
 									<button class="btn btn-primary" onclick="tab(7)" style="text-align: center; width: 100%;">Survey Stocktaking</button>
 								</div>
-								<div class="row" style="width: 100%; padding-top: 5px;">
+								<!-- <div class="row" style="width: 100%; padding-top: 5px;">
 									<button class="btn btn-primary" onclick="tab(6)" style="text-align: center; width: 100%;">Surat Pernyataan PKB</button>
-								</div>
+								</div> -->
 							</div>
 
 
