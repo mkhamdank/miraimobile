@@ -46,6 +46,8 @@ Route::get('/esport/quiz/{id}','MasterController@indexEsportQuiz');
 Route::get('/pkb/{periode}','MasterController@indexPkb');
 Route::post('/input/pkb','MasterController@inputPkb');
 
+Route::post('/input/kode/etik','MasterController@inputKodeEtik');
+
 
 Route::get('/vaksin/registration','MasterController@indexNewVaksinRegistration');
 Route::post('/vaksin/registration/input','MasterController@inputNewVaksinRegistration');

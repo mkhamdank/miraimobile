@@ -28,6 +28,8 @@ use App\PkbPeriode;
 use App\PkbQuestion;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
+use App\KodeEtikQuestion;
+use App\KodeEtikAnswer;
 
 class MasterController extends Controller
 {
@@ -42,13 +44,16 @@ class MasterController extends Controller
 
 		$periode = PkbPeriode::where('status','Active')->first();
 		$pkb_question = PkbQuestion::where('periode',$periode->periode)->get();
+		$kode_etik_question = KodeEtikQuestion::get();
+
 
 		return view('home_mirai', array(
 			'question' => $question,
 			'st_question' => $st_question,
 			'tgl' => date('Y-m-d H:i:s'),
 			'periode' => $periode->periode,
-			'pkb_question' => $pkb_question
+			'pkb_question' => $pkb_question,
+			'kode_etik_question' => $kode_etik_question
 		));
 	}
 
@@ -287,6 +292,8 @@ class MasterController extends Controller
 			$cek_survey = DB::SELECT('SELECT DISTINCT employee_id,total,created_at from survey_logs where employee_id = "'.$request->get('employee_id').'"');
 
 			$cek_pkb = Pkb::where('periode',$request->get('periode'))->where('employee_id',$request->get('employee_id'))->first();
+			$cek_kode_etik = KodeEtikAnswer::where('employee_id',$request->get('employee_id'))->first();
+
 	  //   	$url = "http://36.94.7.202:887/miraimobile/public/check/employee_id?employee_id=".$request->get('employee_id')."&password=".$request->get('password')."&format=json";
 			// // $url = "https://www.google.com/maps/@".$lat.",".$long."";
 			// $curlHandle = curl_init();
@@ -320,6 +327,7 @@ class MasterController extends Controller
 				'cek_stocktaking_survey' => $cek_stocktaking_survey,
 				'cek_stocktaking_emp' => $cek_stocktaking_emp,
 				'cek_pkb' => $cek_pkb,
+				'cek_kode_etik' => $cek_kode_etik
 			);
 			return Response::json($response);
 		} catch (QueryException $e) {
@@ -1448,4 +1456,46 @@ class MasterController extends Controller
 			}
 		}
 	}
+
+	public function inputKodeEtik(Request $request)
+	{
+		try {
+			
+			$employee_id = $request->get('employee_id');
+			$question = $request->get('question');
+			$answer = $request->get('answer');
+
+			$kodeEtikcheck = KodeEtikAnswer::where('employee_id',$employee_id)->first();
+
+			if (count($kodeEtikcheck) > 0) {
+				$response = array(
+					'status' => false,
+					'datas' => 'Anda sudah pernah Melakukan Post Test Kode Etik Kepatuhan'
+				);
+				return Response::json($response);	
+			}else{
+				$kode_etik = KodeEtikAnswer::create([
+					'employee_id' => $employee_id,
+					'question' => join('_',$question),
+					'answer' => join('_',$answer),
+					'created_by' => 1,
+				]);
+				$kode_etik->save();
+				$response = array(
+					'status' => true,
+					'datas' => 'Berhasil Disimpan',
+					'datetime' => date('Y-m-d H:i:s')
+
+				);
+				return Response::json($response);
+			}
+		} catch (\Exception $e) {
+			$response = array(
+				'status' => false,
+				'datas' => $e->getMessage()
+			);
+			return Response::json($response);
+		}
+	}
+
 }

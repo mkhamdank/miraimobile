@@ -125,6 +125,7 @@ header("Pragma: no-cache");
 			border: 1px solid rgba(0,0,0,0.1);
 			height: 30px;
 			background-color: #f2f2f2;
+			min-height: 40px;
 		}
 
 		/* Hide the browser's default radio button */
@@ -388,9 +389,12 @@ header("Pragma: no-cache");
 								<div class="row" style="width: 100%; padding-top: 5px;" id="btn-survey-stocktaking">
 									<button class="btn btn-primary" onclick="tab(7)" style="text-align: center; width: 100%;">Survey Stocktaking</button>
 								</div>
-								<!-- <div class="row" style="width: 100%; padding-top: 5px;">
+								<div class="row" style="width: 100%; padding-top: 5px;">
 									<button class="btn btn-primary" onclick="tab(6)" style="text-align: center; width: 100%;">Surat Pernyataan PKB</button>
-								</div> -->
+								</div>
+								<div class="row" style="width: 100%; padding-top: 5px;">
+									<button class="btn btn-primary" onclick="tab(9)" style="text-align: center; width: 100%;">Post Test Kode Etik Kepatuhan</button>
+								</div>
 							</div>
 
 
@@ -684,6 +688,89 @@ header("Pragma: no-cache");
 								</span></center>
 							</div>
 						</div>
+
+
+						<div id="form_kode_etik" style="display: none;padding: 0px 10px 58px 10px;">
+							<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
+								POST TEST <br>KODE ETIK KEPATUHAN
+							</span>
+
+							<div id="div_pertanyaan1">
+								<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
+									PERTANYAAN
+								</span>
+								<label style="color: purple;font-size: 18px; display: none;"> NIK : <span id="kode_etik_employee_id"></span></label>
+								<br><?php $kode_etik_question_total = count($kode_etik_question) ?>
+								<?php if (count($kode_etik_question) > 0): ?>
+									<?php $no = 0; ?>
+									@foreach($kode_etik_question as $kode_etik_question)
+									<div id="div_kode_etik_question_<?= $no ?>" style="position: relative; display: none;">
+										<label class="label-input1002" style="color: purple;margin-top: 0px;font-size: 14px"><span id="kode_etik_question_<?= $no ?>">{{$no+1}}. {{ $kode_etik_question->question }}</span></label>
+
+
+										<?php $kode_etik_answer = explode('_', $kode_etik_question->answer) ?>
+
+										<?php for ($i=0; $i < count($kode_etik_answer); $i++) { ?>
+											<div class="validate-input" style="position: relative;  width: 100%">
+												<label class="radio_box" style="margin-top: 5px;font-size: 12px">{{$kode_etik_answer[$i]}}
+													<input type="radio" id="kode_etik_answer_{{$no}}" name="kode_etik_answer_{{$no}}" value="{{$kode_etik_answer[$i]}}">
+													<span class="checkmark_box"></span>
+												</label>
+											</div>
+										<?php } ?>
+										<input type="hidden" name="kode_etik_right_answer_{{$no}}" id="kode_etik_right_answer_{{$no}}" value="{{$kode_etik_question->right_answer}}">
+										<br>
+									</div>
+
+									<div id="div_kode_etik_discussion_<?= $no ?>" style="display: none;">
+										<center><span id="kode_etik_announcement_<?= $no ?>" style="font-weight: bold;font-size: 20px"></span><i class=" fa fa-circle-check"></i>
+
+										</center>
+										<br>
+										<!-- <center><span style="font-weight: bold;font-size: 20px">Jawaban Yang Benar</span></center> -->
+										<center><span id="kode_etik_salah_<?= $no ?>" style="font-weight: bold;font-size: 20px"> Jawaban yang benar adalah </span>
+											<label id="kode_etik_salah1_ket_<?= $no ?>" style="font-weight: bold;font-size:17px;color:green;"><?php echo $kode_etik_question->right_answer ?></span></label></center>
+											<br>
+										</div>
+
+										<button class="contact100-form-btn" type="button" id="btn_kode_etik_submit_<?= $no ?>" onclick="submitKodeEtikQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
+											<span>
+												Submit
+												<i class="fa fa-arrow-right"></i>
+											</span>
+										</button>
+
+										<button class="contact1002-form-btn" type="button" id="btn_kode_etik_back_<?= $no ?>" onclick="backKodeEtikQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
+											<span>
+												Back
+												<i class="fa fa-arrow-right"></i>
+											</span>
+										</button>
+										<button class="contact100-form-btn" type="button" id="btn_kode_etik_next_<?= $no ?>" onclick="nextKodeEtikQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
+											<span>
+												Next
+												<i class="fa fa-arrow-right"></i>
+											</span>
+										</button>
+										<?php $no++ ?>
+										@endforeach
+									<?php endif ?>
+									
+								</div>
+								<br>
+								<div id="sudah_kode_etik" style="width: 100%; display:none;">
+									
+									<div class="col-xs-12 col-md-12">
+										<center>
+											<div id="thanks_give"></div> 
+										</center>
+										<br>
+										<center style="font-size:16px">Terimakasih <span class="name_survey1"></span> telah melakukan Post Test Kode Etik Kepatuhan Pada<span style="color: red"><div id="waktu_kode_etik"></div></span></center>
+										<br>
+									</div>
+								</div>
+							</div>
+
 
 
 						<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_grup">
@@ -1188,13 +1275,24 @@ header("Pragma: no-cache");
 				});
 
 				$(".select2").select2();
-				// var path = 'http://10.109.52.4/mirai/public/files/pkb/pkb_'+'{{$periode}}'+'.pdf';
-    //   			$('#attach_pdf').append("<embed src='"+ path +"' type='application/pdf' width='100%' height='800px'>");
-    //   			console.log(parseInt('{{$pkb_question_total}}'));
     for(var i = 0; i < parseInt('{{$pkb_question_total}}');i++){
     	var name= 'pkb_answer_'+i;
     	$('#'+name).prop('checked', false);
     }
+
+
+				for(var j = 0; j < parseInt('{{$kode_etik_question_total}}');j++){
+					var names= 'kode_etik_answer_'+j;
+					$('#'+names).prop('checked', false);
+					console.log("s");
+				}
+
+
+
+				// var path = 'http://10.109.52.4/mirai/public/files/pkb/pkb_'+'{{$periode}}'+'.pdf';
+    //   			$('#attach_pdf').append("<embed src='"+ path +"' type='application/pdf' width='100%' height='800px'>");
+    //   			console.log(parseInt('{{$pkb_question_total}}'));
+    
 
 });
 
@@ -1211,6 +1309,8 @@ header("Pragma: no-cache");
 					$("#keterangan_umum").show();
 					$("#form_pkb").hide();
 					$("#stocktaking_survey_form").hide();
+						$("#form_kode_etik").hide();
+
 				}
 
 				if (index === 2) {
@@ -1222,6 +1322,8 @@ header("Pragma: no-cache");
 					$("#keterangan_umum").show();
 					$("#form_pkb").hide();
 					$("#stocktaking_survey_form").hide();
+						$("#form_kode_etik").hide();
+
 				}
 
 				if (index === 3) {
@@ -1234,6 +1336,8 @@ header("Pragma: no-cache");
 					$("#keterangan_umum").show();
 					$("#form_pkb").hide();
 					$("#stocktaking_survey_form").hide();
+						$("#form_kode_etik").hide();
+
 				}
 
 				if (index === 4) {
@@ -1246,6 +1350,8 @@ header("Pragma: no-cache");
 					$("#keterangan_umum").show();
 					$("#form_pkb").hide();
 					$("#stocktaking_survey_form").hide();
+						$("#form_kode_etik").hide();
+
 				}
 
 				if (index === 5) {
@@ -1259,6 +1365,8 @@ header("Pragma: no-cache");
 						$("#form_pkb").hide();
 						$("#stocktaking_survey_form").hide();
 						hideAll();
+							$("#form_kode_etik").hide();
+
 					}
 					else{
 						$('#form_kehadiran').hide();
@@ -1270,6 +1378,8 @@ header("Pragma: no-cache");
 						$("#form_pkb").hide();
 						$("#stocktaking_survey_form").hide();
 						hideAll();
+							$("#form_kode_etik").hide();
+
 					}
 
 					// $("#form_survey").hide();
@@ -1289,6 +1399,8 @@ header("Pragma: no-cache");
 					$("#surat_pernyataan").hide();
 					$('#div_pkb_question_0').show();
 					$('#btn_pkb_submit_0').show();
+					$("#form_kode_etik").hide();
+
 				}
 
 				if(index === 7){
@@ -1299,8 +1411,25 @@ header("Pragma: no-cache");
 					$("#form_belum_survey").hide();
 					$("#keterangan_umum").hide();
 					$("#form_pkb").hide();
+					$("#form_kode_etik").hide();
 					$("#stocktaking_survey_form").show();
 					hideStocktakingSurvey();
+				}
+
+
+				if (index === 9) {
+					$('#form_kehadiran').hide();
+					$('#form_menu').hide();
+					$("#form_login").hide();
+					$("#form_survey").hide();
+					$("#form_belum_survey").hide();
+					$("#keterangan_umum").hide();
+					$("#stocktaking_survey_form").hide();
+					$("#form_pkb").hide();
+					$("#form_kode_etik").show();
+					$("#surat_pernyataan").hide();
+					$('#div_kode_etik_question_0').show();
+					$('#btn_kode_etik_submit_0').show();
 				}
 			}
 
@@ -1372,6 +1501,18 @@ header("Pragma: no-cache");
 									$("#div_detail").show();
 									$("#div_pertanyaan").show();
 								}
+
+								if (result.cek_kode_etik != null) {
+									$("#sudah_kode_etik").show();
+									$("#div_pertanyaan1").hide();
+									$('#waktu_kode_etik').html(result.cek_kode_etik.created_at);
+									$('#thanks_give').append("<img src='../admin/public/images/Thanks_veno.png' width='35%'>");
+								}else{
+									$("#sudah_kode_etik").hide();
+									$("#div_pertanyaan1").show();
+									$('#waktu_kode_etik').html('');
+
+								}
 							}
 							$("#employee_id").text(result.data[0].employee_id);
 							$("#employee_id_reset").val(result.data[0].employee_id);
@@ -1388,6 +1529,9 @@ header("Pragma: no-cache");
 							// } else {
 						 //    // x.innerHTML = "Geolocation is not supported by this browser.";
 							// }
+
+							$("#kode_etik_employee_id").text(result.data[0].employee_id);
+
 
 
 
@@ -1992,6 +2136,111 @@ function showPosition(position) {
   		$('#btn_pkb_next_'+no).show();
   		$('#btn_pkb_submit_'+no).hide();
   		$('#div_pkb_question_'+no).hide();
+  	}
+  }
+
+  function submitKodeEtikQuestion(no) {
+  	var answers_kode_etik = '';
+
+
+  	$("input[name='kode_etik_answer_"+no+"']:checked").each(function (i) {
+  		answers_kode_etik = $(this).val();
+  	});
+
+  	if (answers_kode_etik != $("#kode_etik_right_answer_"+no).val()) {
+  		$('#kode_etik_announcement_'+no).html('Jawaban Anda Salah!<br>Silahkan baca Jawaban Benar.');
+  		$('#kode_etik_announcement_'+no).css("color", "red");
+  		$('#kode_etik_announcement_'+no).css("fontWeight", "bold");
+  		$('#btn_kode_etik_back_'+no).show();
+  		$('#div_kode_etik_discussion_'+no).show();
+  		$('#sudah_kode_etik').hide();
+
+  		$('#btn_kode_etik_submit_'+no).hide();
+  		$('#div_kode_etik_question_'+no).hide();
+  		$('#kode_etik_salah_'+no).show();
+  		$('#kode_etik_salah1_ket_'+no).show();
+
+  	}else{
+  		$('#kode_etik_announcement_'+no).html('Jawaban Anda Benar!');
+  		$('#kode_etik_announcement_'+no).css("color", "green");
+  		$('#kode_etik_announcement_'+no).css("fontWeight", "bold");
+  		$('#div_kode_etik_discussion_'+no).show();
+  		$('#btn_kode_etik_next_'+no).show();
+  		$('#btn_kode_etik_submit_'+no).hide();
+  		$('#div_kode_etik_question_'+no).hide();
+  		$('#kode_etik_salah1_ket_'+no).hide();
+  		$('#kode_etik_salah_'+no).hide();
+  		$('#sudah_kode_etik').hide();
+
+
+  	}
+  }
+
+
+  function backKodeEtikQuestion(no) {
+  	$('#kode_etik_announcement_'+no).html('');
+  	$('#kode_etik_announcement_'+no).css("color", "white");
+  	$('#btn_kode_etik_back_'+no).hide();
+  	$('#div_kode_etik_discussion_'+no).hide();
+  	$('#btn_kode_etik_submit_'+no).show();
+  	$('#div_kode_etik_question_'+no).show();
+  	$('#sudah_kode_etik').hide();
+
+  }
+
+  function nextKodeEtikQuestion(no) {
+  	$('#kode_etik_announcement_'+no).html('');
+  	$('#kode_etik_announcement_'+no).css("color", "white");
+  	$('#btn_kode_etik_back_'+no).hide();
+  	$('#btn_kode_etik_next_'+no).hide();
+  	$('#div_kode_etik_discussion_'+no).hide();
+  	$('#btn_kode_etik_submit_'+no).hide();
+  	$('#div_kode_etik_question_'+no).hide();
+  	$('#btn_kode_etik_submit_'+(parseInt(no)+1)).show();
+  	$('#div_kode_etik_question_'+(parseInt(no)+1)).show();
+  	$('#sudah_kode_etik').hide();
+
+
+  	if ((parseInt(no)+1) == '{{$kode_etik_question_total}}') {
+  		
+  		openSuccessGritter('Success!','Anda berhasil menyelesaikan Post Test Kode Etik Kepatuhan');
+  		var question = [];
+  		var answers = [];
+
+
+  		for(var i = 0; i < parseInt('{{$kode_etik_question_total}}');i++){
+  			var answer = '';
+  			$("input[name='kode_etik_answer_"+i+"']:checked").each(function (i) {
+  				answer = $(this).val();
+  			});
+  			answers.push(answer);
+  			question.push($('#kode_etik_question_'+i).html());
+  		}
+
+
+  		var data = {
+  			employee_id : $('#kode_etik_employee_id').html(),
+  			question:question,
+  			answer:answers
+  		}
+
+  		$.post('{{ url("input/kode/etik") }}', data, function(result, status, xhr){
+  			if(result.status == true){    
+  				$("#loading").hide();
+  				openSuccessGritter("Success","Berhasil Disimpan");
+  				$('#div_pertanyaan1').hide();
+  				$('#btn_kode_etik_submit_all').show();
+  				$('#sudah_kode_etik').show();
+  				$("#waktu_kode_etik").html(result.datetime);
+  				$('#thanks_give').append("<img src='../admin/public/images/Thanks_veno.png' width='40%'>");
+
+  			}
+  			else {
+  				$("#loading").hide();
+  				openErrorGritter('Error!', result.datas);
+  			}
+  		})
+  		
   	}
   }
 
