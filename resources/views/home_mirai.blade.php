@@ -108,8 +108,6 @@ header("Pragma: no-cache");
 		}
 
 
-
-
 		.radio_box {
 			/*display: inline-block;*/
 			position: relative;
@@ -367,15 +365,15 @@ header("Pragma: no-cache");
 						<div class="row" style="width: 100%; padding-top: 5px;">
 							<button class="btn btn-primary" onclick="tab(1)" style="text-align: center; width: 100%;">Laporan Kesehatan</button>						
 						</div>
-							{{-- <div class="row" style="width: 100%; padding-top: 5px;display: inline">
-								<center>
+						{{-- <div class="row" style="width: 100%; padding-top: 5px;display: inline">
+							<center>
 								<span style="color: red">Pengisian Laporan Harian Karyawan Menggunakan <b>Aplikasi Greatday</b></span>
-								</center>
-							</div> --}}
-							<br><br>
-							<!-- <div class="row" style="width: 100%; padding-top: 5px;">-->
-								<!--	<button class="btn btn-primary" onclick="tab(2)" style="text-align: center; width: 100%;">Informasi Grup Kerja</button>	-->
-								<!--</div> -->
+							</center>
+						</div> --}}
+						<br><br>
+						<!-- <div class="row" style="width: 100%; padding-top: 5px;">-->
+							<!--	<button class="btn btn-primary" onclick="tab(2)" style="text-align: center; width: 100%;">Informasi Grup Kerja</button>	-->
+							<!--</div> -->
 							<!-- <div class="row" style="width: 100%; padding-top: 5px;">
 								<button class="btn btn-primary" onclick="tab(3)" style="text-align: center; width: 100%;">Pengumuman</button>						
 							</div> -->
@@ -549,51 +547,51 @@ header("Pragma: no-cache");
 								</span> -->
 								<br><?php $pkb_question_total = count($pkb_question) ?>
 								<?php if (count($pkb_question) > 0): ?>
-								<?php $no = 0; ?>
-								@foreach($pkb_question as $pkb_question)
-								<div id="div_pkb_question_<?= $no ?>" style="display: none;">
-									<label class="label-input1002" style="color: purple;margin-top: 0px;font-size: 14px"><span id="pkb_question_<?= $no ?>">{{$no+1}}. {{ $pkb_question->question }}</span></label>
+									<?php $no = 0; ?>
+									@foreach($pkb_question as $pkb_question)
+									<div id="div_pkb_question_<?= $no ?>" style="display: none;">
+										<label class="label-input1002" style="color: purple;margin-top: 0px;font-size: 14px"><span id="pkb_question_<?= $no ?>">{{$no+1}}. {{ $pkb_question->question }}</span></label>
 
-									<?php $pkb_answer = explode('_', $pkb_question->answer) ?>
+										<?php $pkb_answer = explode('_', $pkb_question->answer) ?>
 
-									<?php for ($i=0; $i < count($pkb_answer); $i++) { ?>
-									<div class="validate-input" style="position: relative; width: 100%">
-										<label class="radio_box" style="margin-top: 5px;font-size: 12px">{{$pkb_answer[$i]}}
-											<input type="radio" id="pkb_answer_{{$no}}" name="pkb_answer_{{$no}}" value="{{$pkb_answer[$i]}}">
-											<span class="checkmark_box"></span>
-										</label>
+										<?php for ($i=0; $i < count($pkb_answer); $i++) { ?>
+											<div class="validate-input" style="position: relative; width: 100%">
+												<label class="radio_box" style="margin-top: 5px;font-size: 12px">{{$pkb_answer[$i]}}
+													<input type="radio" id="pkb_answer_{{$no}}" name="pkb_answer_{{$no}}" value="{{$pkb_answer[$i]}}">
+													<span class="checkmark_box"></span>
+												</label>
+											</div>
+										<?php } ?>
+										<input type="hidden" name="pkb_right_answer_{{$no}}" id="pkb_right_answer_{{$no}}" value="{{$pkb_question->right_answer}}">
+										<br>
 									</div>
-									<?php } ?>
-									<input type="hidden" name="pkb_right_answer_{{$no}}" id="pkb_right_answer_{{$no}}" value="{{$pkb_question->right_answer}}">
-									<br>
-								</div>
-								<div id="div_pkb_discussion_<?= $no ?>" style="display: none;">
-									<center><span id="pkb_announcement_<?= $no ?>" style="font-weight: bold;font-size: 20px"></span></center>
-									<br>
-									<center><span style="font-weight: bold;font-size: 20px">Pembahasan</span></center>
-									<?php echo $pkb_question->discussion ?></span></label>
-									<br>
-								</div>
-								<button class="contact100-form-btn" type="button" id="btn_pkb_submit_<?= $no ?>" onclick="submitPkbQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
-									<span>
-										Submit
-										<i class="fa fa-arrow-right"></i>
-									</span>
-								</button>
-								<button class="contact1002-form-btn" type="button" id="btn_pkb_back_<?= $no ?>" onclick="backPkbQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
-									<span>
-										Back
-										<i class="fa fa-arrow-right"></i>
-									</span>
-								</button>
-								<button class="contact100-form-btn" type="button" id="btn_pkb_next_<?= $no ?>" onclick="nextPkbQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
-									<span>
-										Next
-										<i class="fa fa-arrow-right"></i>
-									</span>
-								</button>
-								<?php $no++ ?>
-								@endforeach
+									<div id="div_pkb_discussion_<?= $no ?>" style="display: none;">
+										<center><span id="pkb_announcement_<?= $no ?>" style="font-weight: bold;font-size: 20px"></span></center>
+										<br>
+										<center><span style="font-weight: bold;font-size: 20px">Pembahasan</span></center>
+										<?php echo $pkb_question->discussion ?></span></label>
+										<br>
+									</div>
+									<button class="contact100-form-btn" type="button" id="btn_pkb_submit_<?= $no ?>" onclick="submitPkbQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
+										<span>
+											Submit
+											<i class="fa fa-arrow-right"></i>
+										</span>
+									</button>
+									<button class="contact1002-form-btn" type="button" id="btn_pkb_back_<?= $no ?>" onclick="backPkbQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
+										<span>
+											Back
+											<i class="fa fa-arrow-right"></i>
+										</span>
+									</button>
+									<button class="contact100-form-btn" type="button" id="btn_pkb_next_<?= $no ?>" onclick="nextPkbQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
+										<span>
+											Next
+											<i class="fa fa-arrow-right"></i>
+										</span>
+									</button>
+									<?php $no++ ?>
+									@endforeach
 								<?php endif ?>
 
 								<button class="contact100-form-btn" type="button" id="btn_pkb_submit_all" onclick="submitPkbQuestionAll()" style="display: inline-block;float: right;display: none;">
@@ -773,250 +771,250 @@ header("Pragma: no-cache");
 
 
 
-						<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_grup">
-							{{ csrf_field() }}
+							<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_grup">
+								{{ csrf_field() }}
 
-							<h3>Informasi Grup Kerja</h3>
+								<h3>Informasi Grup Kerja</h3>
 
-							<label class="label-input1002">
-								<label style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"> Masukkan NIK </label>
-							</label>
+								<label class="label-input1002">
+									<label style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"> Masukkan NIK </label>
+								</label>
 
-							<div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0">
-								<div class="form-group">
-									<input type="text" class="form-control pull-right" id="nik_grup" name="nik_grup" placeholder="Nomor Induk Karyawan">
+								<div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0">
+									<div class="form-group">
+										<input type="text" class="form-control pull-right" id="nik_grup" name="nik_grup" placeholder="Nomor Induk Karyawan">
+									</div>
 								</div>
-							</div>
 
-							<label class="label-input1002">
-								<label style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"> Masukkan Kode </label>
-							</label>
-							<div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0">
-								<div class="form-group">
-									<!-- <input type="text" class="form-control pull-right" id="departemen" name="departemen" placeholder="Departemen"> -->
-									<select class="form-control select2" style="width: 100%;" id="kode_grup" name="kode_grup" data-placeholder="Pilih Kode" required>
-										<option value=""></option>
-										<option value="0fc">Office</option>
-										<option value="AP">Assembly</option>
-										<option value="CTN">Canteen</option>
-										<option value="Drv">Driver</option>
-										<option value="EI">Educational Instrument</option>
-										<option value="GS">General Service</option>
-										<option value="Jps">Japanese</option>
-										<option value="PE">Production Engineering</option>
-										<option value="MNTC">Maintenance</option>
-										<option value="PP">Part Process</option>
-										<option value="QA">Quality Assurance</option>
-										<option value="WH">Warehouse</option>
-										<option value="WST">Welding Surface Treatment</option>
-									</select>
+								<label class="label-input1002">
+									<label style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"> Masukkan Kode </label>
+								</label>
+								<div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0">
+									<div class="form-group">
+										<!-- <input type="text" class="form-control pull-right" id="departemen" name="departemen" placeholder="Departemen"> -->
+										<select class="form-control select2" style="width: 100%;" id="kode_grup" name="kode_grup" data-placeholder="Pilih Kode" required>
+											<option value=""></option>
+											<option value="0fc">Office</option>
+											<option value="AP">Assembly</option>
+											<option value="CTN">Canteen</option>
+											<option value="Drv">Driver</option>
+											<option value="EI">Educational Instrument</option>
+											<option value="GS">General Service</option>
+											<option value="Jps">Japanese</option>
+											<option value="PE">Production Engineering</option>
+											<option value="MNTC">Maintenance</option>
+											<option value="PP">Part Process</option>
+											<option value="QA">Quality Assurance</option>
+											<option value="WH">Warehouse</option>
+											<option value="WST">Welding Surface Treatment</option>
+										</select>
+									</div>
 								</div>
-							</div>
-							<div class="col-md-3 col-sm-3 col-xs-3" style="padding-left: 0">
-								<button class="btn btn-success" type="button" onClick="fillTable()" style="display: inline-block;margin-top: 10px">
-									<span>
-										Cari
-									</span>
-								</button>
-							</div>
-							
-							<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 0;overflow-x: scroll;">
-								<table id="tableResult" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important">
-									<thead>
-										<tr>
-											<th>Nama</th>
-											<th>Tanggal</th>
-											<th>Status</th>
-										</tr>
-									</thead>
-									<tbody id="tableBodyResult">
-									</tbody>
-									<!--<tfoot>-->
-										<!--  <tr>-->
-											<!--    <th></th>-->
-											<!--    <th></th>-->
-											<!--    <th></th>-->
-											<!--    <th></th>-->
-											<!--  </tr>-->
-											<!--</tfoot>-->
-										</table>
-										<p style="color: red" id="geser" style="display: none">*Geser ke kanan untuk melihat detail</p> 
-									</div>
+								<div class="col-md-3 col-sm-3 col-xs-3" style="padding-left: 0">
+									<button class="btn btn-success" type="button" onClick="fillTable()" style="display: inline-block;margin-top: 10px">
+										<span>
+											Cari
+										</span>
+									</button>
+								</div>
 
-									<div class="container-contact100-form-btn" style="margin-top: 30px;">
-										<button class="contact1002-form-btn" type="button" onclick="cancel('form_grup')" style="display: inline-block;">
-											<span>
-												<i class="fa fa-arrow-left"></i>
-												Back To Home
-											</span>
-										</button>
-									</div>
-
-								</form>
-
-								<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_pengumuman">
-									{{ csrf_field() }}
-
-									<h3>Pengumuman</h3>
-
-									<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 0;overflow-x: scroll;">
-										<table id="tableResultPengumuman" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important">
-											<thead>
-												<tr>
-													<th>Tanggal</th>
-													<th>Pengumuman</th>
-												</tr>
-											</thead>
-											<tbody id="tableBodyResultPengumuman">
-											</tbody>
-										</table>
-									</div>
-
-									<div class="container-contact100-form-btn" style="margin-top: 30px;">
-										<button class="contact1002-form-btn" type="button" onclick="cancel('form_pengumuman')" style="display: inline-block;">
-											<span>
-												<i class="fa fa-arrow-left"></i>
-												Back To Home
-											</span>
-										</button>
-									</div>
-								</form>
-
-								<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_kehadiran">
-									{{ csrf_field() }}
-
-									<h3>Data Kehadiran</h3>
-
-									<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 0;overflow-x: scroll;">
-										<table id="tableResultKehadiran" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important">
-											<thead>
-												<tr>
-													<th>Tanggal</th>
-													<th>NIK</th>
-													<th>Nama</th>
-													<th>Jam Masuk</th>
-													<th>Location Masuk</th>
-													<th>Jam Keluar</th>
-													<th>Location Keluar</th>
-													<th>Status</th>
-												</tr>
-											</thead>
-											<tbody id="tableBodyResultKehadiran">
-											</tbody>
-										</table>
-									</div>
-
-									<div class="container-contact100-form-btn" style="margin-top: 30px;">
-										<button class="contact1002-form-btn" type="button" onclick="cancel('form_kehadiran')" style="display: inline-block;">
-											<span>
-												<i class="fa fa-arrow-left"></i>
-												Back To Home
-											</span>
-										</button>
-									</div>
-								</form>
-
-								<form class="bye-form" id="form_terimakasih" style="display: none" >
-								</form>
-
-								<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_belum_survey">
-									<div style="width: 100%;">
-										<div class="col-xs-12 col-md-12">
-											<center style="font-size:16px">Dear <span class="name_survey"></span><br>Survey Dapat Diisi Pada <span style="color: red">Selasa, 01 Februari 2022 Pukul 12:00 - 18:00 </span> <br></center>
+								<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 0;overflow-x: scroll;">
+									<table id="tableResult" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important">
+										<thead>
+											<tr>
+												<th>Nama</th>
+												<th>Tanggal</th>
+												<th>Status</th>
+											</tr>
+										</thead>
+										<tbody id="tableBodyResult">
+										</tbody>
+										<!--<tfoot>-->
+											<!--  <tr>-->
+												<!--    <th></th>-->
+												<!--    <th></th>-->
+												<!--    <th></th>-->
+												<!--    <th></th>-->
+												<!--  </tr>-->
+												<!--</tfoot>-->
+											</table>
+											<p style="color: red" id="geser" style="display: none">*Geser ke kanan untuk melihat detail</p> 
 										</div>
-									</div>
 
-									<div class="container-contact100-form-btn" style="margin-top: 30px;">
-										<button class="contact1002-form-btn" type="button" onclick="cancel('form_belum_survey')" style="display: inline-block;">
-											<span>
-												<i class="fa fa-arrow-left"></i>
-												Back To Home
-											</span>
-										</button>
-									</div>
-								</form>
+										<div class="container-contact100-form-btn" style="margin-top: 30px;">
+											<button class="contact1002-form-btn" type="button" onclick="cancel('form_grup')" style="display: inline-block;">
+												<span>
+													<i class="fa fa-arrow-left"></i>
+													Back To Home
+												</span>
+											</button>
+										</div>
 
+									</form>
 
-								<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_survey">
-									<div id="belum_survey" style="width: 100%;">
+									<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_pengumuman">
 										{{ csrf_field() }}
-										<label class="label-input1002" style="margin-top: 0">
-											<center>
-												<label style="color: purple;font-size: 18px;"> NIK : <span id="employee_id_survey"></span></label>
-												<label style="color: purple;font-size: 18px;"> Nama : <span id="name_survey" class="name_survey"></span></label><br>
-												<input type="hidden" id="department_survey">
-											</center>
-										</label>
 
+										<h3>Pengumuman</h3>
 
-										<div class="col-xs-12 col-md-12">
-
-
-											<?php 
-											$jml_pertanyaan_survey = count($question);
-											?>
-
-											<input type="hidden" id="jml_pertanyaan_survey" value="<?= $jml_pertanyaan_survey ?>">
-
-											<table id="tableQuestion" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important;width: 100%">
+										<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 0;overflow-x: scroll;">
+											<table id="tableResultPengumuman" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important">
 												<thead>
-													<tr style="background-color: #a488aa;color: white">
-														<th>PENILAIAN RESIKO PRIBADI TERKAIT COVID-19</th>
+													<tr>
+														<th>Tanggal</th>
+														<th>Pengumuman</th>
 													</tr>
 												</thead>
-												<tbody id="">
+												<tbody id="tableBodyResultPengumuman">
+												</tbody>
+											</table>
+										</div>
 
-													<?php 
-													$no = 0; 
-													?>
+										<div class="container-contact100-form-btn" style="margin-top: 30px;">
+											<button class="contact1002-form-btn" type="button" onclick="cancel('form_pengumuman')" style="display: inline-block;">
+												<span>
+													<i class="fa fa-arrow-left"></i>
+													Back To Home
+												</span>
+											</button>
+										</div>
+									</form>
 
-													@foreach($question as $qs)
-													<tr class="tab_{{$no+1}}" id="tab_{{$no+1}}">
-														<td>
-															<label class="label-input1002" style="color: purple;margin-top: 0px;text-align: center;font-size: 14px"><span id="pertanyaan_survey<?= $no ?>">{{ $qs->pertanyaan }}</span></label>
+									<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_kehadiran">
+										{{ csrf_field() }}
 
-															<div class="validate-input" style="position: relative; width: 100%">
-																<label class="radio_box" style="margin-top: 5px">Ya
-																	<input type="radio" id="jawabansurvey{{$no}}" name="jawabansurvey{{$no}}" value="Ya">
-																	<span class="checkmark_box"></span>
-																</label>
+										<h3>Data Kehadiran</h3>
 
-																<?php if ($no+1 != 1 && $no+1 != 16 && $no+1 != 19 && $no+1 != 20 && $no+1 != 21 && $no+1 != 22 && $no+1 != 23 && $no+1 != 24) { ?> 
+										<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 0;overflow-x: scroll;">
+											<table id="tableResultKehadiran" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important">
+												<thead>
+													<tr>
+														<th>Tanggal</th>
+														<th>NIK</th>
+														<th>Nama</th>
+														<th>Jam Masuk</th>
+														<th>Location Masuk</th>
+														<th>Jam Keluar</th>
+														<th>Location Keluar</th>
+														<th>Status</th>
+													</tr>
+												</thead>
+												<tbody id="tableBodyResultKehadiran">
+												</tbody>
+											</table>
+										</div>
 
-																<label class="radio_box" style="margin-top: 5px">Kadang
-																	<input type="radio" id="jawabansurvey{{$no}}" name="jawabansurvey{{$no}}" value="Kadang">
-																	<span class="checkmark_box"></span>
-																</label>
+										<div class="container-contact100-form-btn" style="margin-top: 30px;">
+											<button class="contact1002-form-btn" type="button" onclick="cancel('form_kehadiran')" style="display: inline-block;">
+												<span>
+													<i class="fa fa-arrow-left"></i>
+													Back To Home
+												</span>
+											</button>
+										</div>
+									</form>
 
-																<?php } ?>
+									<form class="bye-form" id="form_terimakasih" style="display: none" >
+									</form>
 
-																<label class="radio_box" style="margin-top: 5px">Tidak
-																	<input type="radio" id="jawabansurvey{{$no}}" name="jawabansurvey{{$no}}" value="Tidak">
-																	<span class="checkmark_box"></span>
-																</label>
-															</div>
-															<div class="validate-input" style="position: relative; width: 100%">
-																<?php 
-																if ($no+1 != 1) { ?>
-																<button id="back_{{$no+1}}" class="contact1002-form-btn" type="button" onclick="backSurvey(this.id)" style="display: inline-block;background-color: red !important">
-																	<span>
-																		Back
-																		<i class="fa fa-arrow-left"></i>
-																	</span>
-																</button>
-															<?php }
-															?>
+									<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_belum_survey">
+										<div style="width: 100%;">
+											<div class="col-xs-12 col-md-12">
+												<center style="font-size:16px">Dear <span class="name_survey"></span><br>Survey Dapat Diisi Pada <span style="color: red">Minggu, 13 Februari 2022 Pukul 12:00 - 18:00 </span> <br></center>
+											</div>
+										</div>
+
+										<div class="container-contact100-form-btn" style="margin-top: 30px;">
+											<button class="contact1002-form-btn" type="button" onclick="cancel('form_belum_survey')" style="display: inline-block;">
+												<span>
+													<i class="fa fa-arrow-left"></i>
+													Back To Home
+												</span>
+											</button>
+										</div>
+									</form>
 
 
-															<?php 
-															if ($no+1 != $jml_pertanyaan_survey) { ?>
-															<button id="next_{{$no+1}}" class="contact100-form-btn" type="button" onclick="nextSurvey(this.id)" style="display: inline-block;float: right">
-																<span>
-																	Next
-																	<i class="fa fa-arrow-right"></i>
-																</span>
-															</button>
-															<?php } else { ?>
+									<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_survey">
+										<div id="belum_survey" style="width: 100%;">
+											{{ csrf_field() }}
+											<label class="label-input1002" style="margin-top: 0">
+												<center>
+													<label style="color: purple;font-size: 18px;"> NIK : <span id="employee_id_survey"></span></label>
+													<label style="color: purple;font-size: 18px;"> Nama : <span id="name_survey" class="name_survey"></span></label><br>
+													<input type="hidden" id="department_survey">
+												</center>
+											</label>
+
+
+											<div class="col-xs-12 col-md-12">
+
+
+												<?php 
+												$jml_pertanyaan_survey = count($question);
+												?>
+
+												<input type="hidden" id="jml_pertanyaan_survey" value="<?= $jml_pertanyaan_survey ?>">
+
+												<table id="tableQuestion" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important;width: 100%">
+													<thead>
+														<tr style="background-color: #a488aa;color: white">
+															<th>PENILAIAN RESIKO PRIBADI TERKAIT COVID-19</th>
+														</tr>
+													</thead>
+													<tbody id="">
+
+														<?php 
+														$no = 0; 
+														?>
+
+														@foreach($question as $qs)
+														<tr class="tab_{{$no+1}}" id="tab_{{$no+1}}">
+															<td>
+																<label class="label-input1002" style="color: purple;margin-top: 0px;text-align: center;font-size: 14px"><span id="pertanyaan_survey<?= $no ?>">{{ $qs->pertanyaan }}</span></label>
+
+																<div class="validate-input" style="position: relative; width: 100%">
+																	<label class="radio_box" style="margin-top: 5px">Ya
+																		<input type="radio" id="jawabansurvey{{$no}}" name="jawabansurvey{{$no}}" value="Ya">
+																		<span class="checkmark_box"></span>
+																	</label>
+
+																	<?php if ($no+1 != 1 && $no+1 != 16 && $no+1 != 19 && $no+1 != 20 && $no+1 != 21 && $no+1 != 22 && $no+1 != 23 && $no+1 != 24) { ?> 
+
+																		<label class="radio_box" style="margin-top: 5px">Kadang
+																			<input type="radio" id="jawabansurvey{{$no}}" name="jawabansurvey{{$no}}" value="Kadang">
+																			<span class="checkmark_box"></span>
+																		</label>
+
+																	<?php } ?>
+
+																	<label class="radio_box" style="margin-top: 5px">Tidak
+																		<input type="radio" id="jawabansurvey{{$no}}" name="jawabansurvey{{$no}}" value="Tidak">
+																		<span class="checkmark_box"></span>
+																	</label>
+																</div>
+																<div class="validate-input" style="position: relative; width: 100%">
+																	<?php 
+																	if ($no+1 != 1) { ?>
+																		<button id="back_{{$no+1}}" class="contact1002-form-btn" type="button" onclick="backSurvey(this.id)" style="display: inline-block;background-color: red !important">
+																			<span>
+																				Back
+																				<i class="fa fa-arrow-left"></i>
+																			</span>
+																		</button>
+																	<?php }
+																	?>
+
+
+																	<?php 
+																	if ($no+1 != $jml_pertanyaan_survey) { ?>
+																		<button id="next_{{$no+1}}" class="contact100-form-btn" type="button" onclick="nextSurvey(this.id)" style="display: inline-block;float: right">
+																			<span>
+																				Next
+																				<i class="fa fa-arrow-right"></i>
+																			</span>
+																		</button>
+																	<?php } else { ?>
 
 															<!-- <tr>
 											              		<td>
@@ -1037,233 +1035,233 @@ header("Pragma: no-cache");
 											          <?php 
 											          if ($no+1 == 1) { ?>
 
-											          <div class="validate-input" style="width: 100%;">
-											          	<span style="font-weight: bold;margin-top: 40px;">Page {{$no+1}} of {{$jml_pertanyaan_survey}}</span>
-											          </div>
+											          	<div class="validate-input" style="width: 100%;">
+											          		<span style="font-weight: bold;margin-top: 40px;">Page {{$no+1}} of {{$jml_pertanyaan_survey}}</span>
+											          	</div>
 
 											          <?php } else { ?>
 
-											          <div class="validate-input" style="width: 100%;">
-											          	<span style="font-weight: bold;margin-top: 20px;float: right;">Page {{$no+1}} of {{$jml_pertanyaan_survey}}</span>
-											          </div>
+											          	<div class="validate-input" style="width: 100%;">
+											          		<span style="font-weight: bold;margin-top: 20px;float: right;">Page {{$no+1}} of {{$jml_pertanyaan_survey}}</span>
+											          	</div>
 
-											          <?php
-											      }
-											      $no++;
-											      ?>
-											  </td>
+											          	<?php
+											          }
+											          $no++;
+											          ?>
+											      </td>
 
-											</tr>
+											  </tr>
 
 
-											@endforeach
+											  @endforeach
 
-										</tbody>
-									</table>
+											</tbody>
+										</table>
+									</div>
 								</div>
-							</div>
-							<br>
-							<div id="sudah_survey" style="width: 100%">
-								<div class="col-xs-12 col-md-12">
-									<center style="font-size:16px">Terimakasih <span class="name_survey"></span> telah mengisi laporan survey ini pada <span style="color: red"><div id="waktu_covid"></div></span><div id="resiko_covid"></div></center>
+								<br>
+								<div id="sudah_survey" style="width: 100%">
+									<div class="col-xs-12 col-md-12">
+										<center style="font-size:16px">Terimakasih <span class="name_survey"></span> telah mengisi laporan survey ini pada <span style="color: red"><div id="waktu_covid"></div></span><div id="resiko_covid"></div></center>
+									</div>
 								</div>
-							</div>
-							
-							<div class="container-contact100-form-btn" style="margin-top: 30px;">
-								<button class="contact1002-form-btn" type="button" onclick="cancel('form_survey')" style="display: inline-block;">
-									<span>
-										<i class="fa fa-arrow-left"></i>
-										Back To Home
-									</span>
-								</button>
-							</div>
-						</form>
+
+								<div class="container-contact100-form-btn" style="margin-top: 30px;">
+									<button class="contact1002-form-btn" type="button" onclick="cancel('form_survey')" style="display: inline-block;">
+										<span>
+											<i class="fa fa-arrow-left"></i>
+											Back To Home
+										</span>
+									</button>
+								</div>
+							</form>
 
 
-						<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px; display: none" id="stocktaking_survey_form">
-							<div id="stocktaking_survey_not_yet" style="width: 100%;">
-								{{ csrf_field() }}
-								<label class="label-input1002" style="margin-top: 0">
-									<center>
-										<label style="color: purple;font-size: 18px;"> NIK : <span id="stocktaking_survey_employee_id"></span></label>
-										<label style="color: purple;font-size: 18px;"> Nama : <span id="stocktaking_survey_name"></span></label><br>
-										<input type="hidden" id="stockaking_survey_department">
-									</center>
-								</label>
-								
+							<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px; display: none" id="stocktaking_survey_form">
+								<div id="stocktaking_survey_not_yet" style="width: 100%;">
+									{{ csrf_field() }}
+									<label class="label-input1002" style="margin-top: 0">
+										<center>
+											<label style="color: purple;font-size: 18px;"> NIK : <span id="stocktaking_survey_employee_id"></span></label>
+											<label style="color: purple;font-size: 18px;"> Nama : <span id="stocktaking_survey_name"></span></label><br>
+											<input type="hidden" id="stockaking_survey_department">
+										</center>
+									</label>
 
-								<div class="col-xs-12 col-md-12">
 
-									
-									@php
-									$stocktaking_survey_count = count($st_question);
-									@endphp
+									<div class="col-xs-12 col-md-12">
 
-									<input type="hidden" id="stocktaking_survey_count" value="{{ $stocktaking_survey_count }}">
 
-									<table id="tableStocktakingSurvey" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important;width: 100%">
-										<thead>
-											<tr style="background-color: #a488aa;color: white">
-												<th>PENILAIAN PEMAHAMAN USER TERKAIT STOCKTAKING</th>
-											</tr>
-										</thead>
-										<tbody id="">
+										@php
+										$stocktaking_survey_count = count($st_question);
+										@endphp
 
-											@php $no = 0; @endphp
+										<input type="hidden" id="stocktaking_survey_count" value="{{ $stocktaking_survey_count }}">
 
-											@foreach($st_question as $qs)
-											<tr class="stocktaking_tab_{{ $no+1 }}" id="stocktaking_tab_{{ $no+1 }}">
-												<td>
-													<center>
-														<img style="max-width: 80%;" id="image_question_{{ $no+1 }}" src="{{ url( 'stocktaking/' . $qs->image ) }}" alt="{{ $qs->image }}">
-													</center>
-													<label class="label-input1002" style="color: purple;margin-top: 0px;text-align: center;font-size: 14px"><span id="survey_question_{{ $no }}">{{ $qs->question }}</span>
-													</label>
+										<table id="tableStocktakingSurvey" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important;width: 100%">
+											<thead>
+												<tr style="background-color: #a488aa;color: white">
+													<th>PENILAIAN PEMAHAMAN USER TERKAIT STOCKTAKING</th>
+												</tr>
+											</thead>
+											<tbody id="">
 
-													<div class="validate-input" style="position: relative; width: 100%">
-														<label class="radio_box" style="margin-top: 5px">Ya
-															<input type="radio" id="survey_answer_{{ $no }}" name="survey_answer_{{ $no }}" value="Ya">
-															<span class="checkmark_box"></span>
+												@php $no = 0; @endphp
+
+												@foreach($st_question as $qs)
+												<tr class="stocktaking_tab_{{ $no+1 }}" id="stocktaking_tab_{{ $no+1 }}">
+													<td>
+														<center>
+															<img style="max-width: 80%;" id="image_question_{{ $no+1 }}" src="{{ url( 'stocktaking/' . $qs->image ) }}" alt="{{ $qs->image }}">
+														</center>
+														<label class="label-input1002" style="color: purple;margin-top: 0px;text-align: center;font-size: 14px"><span id="survey_question_{{ $no }}">{{ $qs->question }}</span>
 														</label>
 
-														<label class="radio_box" style="margin-top: 5px">Tidak
-															<input type="radio" id="survey_answer_{{ $no }}" name="survey_answer_{{ $no }}" value="Tidak">
-															<span class="checkmark_box"></span>
-														</label>
-													</div>
-													<div class="validate-input" style="position: relative; width: 100%">
-														@if($no+1 != 1)
-														<button id="back_{{ $no+1 }}" class="contact1002-form-btn" type="button" onclick="backSurveyStocktaking(this.id)" style="display: inline-block;background-color: red !important">
-															<span>
-																Back
-																<i class="fa fa-arrow-left"></i>
-															</span>
-														</button>
-														@endif
+														<div class="validate-input" style="position: relative; width: 100%">
+															<label class="radio_box" style="margin-top: 5px">Ya
+																<input type="radio" id="survey_answer_{{ $no }}" name="survey_answer_{{ $no }}" value="Ya">
+																<span class="checkmark_box"></span>
+															</label>
+
+															<label class="radio_box" style="margin-top: 5px">Tidak
+																<input type="radio" id="survey_answer_{{ $no }}" name="survey_answer_{{ $no }}" value="Tidak">
+																<span class="checkmark_box"></span>
+															</label>
+														</div>
+														<div class="validate-input" style="position: relative; width: 100%">
+															@if($no+1 != 1)
+															<button id="back_{{ $no+1 }}" class="contact1002-form-btn" type="button" onclick="backSurveyStocktaking(this.id)" style="display: inline-block;background-color: red !important">
+																<span>
+																	Back
+																	<i class="fa fa-arrow-left"></i>
+																</span>
+															</button>
+															@endif
 
 
-														@if($no+1 != $stocktaking_survey_count)
-														<button id="next_{{ $no+1 }}" class="contact100-form-btn" type="button" onclick="nextSurveyStocktaking(this.id)" style="display: inline-block;float: right">
-															<span>
-																Next
-																<i class="fa fa-arrow-right"></i>
-															</span>
-														</button>
+															@if($no+1 != $stocktaking_survey_count)
+															<button id="next_{{ $no+1 }}" class="contact100-form-btn" type="button" onclick="nextSurveyStocktaking(this.id)" style="display: inline-block;float: right">
+																<span>
+																	Next
+																	<i class="fa fa-arrow-right"></i>
+																</span>
+															</button>
+															@else
+															<button class="contact100-form-btn" type="button" onclick="submitSurveyStoctaking()" style="display: inline-block;float: right;">
+																<span>
+																	Submit
+																	<i class="fa fa-arrow-right"></i>
+																</span>
+															</button>
+															@endif
+														</div>
+
+														@if($no+1 == 1)
+														<div class="validate-input" style="width: 100%;">
+															<span style="font-weight: bold;margin-top: 40px;">Page {{ $no+1 }} of {{ $stocktaking_survey_count }}</span>
+														</div>
 														@else
-														<button class="contact100-form-btn" type="button" onclick="submitSurveyStoctaking()" style="display: inline-block;float: right;">
-															<span>
-																Submit
-																<i class="fa fa-arrow-right"></i>
-															</span>
-														</button>
+														<div class="validate-input" style="width: 100%;">
+															<span style="font-weight: bold;margin-top: 20px;float: right;">Page {{ $no+1 }} of {{ $stocktaking_survey_count }}</span>
+														</div>
 														@endif
-													</div>
+														@php $no++; @endphp
+													</td>
+												</tr>
+												@endforeach
 
-													@if($no+1 == 1)
-													<div class="validate-input" style="width: 100%;">
-														<span style="font-weight: bold;margin-top: 40px;">Page {{ $no+1 }} of {{ $stocktaking_survey_count }}</span>
-													</div>
-													@else
-													<div class="validate-input" style="width: 100%;">
-														<span style="font-weight: bold;margin-top: 20px;float: right;">Page {{ $no+1 }} of {{ $stocktaking_survey_count }}</span>
-													</div>
-													@endif
-													@php $no++; @endphp
-												</td>
-											</tr>
-											@endforeach
-
-										</tbody>
-									</table>
+											</tbody>
+										</table>
+									</div>
 								</div>
-							</div>
-							<br>
-							<div id="stocktaking_survey_finish" style="width: 100%">
-								<div class="col-xs-12 col-md-12">
-									<center style="font-size:16px">
-										Terimakasih <span id="stocktaking_survey_name_finish"></span> telah mengisi survey stocktaking pada <span style="color: red"><div id="stocktaking_survey_time"></div></span>
-									</center>
+								<br>
+								<div id="stocktaking_survey_finish" style="width: 100%">
+									<div class="col-xs-12 col-md-12">
+										<center style="font-size:16px">
+											Terimakasih <span id="stocktaking_survey_name_finish"></span> telah mengisi survey stocktaking pada <span style="color: red"><div id="stocktaking_survey_time"></div></span>
+										</center>
+									</div>
 								</div>
-							</div>
 
-							<div class="container-contact100-form-btn" style="margin-top: 30px;">
-								<button class="contact1002-form-btn" type="button" onclick="cancel('stocktaking_survey_form')" style="display: inline-block;">
-									<span>
-										<i class="fa fa-arrow-left"></i>
-										Back To Home
-									</span>
-								</button>
-							</div>
-						</form>
+								<div class="container-contact100-form-btn" style="margin-top: 30px;">
+									<button class="contact1002-form-btn" type="button" onclick="cancel('stocktaking_survey_form')" style="display: inline-block;">
+										<span>
+											<i class="fa fa-arrow-left"></i>
+											Back To Home
+										</span>
+									</button>
+								</div>
+							</form>
 
 
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="modal fade" id="modal-maps" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg" style="margin-top: 200px">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" align="center"><b>Your Location</b></h4>
-						</div>
-						<div class="modal-body">
-							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="iframe">
-
+				<div class="modal fade" id="modal-maps" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg" style="margin-top: 200px">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" align="center"><b>Your Location</b></h4>
 							</div>
-							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								<div class="modal-footer">
-									<button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+							<div class="modal-body">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="iframe">
+
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="modal fade" id="modal-pengumuman" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg" style="margin-top: 200px">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" align="center"><b>Pengumuman</b></h4>
-						</div>
-						<div class="modal-body">
-							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="announcement">
-
+				<div class="modal fade" id="modal-pengumuman" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg" style="margin-top: 200px">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" align="center"><b>Pengumuman</b></h4>
 							</div>
-							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								<div class="modal-footer">
-									<button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+							<div class="modal-body">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="announcement">
+
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</body>
-		<script src="{{ url('vendor/jquery/jquery-3.2.1.min.js')}}"></script>
-		<script src="{{ url('vendor/animsition/js/animsition.min.js')}}"></script>
-		<script src="{{ url('vendor/bootstrap/js/popper.js')}}"></script>
-		<script src="{{ url('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-		<script src="{{ url('vendor/select2/select2.min.js')}}"></script>
-		<script src="{{ url('vendor/daterangepicker/moment.min.js')}}"></script>
-		<script src="{{ url('vendor/daterangepicker/daterangepicker.js')}}"></script>
-		<script src="{{ url('vendor/countdowntime/countdowntime.js')}}"></script>
-		<script src="{{ url('js/main.js')}}"></script>
-		<script src="{{ url('js/jquery.gritter.min.js') }}"></script>
-		<!--<script src="{{ url('datatable/dataTables.buttons.min.js')}}"></script>-->
-		<script src="{{ url('datatable/jquery.dataTables.min.js')}}"></script>
-		<script src="{{ url('datatable/dataTables.bootstrap.min.js')}}"></script>
-		<script>
+			</body>
+			<script src="{{ url('vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+			<script src="{{ url('vendor/animsition/js/animsition.min.js')}}"></script>
+			<script src="{{ url('vendor/bootstrap/js/popper.js')}}"></script>
+			<script src="{{ url('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+			<script src="{{ url('vendor/select2/select2.min.js')}}"></script>
+			<script src="{{ url('vendor/daterangepicker/moment.min.js')}}"></script>
+			<script src="{{ url('vendor/daterangepicker/daterangepicker.js')}}"></script>
+			<script src="{{ url('vendor/countdowntime/countdowntime.js')}}"></script>
+			<script src="{{ url('js/main.js')}}"></script>
+			<script src="{{ url('js/jquery.gritter.min.js') }}"></script>
+			<!--<script src="{{ url('datatable/dataTables.buttons.min.js')}}"></script>-->
+			<script src="{{ url('datatable/jquery.dataTables.min.js')}}"></script>
+			<script src="{{ url('datatable/dataTables.bootstrap.min.js')}}"></script>
+			<script>
 
 
-			$.ajaxSetup({
-				headers: {
-					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				}
-			});
+				$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
 
-			jQuery(document).ready(function() {
+				jQuery(document).ready(function() {
 				// datatableQuestion();
 				$('#username').val('');
 				$('#password').val('');
@@ -1275,10 +1273,10 @@ header("Pragma: no-cache");
 				});
 
 				$(".select2").select2();
-    for(var i = 0; i < parseInt('{{$pkb_question_total}}');i++){
-    	var name= 'pkb_answer_'+i;
-    	$('#'+name).prop('checked', false);
-    }
+				for(var i = 0; i < parseInt('{{$pkb_question_total}}');i++){
+					var name= 'pkb_answer_'+i;
+					$('#'+name).prop('checked', false);
+				}
 
 
 				for(var j = 0; j < parseInt('{{$kode_etik_question_total}}');j++){
@@ -1296,91 +1294,91 @@ header("Pragma: no-cache");
 
 });
 
-			function tab(index) {
+				function tab(index) {
 
-				var tgl = "{{ $tgl }}";
+					var tgl = "{{ $tgl }}";
 
-				if (index === 1) {
-					$('#form_anda').show();
-					$('#form_menu').hide();
-					$("#form_login").hide();
-					$("#form_survey").hide();
-					$("#form_belum_survey").hide();
-					$("#keterangan_umum").show();
-					$("#form_pkb").hide();
-					$("#stocktaking_survey_form").hide();
-						$("#form_kode_etik").hide();
-
-				}
-
-				if (index === 2) {
-					$('#form_grup').show();
-					$('#form_menu').hide();
-					$("#form_login").hide();
-					$("#form_survey").hide();
-					$("#form_belum_survey").hide();
-					$("#keterangan_umum").show();
-					$("#form_pkb").hide();
-					$("#stocktaking_survey_form").hide();
-						$("#form_kode_etik").hide();
-
-				}
-
-				if (index === 3) {
-					fillTablePengumuman();
-					$('#form_pengumuman').show();
-					$('#form_menu').hide();
-					$("#form_login").hide();
-					$("#form_survey").hide();
-					$("#form_belum_survey").hide();
-					$("#keterangan_umum").show();
-					$("#form_pkb").hide();
-					$("#stocktaking_survey_form").hide();
-						$("#form_kode_etik").hide();
-
-				}
-
-				if (index === 4) {
-					fillTableKehadiran();
-					$('#form_kehadiran').show();
-					$('#form_menu').hide();
-					$("#form_login").hide();
-					$("#form_survey").hide();
-					$("#form_belum_survey").hide();
-					$("#keterangan_umum").show();
-					$("#form_pkb").hide();
-					$("#stocktaking_survey_form").hide();
-						$("#form_kode_etik").hide();
-
-				}
-
-				if (index === 5) {
-					if (tgl >= "2022-02-01 12:00:00" && tgl <= "2022-02-01 18:00:00") {
-						$('#form_kehadiran').hide();
-						$('#form_menu').hide();
-						$("#form_login").hide();
-						$("#form_survey").show();
-						$("#form_belum_survey").hide();
-						$("#keterangan_umum").hide();
-						$("#form_pkb").hide();
-						$("#stocktaking_survey_form").hide();
-						hideAll();
-							$("#form_kode_etik").hide();
-
-					}
-					else{
-						$('#form_kehadiran').hide();
+					if (index === 1) {
+						$('#form_anda').show();
 						$('#form_menu').hide();
 						$("#form_login").hide();
 						$("#form_survey").hide();
-						$("#form_belum_survey").show();
-						$("#keterangan_umum").hide();
+						$("#form_belum_survey").hide();
+						$("#keterangan_umum").show();
 						$("#form_pkb").hide();
 						$("#stocktaking_survey_form").hide();
-						hideAll();
-							$("#form_kode_etik").hide();
+						$("#form_kode_etik").hide();
 
 					}
+
+					if (index === 2) {
+						$('#form_grup').show();
+						$('#form_menu').hide();
+						$("#form_login").hide();
+						$("#form_survey").hide();
+						$("#form_belum_survey").hide();
+						$("#keterangan_umum").show();
+						$("#form_pkb").hide();
+						$("#stocktaking_survey_form").hide();
+						$("#form_kode_etik").hide();
+
+					}
+
+					if (index === 3) {
+						fillTablePengumuman();
+						$('#form_pengumuman').show();
+						$('#form_menu').hide();
+						$("#form_login").hide();
+						$("#form_survey").hide();
+						$("#form_belum_survey").hide();
+						$("#keterangan_umum").show();
+						$("#form_pkb").hide();
+						$("#stocktaking_survey_form").hide();
+						$("#form_kode_etik").hide();
+
+					}
+
+					if (index === 4) {
+						fillTableKehadiran();
+						$('#form_kehadiran').show();
+						$('#form_menu').hide();
+						$("#form_login").hide();
+						$("#form_survey").hide();
+						$("#form_belum_survey").hide();
+						$("#keterangan_umum").show();
+						$("#form_pkb").hide();
+						$("#stocktaking_survey_form").hide();
+						$("#form_kode_etik").hide();
+
+					}
+
+					if (index === 5) {
+						if (tgl >= "2022-02-13 12:00:00" && tgl <= "2022-02-13 18:00:00") {
+							$('#form_kehadiran').hide();
+							$('#form_menu').hide();
+							$("#form_login").hide();
+							$("#form_survey").show();
+							$("#form_belum_survey").hide();
+							$("#keterangan_umum").hide();
+							$("#form_pkb").hide();
+							$("#stocktaking_survey_form").hide();
+							hideAll();
+							$("#form_kode_etik").hide();
+
+						}
+						else{
+							$('#form_kehadiran').hide();
+							$('#form_menu').hide();
+							$("#form_login").hide();
+							$("#form_survey").hide();
+							$("#form_belum_survey").show();
+							$("#keterangan_umum").hide();
+							$("#form_pkb").hide();
+							$("#stocktaking_survey_form").hide();
+							hideAll();
+							$("#form_kode_etik").hide();
+
+						}
 
 					// $("#form_survey").hide();
 					// $("#form_belum_survey").show();
@@ -2102,6 +2100,7 @@ function showPosition(position) {
 				}
 			})
 		}
+		
 
 		function submitPkbQuestion(no) {
 			// for(var i = 0; i < parseInt('{{$pkb_question_total}}');i++){
