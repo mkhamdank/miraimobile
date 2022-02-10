@@ -121,9 +121,9 @@ header("Pragma: no-cache");
 			-ms-user-select: none;
 			user-select: none;
 			border: 1px solid rgba(0,0,0,0.1);
-			height: 30px;
+			/*height: 30px;*/
 			background-color: #f2f2f2;
-			min-height: 40px;
+			min-height: 50px;
 		}
 
 		/* Hide the browser's default radio button */
@@ -721,8 +721,13 @@ header("Pragma: no-cache");
 									</div>
 
 									<div id="div_kode_etik_discussion_<?= $no ?>" style="display: none;">
-										<center><span id="kode_etik_announcement_<?= $no ?>" style="font-weight: bold;font-size: 20px"></span><i class=" fa fa-circle-check"></i>
-
+										<center><span id="kode_etik_announcement_<?= $no ?>" style="font-weight: bold;font-size: 20px"></span>
+										</center>
+										<br>
+										<center><span id="images_<?= $no ?>" style="display: none;"><img src='../admin/public/images/yess_answer.png' width='18%'></span>
+										</center>
+										<br>
+										<center><span id="images_not_<?= $no ?>" style="display: none;"><img src='../admin/public/images/not_answer.png' width='18%'></span>
 										</center>
 										<br>
 										<!-- <center><span style="font-weight: bold;font-size: 20px">Jawaban Yang Benar</span></center> -->
@@ -2150,10 +2155,11 @@ function showPosition(position) {
   		$('#kode_etik_announcement_'+no).html('Jawaban Anda Salah!<br>Silahkan baca Jawaban Benar.');
   		$('#kode_etik_announcement_'+no).css("color", "red");
   		$('#kode_etik_announcement_'+no).css("fontWeight", "bold");
+  		$('#images_not_'+no).show();
+  		$('#images_'+no).hide();
   		$('#btn_kode_etik_back_'+no).show();
   		$('#div_kode_etik_discussion_'+no).show();
   		$('#sudah_kode_etik').hide();
-
   		$('#btn_kode_etik_submit_'+no).hide();
   		$('#div_kode_etik_question_'+no).hide();
   		$('#kode_etik_salah_'+no).show();
@@ -2163,6 +2169,9 @@ function showPosition(position) {
   		$('#kode_etik_announcement_'+no).html('Jawaban Anda Benar!');
   		$('#kode_etik_announcement_'+no).css("color", "green");
   		$('#kode_etik_announcement_'+no).css("fontWeight", "bold");
+  		$('#images_not_'+no).hide();
+  		$('#images_'+no).show();
+  		$('#images_not_').append("<img src='../admin/public/images/yess_answer.png' width='18%'>");
   		$('#div_kode_etik_discussion_'+no).show();
   		$('#btn_kode_etik_next_'+no).show();
   		$('#btn_kode_etik_submit_'+no).hide();
@@ -2170,7 +2179,6 @@ function showPosition(position) {
   		$('#kode_etik_salah1_ket_'+no).hide();
   		$('#kode_etik_salah_'+no).hide();
   		$('#sudah_kode_etik').hide();
-
 
   	}
   }
