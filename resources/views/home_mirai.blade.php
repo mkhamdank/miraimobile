@@ -728,7 +728,7 @@ header("Pragma: no-cache");
 										<center><span id="images_<?= $no ?>" style="display: none;"><img src='../admin/public/images/yess_answer.png' width='18%'></span>
 										</center>
 										<br>
-										<center><span id="images_not_<?= $no ?>" style="display: none;"><img src='../admin/public/images/not_answer.png' width='18%'></span>
+									<center><span id="images_not_<?= $no ?>" style="display: none;"><img src='../admin/public/images/sad.png' width='20%'></span>
 										</center>
 										<br>
 										<!-- <center><span style="font-weight: bold;font-size: 20px">Jawaban Yang Benar</span></center> -->
@@ -769,7 +769,7 @@ header("Pragma: no-cache");
 											<div id="thanks_give"></div> 
 										</center>
 										<br>
-									<center style="font-size:16px">Terimakasih <span style="color: blue;" class="name_survey1"></span> telah melakukan Training Post Test Kode Etik Kepatuhan Pada<span style="color: red"><div id="waktu_kode_etik"></div></span></center>
+									<center style="font-size:16px">Terimakasih <span style="color: blue;" class="name_survey1"></span> telah melakukan Training Kode Etik Kepatuhan Pada<span style="color: red"><div id="waktu_kode_etik"></div></span></center>
 									<br>
 								</div>
 							</div>
