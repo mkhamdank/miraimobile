@@ -103,7 +103,6 @@ class RawMaterialController extends Controller {
 		];
 
 		$bcc = [
-			'aditya.agassi@music.yamaha.com', 
 			'muhammad.ikhlas@music.yamaha.com'
 		];
 
