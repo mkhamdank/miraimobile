@@ -688,6 +688,7 @@ header("Pragma: no-cache");
 						</div>
 
 
+
 						<div id="form_kode_etik" style="display: none;padding: 0px 10px 58px 10px;">
 							<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
 								POST TEST <br>KODE ETIK KEPATUHAN
@@ -768,7 +769,23 @@ header("Pragma: no-cache");
 											<div id="thanks_give"></div> 
 										</center>
 										<br>
-										<center style="font-size:16px">Terimakasih <span class="name_survey1"></span> telah melakukan Post Test Kode Etik Kepatuhan Pada<span style="color: red"><div id="waktu_kode_etik"></div></span></center>
+									<center style="font-size:16px">Terimakasih <span style="color: blue;" class="name_survey1"></span> telah melakukan Training Post Test Kode Etik Kepatuhan Pada<span style="color: red"><div id="waktu_kode_etik"></div></span></center>
+									<br>
+								</div>
+							</div>
+							<div id="kode_etik_prolog" style="width: 100%; display:none;">
+								<div class="col-xs-12 col-md-12">
+									<center><span id="images_nova_<?= $no ?>"><img src='../admin/public/images/Thanks_veno.png' width='40%'></span>
+									</center>
+									<br>
+									<center style="font-size:16px">Terima kasih sudah mengikuti Training Refreshment Code of Conduct (Kode Etik) yang dilakukan oleh HR Dept.<br>Sebagai feed back atas training tersebut, mohon untuk mengisi daftar pertanyaan berikut : </center>
+									<br>
+									<button class="contact100-form-btn" type="button" id="btn_next<?= $no ?>" onclick="nextKodeEtik()" style="display: inline-block;float: right;margin-bottom: 10px;">
+										<span>
+											Next
+											<i class="fa fa-arrow-right"></i>
+										</span>
+									</button>
 										<br>
 									</div>
 								</div>
@@ -1287,7 +1304,7 @@ header("Pragma: no-cache");
 				for(var j = 0; j < parseInt('{{$kode_etik_question_total}}');j++){
 					var names= 'kode_etik_answer_'+j;
 					$('#'+names).prop('checked', false);
-					console.log("s");
+					
 				}
 
 
@@ -1507,12 +1524,16 @@ header("Pragma: no-cache");
 
 								if (result.cek_kode_etik != null) {
 									$("#sudah_kode_etik").show();
+
+
+
 									$("#div_pertanyaan1").hide();
 									$('#waktu_kode_etik').html(result.cek_kode_etik.created_at);
 									$('#thanks_give').append("<img src='../admin/public/images/Thanks_veno.png' width='35%'>");
 								}else{
 									$("#sudah_kode_etik").hide();
-									$("#div_pertanyaan1").show();
+									$("#kode_etik_prolog").show();
+									$("#div_pertanyaan1").hide();
 									$('#waktu_kode_etik').html('');
 
 								}
@@ -1534,6 +1555,8 @@ header("Pragma: no-cache");
 							// }
 
 							$("#kode_etik_employee_id").text(result.data[0].employee_id);
+							$(".name_survey1").text(result.data[0].name);
+
 
 
 
@@ -2192,6 +2215,13 @@ function showPosition(position) {
   	$('#btn_kode_etik_submit_'+no).show();
   	$('#div_kode_etik_question_'+no).show();
   	$('#sudah_kode_etik').hide();
+
+  }
+
+  function nextKodeEtik(){
+  	$("#form_kode_etik").show();
+  	$("#kode_etik_prolog").hide();
+  	$("#div_pertanyaan1").show();
 
   }
 
