@@ -391,7 +391,7 @@ header("Pragma: no-cache");
 									<button class="btn btn-primary" onclick="tab(6)" style="text-align: center; width: 100%;">Surat Pernyataan PKB</button>
 								</div> -->
 								<div class="row" style="width: 100%; padding-top: 5px;">
-									<button class="btn btn-primary" onclick="tab(9)" style="text-align: center; width: 100%;">Post Test Kode Etik Kepatuhan</button>
+									<button class="btn btn-primary" onclick="tab(9)" style="text-align: center; width: 100%;">Training Kode Etik Kepatuhan</button>
 								</div>
 							</div>
 
@@ -691,7 +691,7 @@ header("Pragma: no-cache");
 
 						<div id="form_kode_etik" style="display: none;padding: 0px 10px 58px 10px;">
 							<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
-								POST TEST <br>KODE ETIK KEPATUHAN
+							TRAINING<br>KODE ETIK KEPATUHAN
 							</span>
 
 							<div id="div_pertanyaan1">
@@ -775,7 +775,7 @@ header("Pragma: no-cache");
 							</div>
 							<div id="kode_etik_prolog" style="width: 100%; display:none;">
 								<div class="col-xs-12 col-md-12">
-									<center><span id="images_nova_<?= $no ?>"><img src='../admin/public/images/Thanks_veno.png' width='40%'></span>
+									<center><span id="images_nova_<?= $no ?>"><img src='../admin/public/images/kode_etik1.png' width="50%"></span>
 									</center>
 									<br>
 									<center style="font-size:16px">Terima kasih sudah mengikuti Training Refreshment Code of Conduct (Kode Etik) yang dilakukan oleh HR Dept.<br>Sebagai feed back atas training tersebut, mohon untuk mengisi daftar pertanyaan berikut : </center>
