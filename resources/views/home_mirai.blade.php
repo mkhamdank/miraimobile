@@ -387,9 +387,9 @@ header("Pragma: no-cache");
 								<div class="row" style="width: 100%; padding-top: 5px;" id="btn-survey-stocktaking">
 									<button class="btn btn-primary" onclick="tab(7)" style="text-align: center; width: 100%;">Survey Stocktaking</button>
 								</div>
-								<!-- <div class="row" style="width: 100%; padding-top: 5px;">
+								<div class="row" style="width: 100%; padding-top: 5px;">
 									<button class="btn btn-primary" onclick="tab(6)" style="text-align: center; width: 100%;">Surat Pernyataan PKB</button>
-								</div> -->
+								</div>
 								<div class="row" style="width: 100%; padding-top: 5px;">
 									<button class="btn btn-primary" onclick="tab(9)" style="text-align: center; width: 100%;">Training Kode Etik Kepatuhan</button>
 								</div>
@@ -689,86 +689,86 @@ header("Pragma: no-cache");
 
 
 
-						<div id="form_kode_etik" style="display: none;padding: 0px 10px 58px 10px;">
-							<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
+					<div id="form_kode_etik" style="display: none;padding: 0px 10px 58px 10px;">
+						<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
 							TRAINING<br>KODE ETIK KEPATUHAN
+						</span>
+
+						<div id="div_pertanyaan1" >
+							<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
+								PERTANYAAN
 							</span>
-
-							<div id="div_pertanyaan1">
-								<span class="contact100-form-title" style="padding-bottom: 15px;text-align: center;font-weight: bold;font-size: 18px">
-									PERTANYAAN
-								</span>
-								<label style="color: purple;font-size: 18px; display: none;"> NIK : <span id="kode_etik_employee_id"></span></label>
-								<br><?php $kode_etik_question_total = count($kode_etik_question) ?>
-								<?php if (count($kode_etik_question) > 0): ?>
-									<?php $no = 0; ?>
-									@foreach($kode_etik_question as $kode_etik_question)
-									<div id="div_kode_etik_question_<?= $no ?>" style="position: relative; display: none;">
-										<label class="label-input1002" style="color: purple;margin-top: 0px;font-size: 14px"><span id="kode_etik_question_<?= $no ?>">{{$no+1}}. {{ $kode_etik_question->question }}</span></label>
+							<label style="color: purple;font-size: 18px; display: none;"> NIK : <span id="kode_etik_employee_id"></span></label>
+							<br><?php $kode_etik_question_total = count($kode_etik_question) ?>
+							<?php if (count($kode_etik_question) > 0): ?>
+								<?php $no = 0; ?>
+								@foreach($kode_etik_question as $kode_etik_question)
+								<div  id="div_kode_etik_question_<?= $no ?>" style="position: relative; display: none;">
+									<label class="label-input1002" style="color: purple;margin-top: 0px;font-size: 14px"><span id="kode_etik_question_<?= $no ?>">{{$no+1}}. {{ $kode_etik_question->question }}</span></label>
 
 
-										<?php $kode_etik_answer = explode('_', $kode_etik_question->answer) ?>
+									<?php $kode_etik_answer = explode('_', $kode_etik_question->answer) ?>
 
-										<?php for ($i=0; $i < count($kode_etik_answer); $i++) { ?>
-											<div class="validate-input" style="position: relative;  width: 100%">
-												<label class="radio_box" style="margin-top: 5px;font-size: 12px">{{$kode_etik_answer[$i]}}
-													<input type="radio" id="kode_etik_answer_{{$no}}" name="kode_etik_answer_{{$no}}" value="{{$kode_etik_answer[$i]}}">
-													<span class="checkmark_box"></span>
-												</label>
-											</div>
-										<?php } ?>
-										<input type="hidden" name="kode_etik_right_answer_{{$no}}" id="kode_etik_right_answer_{{$no}}" value="{{$kode_etik_question->right_answer}}">
+									<?php for ($i=0; $i < count($kode_etik_answer); $i++) { ?>
+										<div class="validate-input" style="position: relative;  width: 100%">
+											<label class="radio_box" style="margin-top: 5px;font-size: 12px">{{$kode_etik_answer[$i]}}
+												<input type="radio" id="kode_etik_answer_{{$no}}" name="kode_etik_answer_{{$no}}" value="{{$kode_etik_answer[$i]}}">
+												<span class="checkmark_box"></span>
+											</label>
+										</div>
+									<?php } ?>
+									<input type="hidden" name="kode_etik_right_answer_{{$no}}" id="kode_etik_right_answer_{{$no}}" value="{{$kode_etik_question->right_answer}}">
+									<br>
+								</div>
+
+								<div id="div_kode_etik_discussion_<?= $no ?>" style="display: none;">
+									<center><span id="kode_etik_announcement_<?= $no ?>" style="font-weight: bold;font-size: 20px"></span>
+									</center>
+									<br>
+									<center><span id="images_<?= $no ?>" style="display: none;"><img src='../admin/public/images/yess_answer.png' width='18%'></span>
+									</center>
+									<br>
+									<center><span id="images_not_<?= $no ?>" style="display: none;"><img src='../admin/public/images/sad.png' width='20%'></span>
+									</center>
+									<br>
+									<!-- <center><span style="font-weight: bold;font-size: 20px">Jawaban Yang Benar</span></center> -->
+									<center><span id="kode_etik_salah_<?= $no ?>" style="font-weight: bold;font-size: 20px"> Jawaban yang benar adalah </span>
+										<label id="kode_etik_salah1_ket_<?= $no ?>" style="font-weight: bold;font-size:17px;color:green;"><?php echo $kode_etik_question->right_answer ?></span></label></center>
 										<br>
 									</div>
 
-									<div id="div_kode_etik_discussion_<?= $no ?>" style="display: none;">
-										<center><span id="kode_etik_announcement_<?= $no ?>" style="font-weight: bold;font-size: 20px"></span>
-										</center>
-										<br>
-										<center><span id="images_<?= $no ?>" style="display: none;"><img src='../admin/public/images/yess_answer.png' width='18%'></span>
-										</center>
-										<br>
-									<center><span id="images_not_<?= $no ?>" style="display: none;"><img src='../admin/public/images/sad.png' width='20%'></span>
-										</center>
-										<br>
-										<!-- <center><span style="font-weight: bold;font-size: 20px">Jawaban Yang Benar</span></center> -->
-										<center><span id="kode_etik_salah_<?= $no ?>" style="font-weight: bold;font-size: 20px"> Jawaban yang benar adalah </span>
-											<label id="kode_etik_salah1_ket_<?= $no ?>" style="font-weight: bold;font-size:17px;color:green;"><?php echo $kode_etik_question->right_answer ?></span></label></center>
-											<br>
-										</div>
+									<button class="contact100-form-btn" type="button" id="btn_kode_etik_submit_<?= $no ?>" onclick="submitKodeEtikQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
+										<span>
+											Submit
+											<i class="fa fa-arrow-right"></i>
+										</span>
+									</button>
 
-										<button class="contact100-form-btn" type="button" id="btn_kode_etik_submit_<?= $no ?>" onclick="submitKodeEtikQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
-											<span>
-												Submit
-												<i class="fa fa-arrow-right"></i>
-											</span>
-										</button>
+									<button class="contact1002-form-btn" type="button" id="btn_kode_etik_back_<?= $no ?>" onclick="backKodeEtikQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
+										<span>
+											Back
+											<i class="fa fa-arrow-right"></i>
+										</span>
+									</button>
+									<button class="contact100-form-btn" type="button" id="btn_kode_etik_next_<?= $no ?>" onclick="nextKodeEtikQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
+										<span>
+											Next
+											<i class="fa fa-arrow-right"></i>
+										</span>
+									</button>
+									<?php $no++ ?>
+									@endforeach
+								<?php endif ?>
 
-										<button class="contact1002-form-btn" type="button" id="btn_kode_etik_back_<?= $no ?>" onclick="backKodeEtikQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
-											<span>
-												Back
-												<i class="fa fa-arrow-right"></i>
-											</span>
-										</button>
-										<button class="contact100-form-btn" type="button" id="btn_kode_etik_next_<?= $no ?>" onclick="nextKodeEtikQuestion('{{$no}}')" style="display: inline-block;float: right;display: none;">
-											<span>
-												Next
-												<i class="fa fa-arrow-right"></i>
-											</span>
-										</button>
-										<?php $no++ ?>
-										@endforeach
-									<?php endif ?>
-									
-								</div>
-								<br>
-								<div id="sudah_kode_etik" style="width: 100%; display:none;">
-									
-									<div class="col-xs-12 col-md-12">
-										<center>
-											<div id="thanks_give"></div> 
-										</center>
-										<br>
+							</div>
+							<br>
+							<div id="sudah_kode_etik" style="width: 100%; display:none;">
+
+								<div class="col-xs-12 col-md-12">
+									<center>
+										<div id="thanks_give"></div> 
+									</center>
+									<br>
 									<center style="font-size:16px">Terimakasih <span style="color: blue;" class="name_survey1"></span> telah melakukan Training Kode Etik Kepatuhan Pada<span style="color: red"><div id="waktu_kode_etik"></div></span></center>
 									<br>
 								</div>
@@ -786,257 +786,257 @@ header("Pragma: no-cache");
 											<i class="fa fa-arrow-right"></i>
 										</span>
 									</button>
-										<br>
-									</div>
+									<br>
+								</div>
+							</div>
+						</div>
+
+
+
+						<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_grup">
+							{{ csrf_field() }}
+
+							<h3>Informasi Grup Kerja</h3>
+
+							<label class="label-input1002">
+								<label style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"> Masukkan NIK </label>
+							</label>
+
+							<div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0">
+								<div class="form-group">
+									<input type="text" class="form-control pull-right" id="nik_grup" name="nik_grup" placeholder="Nomor Induk Karyawan">
 								</div>
 							</div>
 
+							<label class="label-input1002">
+								<label style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"> Masukkan Kode </label>
+							</label>
+							<div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0">
+								<div class="form-group">
+									<!-- <input type="text" class="form-control pull-right" id="departemen" name="departemen" placeholder="Departemen"> -->
+									<select class="form-control select2" style="width: 100%;" id="kode_grup" name="kode_grup" data-placeholder="Pilih Kode" required>
+										<option value=""></option>
+										<option value="0fc">Office</option>
+										<option value="AP">Assembly</option>
+										<option value="CTN">Canteen</option>
+										<option value="Drv">Driver</option>
+										<option value="EI">Educational Instrument</option>
+										<option value="GS">General Service</option>
+										<option value="Jps">Japanese</option>
+										<option value="PE">Production Engineering</option>
+										<option value="MNTC">Maintenance</option>
+										<option value="PP">Part Process</option>
+										<option value="QA">Quality Assurance</option>
+										<option value="WH">Warehouse</option>
+										<option value="WST">Welding Surface Treatment</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-3 col-xs-3" style="padding-left: 0">
+								<button class="btn btn-success" type="button" onClick="fillTable()" style="display: inline-block;margin-top: 10px">
+									<span>
+										Cari
+									</span>
+								</button>
+							</div>
 
-
-							<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_grup">
-								{{ csrf_field() }}
-
-								<h3>Informasi Grup Kerja</h3>
-
-								<label class="label-input1002">
-									<label style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"> Masukkan NIK </label>
-								</label>
-
-								<div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0">
-									<div class="form-group">
-										<input type="text" class="form-control pull-right" id="nik_grup" name="nik_grup" placeholder="Nomor Induk Karyawan">
+							<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 0;overflow-x: scroll;">
+								<table id="tableResult" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important">
+									<thead>
+										<tr>
+											<th>Nama</th>
+											<th>Tanggal</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody id="tableBodyResult">
+									</tbody>
+									<!--<tfoot>-->
+										<!--  <tr>-->
+											<!--    <th></th>-->
+											<!--    <th></th>-->
+											<!--    <th></th>-->
+											<!--    <th></th>-->
+											<!--  </tr>-->
+											<!--</tfoot>-->
+										</table>
+										<p style="color: red" id="geser" style="display: none">*Geser ke kanan untuk melihat detail</p> 
 									</div>
-								</div>
 
-								<label class="label-input1002">
-									<label style="font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"> Masukkan Kode </label>
-								</label>
-								<div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0">
-									<div class="form-group">
-										<!-- <input type="text" class="form-control pull-right" id="departemen" name="departemen" placeholder="Departemen"> -->
-										<select class="form-control select2" style="width: 100%;" id="kode_grup" name="kode_grup" data-placeholder="Pilih Kode" required>
-											<option value=""></option>
-											<option value="0fc">Office</option>
-											<option value="AP">Assembly</option>
-											<option value="CTN">Canteen</option>
-											<option value="Drv">Driver</option>
-											<option value="EI">Educational Instrument</option>
-											<option value="GS">General Service</option>
-											<option value="Jps">Japanese</option>
-											<option value="PE">Production Engineering</option>
-											<option value="MNTC">Maintenance</option>
-											<option value="PP">Part Process</option>
-											<option value="QA">Quality Assurance</option>
-											<option value="WH">Warehouse</option>
-											<option value="WST">Welding Surface Treatment</option>
-										</select>
+									<div class="container-contact100-form-btn" style="margin-top: 30px;">
+										<button class="contact1002-form-btn" type="button" onclick="cancel('form_grup')" style="display: inline-block;">
+											<span>
+												<i class="fa fa-arrow-left"></i>
+												Back To Home
+											</span>
+										</button>
 									</div>
-								</div>
-								<div class="col-md-3 col-sm-3 col-xs-3" style="padding-left: 0">
-									<button class="btn btn-success" type="button" onClick="fillTable()" style="display: inline-block;margin-top: 10px">
-										<span>
-											Cari
-										</span>
-									</button>
-								</div>
 
-								<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 0;overflow-x: scroll;">
-									<table id="tableResult" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important">
-										<thead>
-											<tr>
-												<th>Nama</th>
-												<th>Tanggal</th>
-												<th>Status</th>
-											</tr>
-										</thead>
-										<tbody id="tableBodyResult">
-										</tbody>
-										<!--<tfoot>-->
-											<!--  <tr>-->
-												<!--    <th></th>-->
-												<!--    <th></th>-->
-												<!--    <th></th>-->
-												<!--    <th></th>-->
-												<!--  </tr>-->
-												<!--</tfoot>-->
-											</table>
-											<p style="color: red" id="geser" style="display: none">*Geser ke kanan untuk melihat detail</p> 
+								</form>
+
+								<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_pengumuman">
+									{{ csrf_field() }}
+
+									<h3>Pengumuman</h3>
+
+									<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 0;overflow-x: scroll;">
+										<table id="tableResultPengumuman" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important">
+											<thead>
+												<tr>
+													<th>Tanggal</th>
+													<th>Pengumuman</th>
+												</tr>
+											</thead>
+											<tbody id="tableBodyResultPengumuman">
+											</tbody>
+										</table>
+									</div>
+
+									<div class="container-contact100-form-btn" style="margin-top: 30px;">
+										<button class="contact1002-form-btn" type="button" onclick="cancel('form_pengumuman')" style="display: inline-block;">
+											<span>
+												<i class="fa fa-arrow-left"></i>
+												Back To Home
+											</span>
+										</button>
+									</div>
+								</form>
+
+								<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_kehadiran">
+									{{ csrf_field() }}
+
+									<h3>Data Kehadiran</h3>
+
+									<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 0;overflow-x: scroll;">
+										<table id="tableResultKehadiran" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important">
+											<thead>
+												<tr>
+													<th>Tanggal</th>
+													<th>NIK</th>
+													<th>Nama</th>
+													<th>Jam Masuk</th>
+													<th>Location Masuk</th>
+													<th>Jam Keluar</th>
+													<th>Location Keluar</th>
+													<th>Status</th>
+												</tr>
+											</thead>
+											<tbody id="tableBodyResultKehadiran">
+											</tbody>
+										</table>
+									</div>
+
+									<div class="container-contact100-form-btn" style="margin-top: 30px;">
+										<button class="contact1002-form-btn" type="button" onclick="cancel('form_kehadiran')" style="display: inline-block;">
+											<span>
+												<i class="fa fa-arrow-left"></i>
+												Back To Home
+											</span>
+										</button>
+									</div>
+								</form>
+
+								<form class="bye-form" id="form_terimakasih" style="display: none" >
+								</form>
+
+								<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_belum_survey">
+									<div style="width: 100%;">
+										<div class="col-xs-12 col-md-12">
+											<center style="font-size:16px">Dear <span class="name_survey"></span><br>Survey Dapat Diisi Pada <span style="color: red">Minggu, 20 Februari 2022 Pukul 12:00 - 18:00 </span> <br></center>
 										</div>
+									</div>
 
-										<div class="container-contact100-form-btn" style="margin-top: 30px;">
-											<button class="contact1002-form-btn" type="button" onclick="cancel('form_grup')" style="display: inline-block;">
-												<span>
-													<i class="fa fa-arrow-left"></i>
-													Back To Home
-												</span>
-											</button>
-										</div>
+									<div class="container-contact100-form-btn" style="margin-top: 30px;">
+										<button class="contact1002-form-btn" type="button" onclick="cancel('form_belum_survey')" style="display: inline-block;">
+											<span>
+												<i class="fa fa-arrow-left"></i>
+												Back To Home
+											</span>
+										</button>
+									</div>
+								</form>
 
-									</form>
 
-									<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_pengumuman">
+								<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_survey">
+									<div id="belum_survey" style="width: 100%;">
 										{{ csrf_field() }}
+										<label class="label-input1002" style="margin-top: 0">
+											<center>
+												<label style="color: purple;font-size: 18px;"> NIK : <span id="employee_id_survey"></span></label>
+												<label style="color: purple;font-size: 18px;"> Nama : <span id="name_survey" class="name_survey"></span></label><br>
+												<input type="hidden" id="department_survey">
+											</center>
+										</label>
 
-										<h3>Pengumuman</h3>
 
-										<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 0;overflow-x: scroll;">
-											<table id="tableResultPengumuman" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important">
+										<div class="col-xs-12 col-md-12">
+
+
+											<?php 
+											$jml_pertanyaan_survey = count($question);
+											?>
+
+											<input type="hidden" id="jml_pertanyaan_survey" value="<?= $jml_pertanyaan_survey ?>">
+
+											<table id="tableQuestion" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important;width: 100%">
 												<thead>
-													<tr>
-														<th>Tanggal</th>
-														<th>Pengumuman</th>
+													<tr style="background-color: #a488aa;color: white">
+														<th>PENILAIAN RESIKO PRIBADI TERKAIT COVID-19</th>
 													</tr>
 												</thead>
-												<tbody id="tableBodyResultPengumuman">
-												</tbody>
-											</table>
-										</div>
+												<tbody id="">
 
-										<div class="container-contact100-form-btn" style="margin-top: 30px;">
-											<button class="contact1002-form-btn" type="button" onclick="cancel('form_pengumuman')" style="display: inline-block;">
-												<span>
-													<i class="fa fa-arrow-left"></i>
-													Back To Home
-												</span>
-											</button>
-										</div>
-									</form>
+													<?php 
+													$no = 0; 
+													?>
 
-									<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_kehadiran">
-										{{ csrf_field() }}
+													@foreach($question as $qs)
+													<tr class="tab_{{$no+1}}" id="tab_{{$no+1}}">
+														<td>
+															<label class="label-input1002" style="color: purple;margin-top: 0px;text-align: center;font-size: 14px"><span id="pertanyaan_survey<?= $no ?>">{{ $qs->pertanyaan }}</span></label>
 
-										<h3>Data Kehadiran</h3>
+															<div class="validate-input" style="position: relative; width: 100%">
+																<label class="radio_box" style="margin-top: 5px">Ya
+																	<input type="radio" id="jawabansurvey{{$no}}" name="jawabansurvey{{$no}}" value="Ya">
+																	<span class="checkmark_box"></span>
+																</label>
 
-										<div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 0;overflow-x: scroll;">
-											<table id="tableResultKehadiran" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important">
-												<thead>
-													<tr>
-														<th>Tanggal</th>
-														<th>NIK</th>
-														<th>Nama</th>
-														<th>Jam Masuk</th>
-														<th>Location Masuk</th>
-														<th>Jam Keluar</th>
-														<th>Location Keluar</th>
-														<th>Status</th>
-													</tr>
-												</thead>
-												<tbody id="tableBodyResultKehadiran">
-												</tbody>
-											</table>
-										</div>
+																<?php if ($no+1 != 1 && $no+1 != 16 && $no+1 != 19 && $no+1 != 20 && $no+1 != 21 && $no+1 != 22 && $no+1 != 23 && $no+1 != 24) { ?> 
 
-										<div class="container-contact100-form-btn" style="margin-top: 30px;">
-											<button class="contact1002-form-btn" type="button" onclick="cancel('form_kehadiran')" style="display: inline-block;">
-												<span>
-													<i class="fa fa-arrow-left"></i>
-													Back To Home
-												</span>
-											</button>
-										</div>
-									</form>
-
-									<form class="bye-form" id="form_terimakasih" style="display: none" >
-									</form>
-
-									<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_belum_survey">
-										<div style="width: 100%;">
-											<div class="col-xs-12 col-md-12">
-												<center style="font-size:16px">Dear <span class="name_survey"></span><br>Survey Dapat Diisi Pada <span style="color: red">Minggu, 13 Februari 2022 Pukul 12:00 - 18:00 </span> <br></center>
-											</div>
-										</div>
-
-										<div class="container-contact100-form-btn" style="margin-top: 30px;">
-											<button class="contact1002-form-btn" type="button" onclick="cancel('form_belum_survey')" style="display: inline-block;">
-												<span>
-													<i class="fa fa-arrow-left"></i>
-													Back To Home
-												</span>
-											</button>
-										</div>
-									</form>
-
-
-									<form class="contact100-form validate-form" style="padding: 0px 25px 58px 25px;display: none" id="form_survey">
-										<div id="belum_survey" style="width: 100%;">
-											{{ csrf_field() }}
-											<label class="label-input1002" style="margin-top: 0">
-												<center>
-													<label style="color: purple;font-size: 18px;"> NIK : <span id="employee_id_survey"></span></label>
-													<label style="color: purple;font-size: 18px;"> Nama : <span id="name_survey" class="name_survey"></span></label><br>
-													<input type="hidden" id="department_survey">
-												</center>
-											</label>
-
-
-											<div class="col-xs-12 col-md-12">
-
-
-												<?php 
-												$jml_pertanyaan_survey = count($question);
-												?>
-
-												<input type="hidden" id="jml_pertanyaan_survey" value="<?= $jml_pertanyaan_survey ?>">
-
-												<table id="tableQuestion" class="table table-bordered table-striped table-hover" style="overflow-x: scroll;border-collapse: collapse !important;width: 100%">
-													<thead>
-														<tr style="background-color: #a488aa;color: white">
-															<th>PENILAIAN RESIKO PRIBADI TERKAIT COVID-19</th>
-														</tr>
-													</thead>
-													<tbody id="">
-
-														<?php 
-														$no = 0; 
-														?>
-
-														@foreach($question as $qs)
-														<tr class="tab_{{$no+1}}" id="tab_{{$no+1}}">
-															<td>
-																<label class="label-input1002" style="color: purple;margin-top: 0px;text-align: center;font-size: 14px"><span id="pertanyaan_survey<?= $no ?>">{{ $qs->pertanyaan }}</span></label>
-
-																<div class="validate-input" style="position: relative; width: 100%">
-																	<label class="radio_box" style="margin-top: 5px">Ya
-																		<input type="radio" id="jawabansurvey{{$no}}" name="jawabansurvey{{$no}}" value="Ya">
+																	<label class="radio_box" style="margin-top: 5px">Kadang
+																		<input type="radio" id="jawabansurvey{{$no}}" name="jawabansurvey{{$no}}" value="Kadang">
 																		<span class="checkmark_box"></span>
 																	</label>
 
-																	<?php if ($no+1 != 1 && $no+1 != 16 && $no+1 != 19 && $no+1 != 20 && $no+1 != 21 && $no+1 != 22 && $no+1 != 23 && $no+1 != 24) { ?> 
+																<?php } ?>
 
-																		<label class="radio_box" style="margin-top: 5px">Kadang
-																			<input type="radio" id="jawabansurvey{{$no}}" name="jawabansurvey{{$no}}" value="Kadang">
-																			<span class="checkmark_box"></span>
-																		</label>
-
-																	<?php } ?>
-
-																	<label class="radio_box" style="margin-top: 5px">Tidak
-																		<input type="radio" id="jawabansurvey{{$no}}" name="jawabansurvey{{$no}}" value="Tidak">
-																		<span class="checkmark_box"></span>
-																	</label>
-																</div>
-																<div class="validate-input" style="position: relative; width: 100%">
-																	<?php 
-																	if ($no+1 != 1) { ?>
-																		<button id="back_{{$no+1}}" class="contact1002-form-btn" type="button" onclick="backSurvey(this.id)" style="display: inline-block;background-color: red !important">
-																			<span>
-																				Back
-																				<i class="fa fa-arrow-left"></i>
-																			</span>
-																		</button>
-																	<?php }
-																	?>
+																<label class="radio_box" style="margin-top: 5px">Tidak
+																	<input type="radio" id="jawabansurvey{{$no}}" name="jawabansurvey{{$no}}" value="Tidak">
+																	<span class="checkmark_box"></span>
+																</label>
+															</div>
+															<div class="validate-input" style="position: relative; width: 100%">
+																<?php 
+																if ($no+1 != 1) { ?>
+																	<button id="back_{{$no+1}}" class="contact1002-form-btn" type="button" onclick="backSurvey(this.id)" style="display: inline-block;background-color: red !important">
+																		<span>
+																			Back
+																			<i class="fa fa-arrow-left"></i>
+																		</span>
+																	</button>
+																<?php }
+																?>
 
 
-																	<?php 
-																	if ($no+1 != $jml_pertanyaan_survey) { ?>
-																		<button id="next_{{$no+1}}" class="contact100-form-btn" type="button" onclick="nextSurvey(this.id)" style="display: inline-block;float: right">
-																			<span>
-																				Next
-																				<i class="fa fa-arrow-right"></i>
-																			</span>
-																		</button>
-																	<?php } else { ?>
+																<?php 
+																if ($no+1 != $jml_pertanyaan_survey) { ?>
+																	<button id="next_{{$no+1}}" class="contact100-form-btn" type="button" onclick="nextSurvey(this.id)" style="display: inline-block;float: right">
+																		<span>
+																			Next
+																			<i class="fa fa-arrow-right"></i>
+																		</span>
+																	</button>
+																<?php } else { ?>
 
 															<!-- <tr>
 											              		<td>
@@ -1331,6 +1331,7 @@ header("Pragma: no-cache");
 						$("#stocktaking_survey_form").hide();
 						$("#form_kode_etik").hide();
 
+
 					}
 
 					if (index === 2) {
@@ -1343,6 +1344,7 @@ header("Pragma: no-cache");
 						$("#form_pkb").hide();
 						$("#stocktaking_survey_form").hide();
 						$("#form_kode_etik").hide();
+
 
 					}
 
@@ -1358,6 +1360,7 @@ header("Pragma: no-cache");
 						$("#stocktaking_survey_form").hide();
 						$("#form_kode_etik").hide();
 
+
 					}
 
 					if (index === 4) {
@@ -1372,10 +1375,11 @@ header("Pragma: no-cache");
 						$("#stocktaking_survey_form").hide();
 						$("#form_kode_etik").hide();
 
+
 					}
 
 					if (index === 5) {
-						if (tgl >= "2022-02-13 12:00:00" && tgl <= "2022-02-13 18:00:00") {
+						if (tgl >= "2022-02-20 11:00:00" && tgl <= "2022-02-20 18:00:00") {
 							$('#form_kehadiran').hide();
 							$('#form_menu').hide();
 							$("#form_login").hide();
@@ -1386,6 +1390,7 @@ header("Pragma: no-cache");
 							$("#stocktaking_survey_form").hide();
 							hideAll();
 							$("#form_kode_etik").hide();
+
 
 						}
 						else{
@@ -1420,6 +1425,7 @@ header("Pragma: no-cache");
 					$('#div_pkb_question_0').show();
 					$('#btn_pkb_submit_0').show();
 					$("#form_kode_etik").hide();
+
 
 				}
 
