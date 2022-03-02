@@ -153,6 +153,21 @@
 					<option value="Moderna">Moderna</option>
 					<option value="Pfizer">Pfizer</option>
 				</select>
+
+				<label class="label-input1002" id="labelvaksin_3">Tanggal Vaksinasi 3</label>
+
+				<input type="text" class="form-control datepicker" id="vaksin_3" name="vaksin_3">
+
+				<label class="label-input1002" id="labeljenisvaksin_3">Jenis Vaksin</label>
+
+				<!-- <input type="text" class="form-control" id="jenis_vaksin" name="jenis_vaksin"> -->
+				<select id="jenis_vaksin_3" class="form-control" name="jenis_vaksin_3">
+					<option value="Sinovac">Sinovac</option>
+					<option value="AstraZeneca">AstraZeneca</option>
+					<option value="SinoPharm">SinoPharm</option>
+					<option value="Moderna">Moderna</option>
+					<option value="Pfizer">Pfizer</option>
+				</select>
 				
 				<!-- demam, batuk, kejadian, tenggorokan sakit, sesak nafas, indera perasa & penciuman terganggu,  -->
 			
@@ -191,13 +206,18 @@
 		$('#vaksin_1').hide();
 		$('#labelvaksin_2').hide();
 		$('#vaksin_2').hide();
+		$('#labelvaksin_3').hide();
+		$('#vaksin_3').hide();
 		$('#labeljenisvaksin').hide();
 		$('#jenis_vaksin').hide();
+		$('#labeljenisvaksin_3').hide();
+		$('#jenis_vaksin_3').hide();
 		$('#employee_id').val("");
 		$('#name').val("");
 		$('#department').val("");
 		$('#vaksin_1').val("");
 		$('#vaksin_2').val("");
+		$('#vaksin_3').val("");
 		$('.datepicker').datepicker({
 			autoclose: true,
 			format: "yyyy-mm-dd",
@@ -223,8 +243,12 @@
 					$('#vaksin_1').show();
 					$('#labelvaksin_2').show();
 					$('#vaksin_2').show();
+					$('#labelvaksin_3').show();
+					$('#vaksin_3').show();
 					$('#labeljenisvaksin').show();
 					$('#jenis_vaksin').show();
+					$('#labeljenisvaksin_3').show();
+					$('#jenis_vaksin_3').show();
 			      	$('#labelnama').show();
 					$('#name').show();
 					$('#labeldept').show();
@@ -236,7 +260,9 @@
 					if (result.vaksin != null) {
 						$('#vaksin_1').val(result.vaksin.vaksin_1);
 						$('#vaksin_2').val(result.vaksin.vaksin_2);
+						$('#vaksin_3').val(result.vaksin.vaksin_3);
 						$('#jenis_vaksin').val(result.vaksin.jenis_vaksin).trigger('change');
+						$('#jenis_vaksin_3').val(result.vaksin.jenis_vaksin_3).trigger('change');
 					}
 			      }
 		      });
@@ -252,8 +278,12 @@
 					$('#vaksin_1').show();
 					$('#labelvaksin_2').show();
 					$('#vaksin_2').show();
+					$('#labelvaksin_3').show();
+					$('#vaksin_3').show();
 					$('#labeljenisvaksin').show();
 					$('#jenis_vaksin').show();
+					$('#labeljenisvaksin_3').show();
+					$('#jenis_vaksin_3').show();
 					$('#labelnama').show();
 					$('#name').show();
 					$('#labeldept').show();
@@ -265,7 +295,9 @@
 					if (result.vaksin != null) {
 						$('#vaksin_1').val(result.vaksin.vaksin_1);
 						$('#vaksin_2').val(result.vaksin.vaksin_2);
+						$('#vaksin_3').val(result.vaksin.vaksin_3);
 						$('#jenis_vaksin').val(result.vaksin.jenis_vaksin).trigger('change');
+						$('#jenis_vaksin_3').val(result.vaksin.jenis_vaksin_3).trigger('change');
 					}
 			      }
 			      else{
@@ -280,8 +312,12 @@
 			$('#vaksin_1').hide();
 			$('#labelvaksin_2').hide();
 			$('#vaksin_2').hide();
+			$('#labelvaksin_3').hide();
+			$('#vaksin_3').hide();
 			$('#labeljenisvaksin').hide();
 			$('#jenis_vaksin').hide();
+			$('#labeljenisvaksin_3').hide();
+			$('#jenis_vaksin_3').hide();
 			$('#labeldept').hide();
 			$('#department').hide();
 			$('#vaksin_1').val("");
@@ -311,7 +347,8 @@
 			vaksin_1 : $('#vaksin_1').val(),
 			vaksin_2 : $('#vaksin_2').val(),
 			jenis_vaksin : $('#jenis_vaksin').val(),
-			
+			vaksin_3 : $('#vaksin_3').val(),
+			jenis_vaksin_3 : $('#jenis_vaksin_3').val(),
 		}
 
 		$.post('{{ url("vaksin/input") }}', data, function(result, status, xhr){

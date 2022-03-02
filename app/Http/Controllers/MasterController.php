@@ -979,7 +979,9 @@ class MasterController extends Controller
 					'department' => $request->get('department'),
 					'vaksin_1' => $request->get('vaksin_1'),
 					'vaksin_2' => $request->get('vaksin_2'),
+					'vaksin_3' => $request->get('vaksin_3'),
 					'jenis_vaksin' => $request->get('jenis_vaksin'),
+					'jenis_vaksin_3' => $request->get('jenis_vaksin_3'),
 					'created_by' => 1,
 				]
 			);
