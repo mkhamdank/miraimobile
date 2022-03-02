@@ -154,11 +154,11 @@
 					<option value="Pfizer">Pfizer</option>
 				</select>
 
-				<label class="label-input1002" id="labelvaksin_3">Tanggal Vaksinasi 3</label>
+				<label class="label-input1002" id="labelvaksin_3">Tanggal Vaksinasi 3 (Booster)</label>
 
 				<input type="text" class="form-control datepicker" id="vaksin_3" name="vaksin_3">
 
-				<label class="label-input1002" id="labeljenisvaksin_3">Jenis Vaksin</label>
+				<label class="label-input1002" id="labeljenisvaksin_3">Jenis Vaksin 3 (Booster)</label>
 
 				<!-- <input type="text" class="form-control" id="jenis_vaksin" name="jenis_vaksin"> -->
 				<select id="jenis_vaksin_3" class="form-control" name="jenis_vaksin_3">
