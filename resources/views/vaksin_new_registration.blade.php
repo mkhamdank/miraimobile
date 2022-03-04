@@ -162,6 +162,10 @@
 
 				<input type="text" class="form-control" id="phone" name="phone">
 
+				<label class="label-input1002" id="label_call_vaksin_3">Tanggal Panggilan Vaksinasi 3 (Lihat di Aplikasi Peduli Lindungi)</label>
+
+				<input type="text" class="form-control datepicker_vaksin_3" id="call_vaksin_3" name="call_vaksin_3">
+
 
 				<div id="keluarga">
 
@@ -226,6 +230,8 @@
 		$('#address').hide();
 		$('#labelphone').hide();
 		$('#phone').hide();
+		$('#label_call_vaksin_3').hide();
+		$('#call_vaksin_3').hide();
 		$('#keluarga').hide();
 
 		$('#employee_id').val("");
@@ -236,6 +242,7 @@
 		$('#birth_date').val("");
 		$('#address').val("");
 		$('#phone').val("");
+		$('#call_vaksin_3').val("");
 
 		console.log(getActualFullDate());
 
@@ -248,6 +255,12 @@
 			$("#form_terimakasih").show();
 			$("#form_terimakasih").html('<center style="font-size:16px"><span style="color:green;font-size:20px;font-weight:bold">Registrasi Telah Ditutup</span><br>Terimakasih telah ikut berpartisipasi dalam pendaftaran vaksin.<br>Silahkan tunggu informasi selanjutnya.<br>Tetap Jaga Protokol Kesehatan dan Sayangi Keluarga Anda.</center>');
 		}
+
+		$('.datepicker_vaksin_3').datepicker({
+			autoclose: true,
+			format: "yyyy-mm-dd",
+			todayHighlight: true,
+		});
 
 	});
 	
@@ -279,6 +292,8 @@
 					$('#address').show();
 			    $('#labelphone').show();
 					$('#phone').show();
+					$('#label_call_vaksin_3').show();
+					$('#call_vaksin_3').show();
 					// $('#keluarga').show();
 					$.each(result.employee, function(key, value) {
 						$('#name').val(value.name);
@@ -288,6 +303,7 @@
 						$('#birth_date').val(value.birth_date);
 						$('#address').val(value.address);
 						$('#phone').val(value.phone);
+						$('#call_vaksin_3').val(value.call_vaksin_3);
 					});
 	      }
       });
@@ -313,6 +329,8 @@
 					$('#address').show();
 			    $('#labelphone').show();
 					$('#phone').show();
+					$('#label_call_vaksin_3').show();
+					$('#call_vaksin_3').show();
 					// $('#keluarga').show();
 					$.each(result.employee, function(key, value) {
 						$('#name').val(value.name);
@@ -322,6 +340,7 @@
 						$('#birth_date').val(value.birth_date);
 						$('#address').val(value.address);
 						$('#phone').val(value.phone);
+						$('#call_vaksin_3').val(value.call_vaksin_3);
 					});
 			      }
 			      else{
@@ -366,7 +385,7 @@
 	function save() {
 		$("#loading").show();
 
-		if($("#employee_id").val() == "" || $("#name").val() == "" || $("#address").val() == "" || $("#phone").val() == "" || $("#jumlah_keluarga").val() == ""){
+		if($("#employee_id").val() == "" || $("#name").val() == "" || $("#address").val() == "" || $("#phone").val() == "" || $("#jumlah_keluarga").val() == "" || $("#call_vaksin_3").val() == ""){
 		    $("#loading").hide();
 			openErrorGritter('Error!', 'Semua Data Harus Diisi. Pastikan Tertulis Dengan Benar');
 			return false;
@@ -416,6 +435,7 @@
 			address : $('#address').val(),
 			no_hp : $('#phone').val(),
 			jumlah_keluarga : $('#jumlah_keluarga').val(),
+			call_vaksin_3 : $('#call_vaksin_3').val(),
 
 			keluarga_hubungan : arr_hubungan,
 			keluarga_name : arr_name,

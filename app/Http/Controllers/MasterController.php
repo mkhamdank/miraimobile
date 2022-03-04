@@ -1178,6 +1178,7 @@ class MasterController extends Controller
 					'keluarga_birth_date' => $keluarga_birth_date,
 					'keluarga_address' => $keluarga_address,
 					'keluarga_no_hp' => $keluarga_phone,
+					'call_vaksin_3' => $request->get('call_vaksin_3'),
 					'remark' => 'vaksin_3',
 					'created_by' => 1,
 				]);
