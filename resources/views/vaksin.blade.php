@@ -154,7 +154,11 @@
 					<option value="Pfizer">Pfizer</option>
 				</select>
 
-				<label class="label-input1002" id="labelvaksin_3">Tanggal Vaksinasi 3 (Booster)</label>
+				<label class="label-input1002" id="labelcallvaksin_3">Tanggal Panggilan Vaksinasi 3 (Lihat di Aplikasi Peduli Lindungi)</label>
+
+				<input type="text" class="form-control datepicker" id="call_vaksin_3" name="call_vaksin_3">
+
+				<label class="label-input1002" id="labelvaksin_3">Tanggal Aktual Vaksinasi 3 (Booster)</label>
 
 				<input type="text" class="form-control datepicker" id="vaksin_3" name="vaksin_3">
 
@@ -206,6 +210,8 @@
 		$('#vaksin_1').hide();
 		$('#labelvaksin_2').hide();
 		$('#vaksin_2').hide();
+		$('#labelcallvaksin_3').hide();
+		$('#call_vaksin_3').hide();
 		$('#labelvaksin_3').hide();
 		$('#vaksin_3').hide();
 		$('#labeljenisvaksin').hide();
@@ -218,6 +224,7 @@
 		$('#vaksin_1').val("");
 		$('#vaksin_2').val("");
 		$('#vaksin_3').val("");
+		$('#call_vaksin_3').val("");
 		$('.datepicker').datepicker({
 			autoclose: true,
 			format: "yyyy-mm-dd",
@@ -245,6 +252,8 @@
 					$('#vaksin_2').show();
 					$('#labelvaksin_3').show();
 					$('#vaksin_3').show();
+					$('#labelcallvaksin_3').show();
+					$('#call_vaksin_3').show();
 					$('#labeljenisvaksin').show();
 					$('#jenis_vaksin').show();
 					$('#labeljenisvaksin_3').show();
@@ -261,6 +270,7 @@
 						$('#vaksin_1').val(result.vaksin.vaksin_1);
 						$('#vaksin_2').val(result.vaksin.vaksin_2);
 						$('#vaksin_3').val(result.vaksin.vaksin_3);
+						$('#call_vaksin_3').val(result.vaksin.call_vaksin_3);
 						$('#jenis_vaksin').val(result.vaksin.jenis_vaksin).trigger('change');
 						$('#jenis_vaksin_3').val(result.vaksin.jenis_vaksin_3).trigger('change');
 					}
@@ -280,6 +290,8 @@
 					$('#vaksin_2').show();
 					$('#labelvaksin_3').show();
 					$('#vaksin_3').show();
+					$('#labelcallvaksin_3').show();
+					$('#call_vaksin_3').show();
 					$('#labeljenisvaksin').show();
 					$('#jenis_vaksin').show();
 					$('#labeljenisvaksin_3').show();
@@ -296,6 +308,7 @@
 						$('#vaksin_1').val(result.vaksin.vaksin_1);
 						$('#vaksin_2').val(result.vaksin.vaksin_2);
 						$('#vaksin_3').val(result.vaksin.vaksin_3);
+						$('#call_vaksin_3').val(result.vaksin.call_vaksin_3);
 						$('#jenis_vaksin').val(result.vaksin.jenis_vaksin).trigger('change');
 						$('#jenis_vaksin_3').val(result.vaksin.jenis_vaksin_3).trigger('change');
 					}
@@ -314,6 +327,8 @@
 			$('#vaksin_2').hide();
 			$('#labelvaksin_3').hide();
 			$('#vaksin_3').hide();
+			$('#labelcallvaksin_3').hide();
+			$('#call_vaksin_3').hide();
 			$('#labeljenisvaksin').hide();
 			$('#jenis_vaksin').hide();
 			$('#labeljenisvaksin_3').hide();
@@ -348,6 +363,7 @@
 			vaksin_2 : $('#vaksin_2').val(),
 			jenis_vaksin : $('#jenis_vaksin').val(),
 			vaksin_3 : $('#vaksin_3').val(),
+			call_vaksin_3 : $('#call_vaksin_3').val(),
 			jenis_vaksin_3 : $('#jenis_vaksin_3').val(),
 		}
 
