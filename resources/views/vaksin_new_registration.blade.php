@@ -169,7 +169,7 @@
 					<label class="label-input1002" id="labelkeluarga">Jumlah Keluarga yang didaftarkan</label>
 
 					<select class="form-control select2" data-placeholder="Jumlah Keluarga" id="jumlah_keluarga" name="jumlah_keluarga" style="width: 100%" required onchange="daftarkeluarga(this)">
-						<option style="color:grey;" value="">Jumlah Keluarga Yang Di daftarkan</option>
+						<!-- <option style="color:grey;" value="">Jumlah Keluarga Yang Di daftarkan</option> -->
 						<option value="0">0</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -180,15 +180,14 @@
 
 					<div id="detail_keluarga">
 					</div>
-
-					<div class="container-contact100-form-btn" style="margin-top: 20px">
-						<button class="contact100-form-btn" onclick="save()">
-							<span>
-								Submit
-								<i class="fa fa-save"></i>
-							</span>
-						</button>
-					</div>
+				</div>
+				<div class="container-contact100-form-btn" style="margin-top: 20px">
+					<button class="contact100-form-btn" onclick="save()">
+						<span>
+							Submit
+							<i class="fa fa-save"></i>
+						</span>
+					</button>
 				</div>
 			</div>
 			
@@ -242,7 +241,7 @@
 
 		var qty = '{{$qty->quantity}}';
 
-		if (getActualFullDate() > '2021-09-16 12:00:00') {
+		if (getActualFullDate() > '2022-03-22 12:00:00') {
 		// if (parseInt(qty) > 250) {
 			$("#form_anda").hide();
 
@@ -280,7 +279,7 @@
 					$('#address').show();
 			    $('#labelphone').show();
 					$('#phone').show();
-					$('#keluarga').show();
+					// $('#keluarga').show();
 					$.each(result.employee, function(key, value) {
 						$('#name').val(value.name);
 						$('#department').val(value.department);
@@ -314,7 +313,7 @@
 					$('#address').show();
 			    $('#labelphone').show();
 					$('#phone').show();
-					$('#keluarga').show();
+					// $('#keluarga').show();
 					$.each(result.employee, function(key, value) {
 						$('#name').val(value.name);
 						$('#department').val(value.department);

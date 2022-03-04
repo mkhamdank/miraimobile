@@ -1117,9 +1117,17 @@ class MasterController extends Controller
 	public function inputNewVaksinRegistration(Request $request)
 	{
 		try {
-			$cek_input = db::select("select * from vaksin_register_news where employee_id='".$request->get('employee_id')."' ");
+			$cek_input = db::select("SELECT
+					* 
+				FROM
+					`vaksin_register_news` 
+				WHERE
+					employee_id = '".$request->get('employee_id')."' 
+					AND remark = 'vaksin_1_2' 
+					OR employee_id = '".$request->get('employee_id')."' 
+					AND remark = 'vaksin_3'");
 
-			if (count($cek_input) > 0) {
+			if (count($cek_input) >= 2) {
 				$response = array(
 					'status' => false,
 					'datas' => 'Anda Sudah Pernah Mendaftar'
@@ -1170,6 +1178,7 @@ class MasterController extends Controller
 					'keluarga_birth_date' => $keluarga_birth_date,
 					'keluarga_address' => $keluarga_address,
 					'keluarga_no_hp' => $keluarga_phone,
+					'remark' => 'vaksin_3',
 					'created_by' => 1,
 				]);
 
