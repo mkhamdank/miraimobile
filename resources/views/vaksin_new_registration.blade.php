@@ -117,7 +117,7 @@
 
 			<div id="form_anda">
 				<span class="contact100-form-title" style="padding-bottom: 20px;text-align: center">
-					Pendaftaran Vaksin YMPI
+					Pendaftaran Vaksin Booster YMPI
 				</span>
 
 				<br>
