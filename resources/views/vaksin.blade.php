@@ -137,11 +137,11 @@
 
 				<label class="label-input1002" id="labelvaksin_1">Tanggal Vaksinasi 1</label>
 
-				<input type="text" class="form-control datepicker" id="vaksin_1" name="vaksin_1">
+				<input type="text" class="form-control datepicker" id="vaksin_1" name="vaksin_1" readonly>
 
 				<label class="label-input1002" id="labelvaksin_2">Tanggal Vaksinasi 2</label>
 
-				<input type="text" class="form-control datepicker" id="vaksin_2" name="vaksin_2">
+				<input type="text" class="form-control datepicker" id="vaksin_2" name="vaksin_2" readonly>
 				
 				<label class="label-input1002" id="labeljenisvaksin">Jenis Vaksin</label>
 
@@ -160,7 +160,7 @@
 
 				<label class="label-input1002" id="labelvaksin_3">Tanggal Aktual Vaksinasi 3 (Booster)</label>
 
-				<input type="text" class="form-control datepicker" id="vaksin_3" name="vaksin_3">
+				<input type="text" class="form-control datepicker" id="vaksin_3" name="vaksin_3" readonly>
 
 				<label class="label-input1002" id="labeljenisvaksin_3">Jenis Vaksin 3 (Booster)</label>
 
