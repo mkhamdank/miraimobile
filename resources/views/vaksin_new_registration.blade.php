@@ -248,7 +248,7 @@
 
 		var qty = '{{$qty->quantity}}';
 
-		if (getActualFullDate() > '2022-03-22 12:00:00') {
+		if (getActualFullDate() > '2022-03-30 12:00:00') {
 		// if (parseInt(qty) > 250) {
 			$("#form_anda").hide();
 
